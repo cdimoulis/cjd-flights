@@ -1,0 +1,166 @@
+{
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.1",
+    "moment": "~2.11.2",
+    "underscore": "~1.8.3",
+    "backbone": "~1.2.3",
+    "handlebars": "~4.0.5",
+    "polymer": "Polymer/polymer#~1.3.1",
+    "paper-input": "PolymerElements/paper-input#~1.1.9",
+    "paper-checkbox": "PolymerElements/paper-checkbox#~1.1.3",
+    "paper-card": "PolymerElements/paper-card#~1.1.1",
+    "paper-button": "PolymerElements/paper-button#~1.0.11",
+    "iron-icon": "PolymerElements/iron-icon#~1.0.8",
+    "iron-icons": "PolymerElements/iron-icons#~1.1.3",
+    "paper-icon-button": "PolymerElements/paper-icon-button#~1.0.7",
+    "paper-badge": "PolymerElements/paper-badge#~1.1.1",
+    "paper-header-panel": "PolymerElements/paper-header-panel#~1.1.5",
+    "paper-toolbar": "PolymerElements/paper-toolbar#~1.1.4",
+    "paper-scroll-header-panel": "PolymerElements/paper-scroll-header-panel#~1.0.15",
+    "paper-fab": "PolymerElements/paper-fab#~1.2.0",
+    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#~1.0.8",
+    "paper-tooltip": "PolymerElements/paper-tooltip#~1.1.2",
+    "paper-radio-button": "PolymerElements/paper-radio-button#~1.1.1",
+    "paper-toggle-button": "PolymerElements/paper-toggle-button#~1.1.2",
+    "paper-item": "PolymerElements/paper-item#~1.1.4",
+    "paper-menu": "PolymerElements/paper-menu#~1.2.2",
+    "paper-toast": "PolymerElements/paper-toast#~1.2.1",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#~1.1.3",
+    "paper-listbox": "PolymerElements/paper-listbox#~1.1.2",
+    "paper-slider": "PolymerElements/paper-slider#~1.0.10",
+    "paper-spinner": "PolymerElements/paper-spinner#~1.1.1"
+  },
+  "name": "cjd-polymer",
+  "version": "0.0.0",
+  "author": "chrisdimoulis",
+  "private": true,
+  "exportsOverride": {
+    "jquery": {
+      "../js/dependencies/core": "dist/jquery.min.*"
+    },
+    "underscore": {
+      "../js/dependencies/core": "underscore.js"
+    },
+    "backbone": {
+      "../js/dependencies/core": "backbone.js"
+    },
+    "handlebars": {
+      "../js/dependencies/core": "handlebars.js"
+    },
+    "webcomponentsjs": {
+      "../js/dependencies/core": "webcomponents.js"
+    },
+    "paper-styles": {
+      "../vendor": "*.html"
+    },
+    "paper-behaviors": {
+      "../vendor": [
+        "paper-button-behavior.html",
+        "paper-checked-element-behavior.html",
+        "paper-inky-focus-behavior.html",
+        "paper-ripple-behavior.html"
+      ]
+    },
+    "paper-material": {
+      "../vendor": [
+        "paper-material.html",
+        "paper-material-shared-styles.html"
+      ]
+    },
+    "paper-item": {
+      "../vendor": [
+        "paper-item.html",
+        "paper-icon-item.html",
+        "paper-item-body.html",
+        "paper-item-behavior.html",
+        "paper-item-shared-styles.html"
+      ]
+    },
+    "paper-menu": {
+      "../vendor": [
+        "paper-menu.html",
+        "paper-menu-shared-styles.html"
+      ]
+    },
+    "paper-menu-button": {
+      "../vendor": [
+        "paper-menu-button.html",
+        "paper-menu-button-animations.html"
+      ]
+    },
+    "paper-spinner": {
+      "../vendor": [
+        "paper-spinner.html",
+        "paper-spinner-lite.html",
+        "paper-spinner-behavior.html",
+        "paper-spinner-styles.html"
+      ]
+    },
+    "iron-dropdown": {
+      "../vendor": [
+        "iron-dropdown.html",
+        "iron-dropdown-scroll-manager.html"
+      ]
+    },
+    "iron-flex-layout": {
+      "../vendor": [
+        "iron-flex-layout.html",
+        "iron-flex-layout-classes.html"
+      ]
+    },
+    "iron-icons": {
+      "../vendor": [
+        "communication-icons.html",
+        "device-icons.html",
+        "editor-icons.html",
+        "hardware-icons.html",
+        "image-icons.html",
+        "iron-icons.html",
+        "maps-icons.html",
+        "notification-icons.html",
+        "places-icons.html",
+        "social-icons.html"
+      ]
+    },
+    "iron-overlay-behavior": {
+      "../vendor": [
+        "iron-overlay-behavior.html",
+        "iron-overlay-backdrop.html",
+        "iron-overlay-manager.html"
+      ]
+    },
+    "iron-selector": {
+      "../vendor": [
+        "iron-multi-selectable.html",
+        "iron-selectable.html",
+        "iron-selection.html"
+      ]
+    },
+    "neon-animation": {
+      "../vendor": [
+        "neon-animatable-behavior.html",
+        "neon-animatable.html",
+        "neon-animated-pages.html",
+        "neon-animation-behavior.html",
+        "neon-animation-runner-behavior.html",
+        "neon-animations.html",
+        "neon-shared-element-animatable-behavior.html",
+        "neon-shared-element-animation-behavoir.html",
+        "web-animations.html"
+      ]
+    },
+    "web-animations-js": {
+      "../vendor": [
+        "web-animations.min.js",
+        "web-animations-next-lite.min.js"
+      ]
+    }
+  }
+}
