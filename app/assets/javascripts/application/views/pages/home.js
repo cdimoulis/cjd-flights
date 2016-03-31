@@ -7,19 +7,6 @@ App.Page.extend({
   setup: function() {
     this.components = c = {}
 
-    c.button = {
-      text: "BUTTON",
-      event_handler: function() {
-        console.log('clicked');
-      },
-    };
-
-    c.checkbox = {
-      model: new App.Model(),
-      attribute: 'test',
-      label: 'HI',
-    };
-
     c.text = {
       heading: 'Text',
       img_url: 'assets/text_sm.png',

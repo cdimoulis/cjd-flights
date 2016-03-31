@@ -19,7 +19,11 @@
 //= require ../../../public/assets/components/webcomponentsjs/webcomponents.js
 //= require_tree ./application/templates
 //= require moment
-//= require_tree ./libs
+//= require ./libs/view
+//= require ./libs/component
+//= require ./libs/model
+//= require ./libs/collection
+//= require ./libs/handlebars_helpers
 //= require application/app
 //= require application/init
 //= require_tree ./application/views
