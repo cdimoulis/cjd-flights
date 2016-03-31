@@ -2,8 +2,11 @@
 <html>
 <head>
   <title>CjdFlights</title>
+  <%= stylesheet_link_tag    'https://code.getmdl.io/1.1.2/material.blue_grey-orange.min.css' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag '/assets/components/web-animations-js/web-animations-next-lite.min.js' %>
+  <%= javascript_include_tag '/assets/components/web-animations-js/web-animations.min.js' %>
   <%= html_import_tag '/assets/components/polymer/polymer' %>
   <%= html_import_tag '/assets/components/iron-icon/iron-icon' %>
   <%= html_import_tag '/assets/components/iron-icons/communication-icons' %>
@@ -18,6 +21,8 @@
   <%= html_import_tag '/assets/components/iron-icons/social-icons' %>
   <%= html_import_tag '/assets/components/iron-flex-layout/iron-flex-layout' %>
   <%= html_import_tag '/assets/components/iron-flex-layout/iron-flex-layout-classes' %>
+  <%= html_import_tag '/assets/components/paper-toast/paper-toast' %>
+  <%= html_import_tag '/assets/components/paper-button/paper-button' %>
   <%= csrf_meta_tags %>
 </head>
 <body>

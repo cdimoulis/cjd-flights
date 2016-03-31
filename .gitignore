@@ -47,8 +47,7 @@ bundler_stubs/
 /specifications
 rerun.txt
 pickle-email-*.html
-
-
+.DS_Store
 
 .rvmrc
 .ruby-version

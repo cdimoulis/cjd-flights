@@ -1,0 +1,51 @@
+$primary: rgb(96,125,139);
+$accent: rgb(255,171,64);
+
+body {
+  height: 100%;
+
+  paper-scroll-header-panel {
+    height: 100%;
+    #headerContainer {
+      paper-toolbar {
+        background: transparent;
+
+        .toolbar-tools {
+          .title {
+            font-size: 40px;
+            cursor: pointer;
+            pointer-events: all;
+          }
+        }
+      }
+      #headerBg.paper-scroll-header-panel {
+        background: linear-gradient(rgba(96,125,139,0.6), rgba(96,125,139,0.6)), url('../images/oldchicagomid.jpg');
+        background-position: center bottom !important;
+      }
+      #condensedHeaderBg.paper-scroll-header-panel {
+        background: rgb(96,125,139);
+      }
+    }
+  }
+
+  paper-toast {
+    paper-button.toast_button {
+      color: $accent;
+      text-transform: none;
+    }
+    &.success {
+      background-color: rgb(76, 175, 80);
+    }
+    &.error {
+      background-color: rgb(244, 67, 54);
+    }
+  }
+
+  paper-spinner.cjd-spinner {
+    #spinnerContainer {
+      .spinner-layer.paper-spinner {
+        border-color: $accent;
+      }
+    }
+  }
+}

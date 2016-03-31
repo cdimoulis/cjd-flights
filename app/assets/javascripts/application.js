@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-// = require ../../../public/assets/components/webcomponentsjs/webcomponents.js
+//= require handlebars
+//= require underscore
+//= require backbone
+//= require ../../../public/assets/components/webcomponentsjs/webcomponents.js
+//= require_tree ./application/templates
+//= require moment
+//= require_tree ./libs
+//= require application/app
+//= require application/init
+//= require_tree ./application/views

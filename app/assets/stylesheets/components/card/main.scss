@@ -1,0 +1,11 @@
+paper-card {
+  width: 100%;
+  
+  &.heading-text-white{
+    div.header.paper-card {
+      div.title-text.paper-card {
+        color: white !important;
+      }
+    }
+  }
+}

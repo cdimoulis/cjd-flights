@@ -1,0 +1,17 @@
+<paper-drawer-panel force-narrow drawer-width='320px'>
+  <div drawer>
+    <div> Test </div>
+  </div>
+  <paper-scroll-header-panel condenses main>
+    <paper-toolbar class='tall'>
+      {{view 'components/button/icon' data=components.menu}}
+      <div id='title' class='title bottom'>
+        Polymer Examples
+      </div>
+      </div>
+    </paper-toolbar>
+    <div id="page-content" style="height: 2000px">
+      {{page data.page}}
+    </div>
+  </paper-scroll-header-panel>
+</paper-drawer-panel>
