@@ -24,7 +24,7 @@ this.Application = function (options) {
   this._setPage = function () {
     // Remove the page if one is currently being shown.
     var $content = $('#main-content');
-    var page_name = 'pages/home';//+$content.attr('page-name')
+    var page_name = 'pages/'+$content.attr('page-name');
     // Add page if exists
     if (_.has(this.Pages,[page_name])){
       var layout = new this.Views['layouts/main']({hash: {data: {page: page_name}}});
