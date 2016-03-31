@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "bower": "~1.7.7",
+  },
+  "name": "cjd-flights",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Build flight itineraries with desired flights",
+  "keywords": [
+    "cjd",
+    "flights",
+    "delta"
+  ],
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdimoulis/cjd-flights.git"
+  },
+  "author": "chrisdimoulis",
+  "license": "",
+  "engines": {
+    "node": "4.3.1"
+  },
+}
