@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   end
 
+  resources :airports, constraints: { id: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i } do
+
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

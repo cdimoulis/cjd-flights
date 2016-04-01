@@ -2,7 +2,7 @@ class FlightsController < ApplicationController
   respond_to :json
 
   def create
-
+    super
   end
 
   def index
@@ -13,7 +13,7 @@ class FlightsController < ApplicationController
     super
   end
 
-  def updated
+  def update
 
   end
 
@@ -21,4 +21,12 @@ class FlightsController < ApplicationController
 
   end
 
+  private
+
+    def flight_params
+      params.require(:flight).permit(:airline_id, :number, :departure_date,
+                                      :arrival_date, :departure_airport_id,
+                                      :arrival_airport_id, :cabin_code, :fare_basis,
+                                      :aircraft, :notes)
+    end
 end

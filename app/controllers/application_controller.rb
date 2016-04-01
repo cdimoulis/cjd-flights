@@ -19,14 +19,17 @@ class ApplicationController < ActionController::Base
   # USEFUL CRUD OPS
   ###
   def create
+    resource_params = "#{params[:controller].singularize}_params"
     resource = params[:controller].singularize.classify.constantize
-    record = resource.new(params)
+    puts "\n\n\nParams: #{send(resource_params)}\n\n\n"
+    record = resource.new(send(resource_params))
     if record.valid? and record.save
       respond_with(record)
     else
       puts "\n\nCould not create #{resource} record.\n#{record.errors.inspect}\n\n"
       Rails.logger.debug "\n\nCould not create #{resource} record.\n#{record.errors.inspect}\n\n"
       render :json => {errors: record.errors}, :status => 422
+    end
   end
 
   def index
