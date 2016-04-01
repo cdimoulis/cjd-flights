@@ -1,9 +1,4 @@
-.text-white {
-  color: white;
-}
-.text-black {
-  color: black;
-}
+@import "../colors";
 
 paper-card.home-card {
   div.header.paper-card {
@@ -12,5 +7,5 @@ paper-card.home-card {
 }
 
 .blue_grey {
-  background: #607D8B !important;
+  background: $paper-blue-grey-500 !important;
 }
