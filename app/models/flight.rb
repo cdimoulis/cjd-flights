@@ -19,28 +19,11 @@
 
 class Flight < ActiveRecord::Base
 
-  attr_accessor :departure_airport, :arrival_airport #, :airline
+  attr_accessor :departure_airport, :arrival_airport
 
   belongs_to :airline
   has_many :trip_flights, dependent: :destroy
   has_many :trips, through: :trip_flights
-
-  # def airline=(val)
-  #   if !val.nil? and val.has_key? 'id'
-  #     self.airline_id = val.id
-  #     self.save()
-  #   end
-  # end
-  #
-  # def airline
-  #   if self.airline.nil?
-  #     airline = Airline.where("id: ?", self.airline_id).take
-  #     if !airline.nil?
-  #       self.airline = Airline
-  #     end
-  #   end
-  #   self.airline
-  # end
 
   def departure_airport=(val)
     if !val.nil? and val.has_key? 'id'

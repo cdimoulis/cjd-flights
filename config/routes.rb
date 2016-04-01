@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#index'
 
+  ####
+  # FLIGHTS
+  ####
+  resources :flights, constraints: { id: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i } do
+
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

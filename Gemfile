@@ -3,6 +3,7 @@ ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails',  '~> 4.2.4'
+gem 'responders', '~> 2.1.2'
 gem 'pg',     '~> 0.18.3'
 gem 'foreman', '~> 0.78', group: :development
 gem 'passenger', '~> 5.0.26'
