@@ -7,8 +7,8 @@ class CreateFlights < ActiveRecord::Migration
       t.date :arrival_date, null: false
       t.time :departure_time, null: false
       t.time :arrival_time, null: false
-      t.uuid :departure_airpot, null: false
-      t.uuid :arrival_airport, null: false
+      t.uuid :departure_airport_id, null: false
+      t.uuid :arrival_airport_id, null: false
       t.string :cabin_code, null: false
       t.string :fare_basis
       t.string :aircraft

@@ -36,20 +36,20 @@ ActiveRecord::Schema.define(version: 20160401154508) do
   end
 
   create_table "flights", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "airline_id",       null: false
-    t.string   "number",           null: false
-    t.date     "departure_date",   null: false
-    t.date     "arrival_date",     null: false
-    t.time     "departure_time",   null: false
-    t.time     "arrival_time",     null: false
-    t.uuid     "departure_airpot", null: false
-    t.uuid     "arrival_airport",  null: false
-    t.string   "cabin_code",       null: false
+    t.uuid     "airline_id",           null: false
+    t.string   "number",               null: false
+    t.date     "departure_date",       null: false
+    t.date     "arrival_date",         null: false
+    t.time     "departure_time",       null: false
+    t.time     "arrival_time",         null: false
+    t.uuid     "departure_airport_id", null: false
+    t.uuid     "arrival_airport_id",   null: false
+    t.string   "cabin_code",           null: false
     t.string   "fare_basis"
     t.string   "aircraft"
     t.text     "notes"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "trips", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
