@@ -14,11 +14,12 @@ body {
             font-size: 40px;
             cursor: pointer;
             pointer-events: all;
+            line-height: 2;
           }
         }
       }
       #headerBg.paper-scroll-header-panel {
-        background: linear-gradient(rgba($primary,0.6), rgba($primary,0.6)), url('/assets/oldchicagomid.jpg');
+        background: $primary;
         background-position: center bottom !important;
       }
       #condensedHeaderBg.paper-scroll-header-panel {

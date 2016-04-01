@@ -11,6 +11,9 @@
  * file per style scope.
  *
  *= require ./colors
+ *= require ./theme
+ *= require_tree ./components
+ *= require_tree ./application
  *= require_tree .
  *= require_self
  */
