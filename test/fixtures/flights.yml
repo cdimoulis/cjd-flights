@@ -5,10 +5,8 @@
 #  id                   :uuid             not null, primary key
 #  airline_id           :uuid             not null
 #  number               :string           not null
-#  departure_date       :date             not null
-#  arrival_date         :date             not null
-#  departure_time       :time             not null
-#  arrival_time         :time             not null
+#  departure_date       :datetime         not null
+#  arrival_date         :datetime         not null
 #  departure_airport_id :uuid             not null
 #  arrival_airport_id   :uuid             not null
 #  cabin_code           :string           not null

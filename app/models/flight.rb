@@ -5,10 +5,8 @@
 #  id                   :uuid             not null, primary key
 #  airline_id           :uuid             not null
 #  number               :string           not null
-#  departure_date       :date             not null
-#  arrival_date         :date             not null
-#  departure_time       :time             not null
-#  arrival_time         :time             not null
+#  departure_date       :datetime         not null
+#  arrival_date         :datetime         not null
 #  departure_airport_id :uuid             not null
 #  arrival_airport_id   :uuid             not null
 #  cabin_code           :string           not null
@@ -25,8 +23,6 @@ class Flight < ActiveRecord::Base
 
   has_and_belongs_to_many :trips
   belongs_to :airline
-
-  validate :code_matches_airline
 
   # def airline=(val)
   #   if !val.nil? and val.has_key? 'id'
@@ -53,13 +49,13 @@ class Flight < ActiveRecord::Base
   end
 
   def departure_airport
-    if self.departure_airport.nil?
-      airport = Airport.where("id: ?", self.departure_airport_id).take
+    if @departure_airport.nil?
+      airport = Airport.where("id = ?", self.departure_airport_id).take
       if !airport.nil?
-        self.departure_airport = airport
+        @departure_airport = airport
       end
     end
-    self.departure_airport
+    @departure_airport
   end
 
   def arrival_airport=(val)
@@ -70,13 +66,13 @@ class Flight < ActiveRecord::Base
   end
 
   def arrival_airport
-    if self.arrival_airport.nil?
-      airport = Airport.where("id: ?", self.arrival_airport_id).take
+    if @arrival_airport.nil?
+      airport = Airport.where("id = ?", self.arrival_airport_id).take
       if !airport.nil?
-        self.arrival_airport = airport
+        @arrival_airport = airport
       end
     end
-    self.arrival_airport
+    @arrival_airport
   end
 
 
@@ -90,18 +86,4 @@ class Flight < ActiveRecord::Base
 
   private
 
-    def code_matches_airline
-      if !self.airline.nil? and !self.number.nil?
-        num_code = self.number[0..1]
-        if num_code == self.airline.code
-          return true
-        else
-          raise "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
-          Rails.logger.debug "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
-          return false
-      end
-      raise "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
-      Rails.logger.debug "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
-      return false
-    end
 end

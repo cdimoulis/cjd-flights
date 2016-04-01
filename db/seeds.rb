@@ -1,7 +1,82 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+delta = Airline.create(
+  text: 'Delta',
+  code: 'DL'
+)
+
+stl = Airport.create(
+  text: "St. Louis Lambert International Airport",
+  city: "St. Louis",
+  state: "Missouri",
+  country: "USA",
+  code: "STL",
+  timezone: -360
+)
+msp = Airport.create(
+  text: "Minneapolis-Saint Paul International Airport",
+  city: "Minneapolis",
+  state: "Minnesota",
+  country: "USA",
+  code: "MSP",
+  timezone: -360
+)
+atl = Airport.create(
+  text: "Atlanta Hartsfield International Airport",
+  city: "Atlanta",
+  state: "Georgia",
+  country: "USA",
+  code: "ATL",
+  timezone: -300
+)
+bos = Airport.create(
+  text: "Boston Logan International Airport",
+  city: "Boston",
+  state: "Massachusetts",
+  country: "USA",
+  code: "BOS",
+  timezone: -300
+)
+ord = Airport.create(
+  text: "Chicago O'Hare International Airport",
+  city: "Chicago",
+  state: "Illinois",
+  country: "USA",
+  code: "ORD",
+  timezone: -360
+)
+mdw = Airport.create(
+  text: "Chicago Midway International Airport",
+  city: "Chicago",
+  state: "Illinois",
+  country: "USA",
+  code: "MDW",
+  timezone: -360
+)
+
+f1 = Flight.create(
+  airline_id: delta.id,
+  number: "1234",
+  departure_date: "2016-04-23 14:00:00",
+  arrival_date: "2016-04-23 15:30:00",
+  departure_airport_id: stl.id,
+  arrival_airport_id: atl.id,
+  cabin_code: "V",
+  aircraft: "B757",
+  notes: "THIS IS A TEST FLIGHT. NOT REAL"
+)
+
+f2 = Flight.create(
+  airline_id: delta.id,
+  number: "4321",
+  departure_date: "2016-04-27 04:00:00",
+  arrival_date: "2016-04-27 05:30:00",
+  departure_airport_id: stl.id,
+  arrival_airport_id: msp.id,
+  cabin_code: "T",
+  aircraft: "MD90",
+  notes: "THIS IS A TEST FLIGHT. NOT REAL"
+)

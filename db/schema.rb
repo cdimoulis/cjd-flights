@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160401154508) do
     t.string   "state"
     t.string   "country",    null: false
     t.string   "code",       null: false
-    t.string   "timezone",   null: false
+    t.integer  "timezone",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,10 +38,8 @@ ActiveRecord::Schema.define(version: 20160401154508) do
   create_table "flights", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "airline_id",           null: false
     t.string   "number",               null: false
-    t.date     "departure_date",       null: false
-    t.date     "arrival_date",         null: false
-    t.time     "departure_time",       null: false
-    t.time     "arrival_time",         null: false
+    t.datetime "departure_date",       null: false
+    t.datetime "arrival_date",         null: false
     t.uuid     "departure_airport_id", null: false
     t.uuid     "arrival_airport_id",   null: false
     t.string   "cabin_code",           null: false

@@ -8,7 +8,7 @@
 #  state      :string
 #  country    :string           not null
 #  code       :string           not null
-#  timezone   :string           not null
+#  timezone   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

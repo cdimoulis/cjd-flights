@@ -6,7 +6,7 @@ class CreateAirports < ActiveRecord::Migration
       t.string :state
       t.string :country, null: false
       t.string :code, null: false
-      t.string :timezone, null: false
+      t.integer :timezone, null: false
 
       t.timestamps null: false
     end
