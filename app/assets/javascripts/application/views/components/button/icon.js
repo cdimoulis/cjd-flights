@@ -30,11 +30,11 @@ App.Component.extend({
     if (!this.data.attributes.get('disabled')){
       switch(this.data.button_color) {
         case 'primary': {
-          classes += "mdl-color--primary ";
+          classes += "background-primary ";
           break;
         }
         case 'accent': {
-          classes += "mdl-color--accent ";
+          classes += "background-accent ";
           break;
         }
       }
@@ -81,19 +81,19 @@ App.Component.extend({
   _handleDisabled: function(model,disabled) {
     if (disabled) {
       this.$el.attr('disabled',true);
-      this.$el.removeClass('mdl-color--primary');
-      this.$el.removeClass('mdl-color--accent');
+      this.$el.removeClass('background-primary');
+      this.$el.removeClass('background-accent');
       this.$el.removeClass('text-white');
     }
     else {
       this.$el.removeAttr('disabled');
       switch(this.data.button_color) {
         case 'primary': {
-          this.$el.addClass('mdl-color--primary');
+          this.$el.addClass('background-primary');
           break;
         }
         case 'accent': {
-          this.$el.addClass('mdl-color--accent');
+          this.$el.addClass('background-accent');
           break;
         }
       }

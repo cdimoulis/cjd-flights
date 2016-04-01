@@ -1,0 +1,15 @@
+@import "../../theme";
+paper-input-container.paper-input {
+  .underline.paper-input-container.is-highlighted {
+    .focused-line.paper-input-container {
+      background: $primary;
+    }
+  }
+  .input-content.label-is-floating.label-is-highlighted {
+    .label-and-input-container {
+      label.paper-input {
+        color: darken($primary, 25%);
+      }
+    }
+  }
+}

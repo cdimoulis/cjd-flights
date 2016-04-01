@@ -1,0 +1,14 @@
+@import "../../theme";
+
+paper-toast {
+  paper-button.toast_button {
+    color: $accent;
+    text-transform: none;
+  }
+  &.success {
+    background-color: $paper-green-700;
+  }
+  &.error {
+    background-color: $paper-red-800;
+  }
+}

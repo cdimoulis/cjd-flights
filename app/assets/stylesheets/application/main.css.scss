@@ -1,5 +1,4 @@
-$primary: rgb(96,125,139);
-$accent: rgb(255,171,64);
+@import "../theme";
 
 body {
   height: 100%;
@@ -15,30 +14,28 @@ body {
             font-size: 40px;
             cursor: pointer;
             pointer-events: all;
+            line-height: 2;
           }
         }
       }
       #headerBg.paper-scroll-header-panel {
-        background: linear-gradient(rgba(96,125,139,0.6), rgba(96,125,139,0.6)), url('/assets/oldchicagomid.jpg');
+        background: $primary;
         background-position: center bottom !important;
       }
       #condensedHeaderBg.paper-scroll-header-panel {
-        background: rgb(96,125,139);
+        background: $primary;
       }
     }
   }
 
-  paper-toast {
-    paper-button.toast_button {
-      color: $accent;
-      text-transform: none;
+  paper-card.home-card {
+    div.header.paper-card {
+      height: 200px;
     }
-    &.success {
-      background-color: rgb(76, 175, 80);
-    }
-    &.error {
-      background-color: rgb(244, 67, 54);
-    }
+  }
+
+  .blue_grey {
+    background: $paper-blue-grey-500 !important;
   }
 
   paper-spinner.cjd-spinner {
