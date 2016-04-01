@@ -1,28 +1,4 @@
-@import "colors";
-$primary: $paper-blue-grey-500;
-$accent: $paper-orange-500;
-
-// STANDARD COLORS
-.background-primary {
-  background-color: $primary;
-}
-.background-accent {
-  background-color: $accent;
-}
-.color-primary {
-  color: $primary;
-}
-.color-accent {
-  color: $accent;
-}
-
-// TEXT CONTROL
-.text-white {
-  color: white;
-}
-.text-black {
-  color: black;
-}
+@import "../theme";
 
 body {
   height: 100%;
@@ -51,17 +27,14 @@ body {
     }
   }
 
-  paper-toast {
-    paper-button.toast_button {
-      color: $accent;
-      text-transform: none;
+  paper-card.home-card {
+    div.header.paper-card {
+      height: 200px;
     }
-    &.success {
-      background-color: $paper-green-700;
-    }
-    &.error {
-      background-color: $paper-red-800;
-    }
+  }
+
+  .blue_grey {
+    background: $paper-blue-grey-500 !important;
   }
 
   paper-spinner.cjd-spinner {

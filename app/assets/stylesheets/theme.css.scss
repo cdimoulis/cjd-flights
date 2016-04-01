@@ -1,0 +1,25 @@
+@import "colors";
+$primary: $paper-blue-grey-500;
+$accent: $paper-orange-500;
+
+// STANDARD COLORS
+.background-primary {
+  background-color: $primary;
+}
+.background-accent {
+  background-color: $accent;
+}
+.color-primary {
+  color: $primary;
+}
+.color-accent {
+  color: $accent;
+}
+
+// TEXT CONTROL
+.text-white {
+  color: white;
+}
+.text-black {
+  color: black;
+}
