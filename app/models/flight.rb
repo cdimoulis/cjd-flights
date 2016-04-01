@@ -21,28 +21,29 @@
 
 class Flight < ActiveRecord::Base
 
-  attr_accessor :airline, :departure_airport, :arrival_airport
+  attr_accessor :departure_airport, :arrival_airport #, :airline
 
+  has_and_belongs_to_many :trips
   belongs_to :airline
 
   validate :code_matches_airline
 
-  def airline=(val)
-    if !val.nil? and val.has_key? 'id'
-      self.airline_id = val.id
-      self.save()
-    end
-  end
-
-  def airline
-    if self.airline.nil?
-      airline = Airline.where("id: ?", self.airline_id).take
-      if !airline.nil?
-        self.airline = Airline
-      end
-    end
-    self.airline
-  end
+  # def airline=(val)
+  #   if !val.nil? and val.has_key? 'id'
+  #     self.airline_id = val.id
+  #     self.save()
+  #   end
+  # end
+  #
+  # def airline
+  #   if self.airline.nil?
+  #     airline = Airline.where("id: ?", self.airline_id).take
+  #     if !airline.nil?
+  #       self.airline = Airline
+  #     end
+  #   end
+  #   self.airline
+  # end
 
   def departure_airport=(val)
     if !val.nil? and val.has_key? 'id'
@@ -92,11 +93,15 @@ class Flight < ActiveRecord::Base
     def code_matches_airline
       if !self.airline.nil? and !self.number.nil?
         num_code = self.number[0..1]
-        return num_code == self.airline.code
+        if num_code == self.airline.code
+          return true
+        else
+          raise "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
+          Rails.logger.debug "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
+          return false
       end
       raise "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
       Rails.logger.debug "\n\nFlight #{self.number} does not match airline code: #{self.airline.inspect}\n\n"
       return false
     end
-
 end
