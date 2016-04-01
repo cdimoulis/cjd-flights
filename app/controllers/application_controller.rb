@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
   def create
     resource_params = "#{params[:controller].singularize}_params"
     resource = params[:controller].singularize.classify.constantize
-    puts "\n\n\nParams: #{send(resource_params)}\n\n\n"
-    record = resource.new(send(resource_params))
+    record = resource.new(required_params)
     if record.valid? and record.save
       respond_with(record)
     else

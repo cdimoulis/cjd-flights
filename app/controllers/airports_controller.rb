@@ -23,8 +23,9 @@ class AirportsController < ApplicationController
 
   private
 
-    def airport_params
+    def required_params
       params.require(:airport).permit(:text, :code, :city, :state, :country,
                                       :timezone)
     end
+    
 end
