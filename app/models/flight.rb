@@ -22,7 +22,7 @@ class Flight < ActiveRecord::Base
   attr_accessor :departure_airport, :arrival_airport #, :airline
 
   belongs_to :airline
-  has_many :trip_flights
+  has_many :trip_flights, dependent: :destroy
   has_many :trips, through: :trip_flights
 
   # def airline=(val)

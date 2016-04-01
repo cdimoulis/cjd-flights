@@ -12,7 +12,7 @@
 
 class Trip < ActiveRecord::Base
 
-  has_many :trip_flights
+  has_many :trip_flights, dependent: :destroy
   has_many :flights, through: :trip_flights
 
   def attributes

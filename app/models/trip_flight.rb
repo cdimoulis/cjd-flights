@@ -14,16 +14,28 @@ class TripFlight < ActiveRecord::Base
   belongs_to :trip
   belongs_to :flight
 
+  validate :flight_exists, :trip_exists
+
   private
     def flight_exists
-      if self.attribute_present?(:flight_id) && !Flight.exists?(flight_id)
-        errors.add(:flight_id, "cannot be an arbitrary number")
+      if self.attribute_present?(:flight_id) && !Flight.exists?(:flight_id)
+        return true
+      else
+        puts "\n\n#{flight_id} cannot be an arbitrary number\n\n"
+        Rails.logger.debug "\n\n#{flight_id} cannot be an arbitrary number\n\n"
+        return false
       end
+      return false
     end
 
     def trip_exists
-      if self.attribute_present?(:trip_id) && !Trip.exists?(trip_id)
-        errors.add(:trip_id, "cannot be an arbitrary number")
+      if self.attribute_present?(:trip_id) && !Trip.exists?(:trip_id)
+        return true
+      else
+        puts "\n\n#{trip_id} cannot be an arbitrary number\n\n"
+        Rails.logger.debug "\n\n#{trip_id} cannot be an arbitrary number\n\n"
+        return false
       end
+      return false
     end
 end
