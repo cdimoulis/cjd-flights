@@ -21,8 +21,9 @@ class Flight < ActiveRecord::Base
 
   attr_accessor :departure_airport, :arrival_airport #, :airline
 
-  has_and_belongs_to_many :trips
   belongs_to :airline
+  has_many :trip_flights
+  has_many :trips, through: :trip_flights
 
   # def airline=(val)
   #   if !val.nil? and val.has_key? 'id'

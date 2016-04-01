@@ -1,11 +1,10 @@
 # == Schema Information
 #
-# Table name: trips
+# Table name: trip_flights
 #
 #  id         :uuid             not null, primary key
-#  cabin      :string           not null
-#  trip_type  :string           default("roundTrip")
-#  price      :float
+#  trip_id    :uuid             not null
+#  flight_id  :uuid             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
