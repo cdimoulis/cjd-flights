@@ -6,12 +6,24 @@ class FlightsController < ApplicationController
   end
 
   def index
-    puts "\n\nparams: #{params}\n\n"
+    # ONLY CURRENT FLIGHTS. TODAY AND FUTURE
     if params.has_key?(:current) and params[:current]
       records = Flight.where("arrival_date >= ?", DateTime.now.beginning_of_day)
-      respond_with(records);
+
+      # CURRENT FLIGHTS WITH SPECIFIC AIRCRAFT
+      if params.has_key?(:aircraft)
+        records = records.where("aircraft = ?", params[:aircraft])
+      end
+      respond_with( records )
     else
-      super
+
+      # ALL FLIGHTS OF SPECIFIC AIRCRAFT
+      if params.has_key?(:aircraft)
+        records = Flight.where("aircraft = ?", params[:aircraft])
+        respond_with( records )
+      else
+        super
+      end
     end
   end
 

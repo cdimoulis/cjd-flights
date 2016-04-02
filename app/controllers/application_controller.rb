@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     resource = params[:controller].singularize.classify.constantize
     record = resource.new(permitted_params)
     if record.valid? and record.save
-      respond_with(record)
+      respond_with( record )
     else
       puts "\n\nCould not create #{resource} record.\n#{record.errors.inspect}\n\n"
       Rails.logger.debug "\n\nCould not create #{resource} record.\n#{record.errors.inspect}\n\n"
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     resource = params[:controller].singularize.classify.constantize
     records = resource.all
 
-    respond_with(records)
+    respond_with( records )
   end
 
   def show
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     if record.nil?
       render :json => {errors: "404"}, :status => 404
     else
-      respond_with(record)
+      respond_with( record )
     end
   end
 
