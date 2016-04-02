@@ -18,12 +18,15 @@
 #
 
 class Flight < ActiveRecord::Base
+  include Lists
 
   attr_accessor :departure_airport, :arrival_airport
 
   belongs_to :airline
   has_many :trip_flights, dependent: :destroy
   has_many :trips, through: :trip_flights
+
+  validates :cabin_code, inclusion: { in: CABIN_CODES.values.flatten.uniq }, allow_blank: false
 
   def departure_airport=(val)
     if !val.nil? and val.has_key? 'id'

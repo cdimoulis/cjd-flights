@@ -12,12 +12,21 @@ class FlightsController < ApplicationController
     end
 
 
-    # CURRENT FLIGHTS WITH SPECIFIC AIRCRAFT
+    # FLIGHTS WITH SPECIFIC AIRCRAFT
     if params.has_key?(:aircraft)
       if !records.nil?
         records = records.where("aircraft = ?", params[:aircraft])
       else
         records = Flight.where("aircraft = ?", params[:aircraft])
+      end
+    end
+
+    # FLIGHTS FROM A SPECIFIC airline_id
+    if params.has_key?(:airline_id)
+      if !records.nil?
+        records = records.where("airline_id = ?", params[:airline_id])
+      else
+        records = Flight.where("airline_id = ?", params[:airline_id])
       end
     end
 

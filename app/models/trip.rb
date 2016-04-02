@@ -13,12 +13,13 @@
 #
 
 class Trip < ActiveRecord::Base
-  include TripTypes
+  include Lists
 
   has_many :trip_flights, dependent: :destroy
   has_many :flights, through: :trip_flights
 
   validates :trip_type, inclusion: { in: TRIP_TYPES }, allow_blank: false
+  validates :cabin, inclusion: { in: CABINS }, allow_blank: false
 
   def attributes
     super.merge(
