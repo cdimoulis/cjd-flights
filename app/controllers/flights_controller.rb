@@ -6,6 +6,7 @@ class FlightsController < ApplicationController
   end
 
   def index
+    puts "\n\nparams: #{params}\n\n"
     super
   end
 
@@ -19,6 +20,19 @@ class FlightsController < ApplicationController
 
   def destroy
     super
+  end
+
+  ######
+  # END BASIC CRUD OPS
+  ######
+
+  def trips
+    flight = Flight.where("id = ?", params[:id]).take
+    if flight.nil?
+      render :json => {errors: "404"}, :status => 404
+    else
+      respond_with( flight.trips )
+    end
   end
 
   private
