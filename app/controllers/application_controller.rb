@@ -19,9 +19,8 @@ class ApplicationController < ActionController::Base
   # USEFUL CRUD OPS
   ###
   def create
-    resource_params = "#{params[:controller].singularize}_params"
     resource = params[:controller].singularize.classify.constantize
-    record = resource.new(required_params)
+    record = resource.new(permitted_params)
     if record.valid? and record.save
       respond_with(record)
     else
@@ -40,8 +39,31 @@ class ApplicationController < ActionController::Base
 
   def show
     resource = params[:controller].singularize.classify.constantize
-    record = resource.where("id = ?",params[:id])
+    record = resource.where("id = ?", params[:id])
+    if record.nil?
+      render :json => {errors: "404"}, :status => 404
+    else
+      respond_with(record)
+    end
+  end
 
-    respond_with(record)
+  def update
+    resource = params[:controller].singularize.classify.constantize
+    record = resource.where("id = ?", params[:id])
+    if record.nil?
+      render :json => {errors: "404"}, :status => 404
+    else
+      ( record.update(permitted_params) ? two_hundred_response : four_hundred_response )
+    end
+  end
+
+  def destroy
+    resource = params[:controller].singularize.classify.constantize
+    record = resource.where("id = ?", params[:id])
+    if record.nil?
+      render :json => {errors: "404"}, :status => 404
+    else
+      ( record.destroy ? two_hundred_response : four_hundred_response )
+    end
   end
 end

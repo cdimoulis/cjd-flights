@@ -14,18 +14,18 @@ class AirportsController < ApplicationController
   end
 
   def update
-
+    super
   end
 
   def destroy
-
+    super
   end
 
   private
 
-    def required_params
+    def permitted_params
       params.require(:airport).permit(:text, :code, :city, :state, :country,
                                       :timezone)
     end
-    
+
 end

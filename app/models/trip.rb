@@ -22,7 +22,7 @@ class Trip < ActiveRecord::Base
 
   def attributes
     super.merge(
-      'flights': self.flights
+      'flights' => self.flights
     )
   end
 

@@ -14,16 +14,16 @@ class TripsController < ApplicationController
   end
 
   def update
-
+    super
   end
 
   def destroy
-
+    super
   end
 
   private
 
-    def required_params
+    def permitted_params
       params.require(:trip).permit(:text, :cabin, :trip_type, :price, :notes)
     end
 

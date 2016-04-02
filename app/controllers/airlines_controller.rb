@@ -14,16 +14,16 @@ class AirlinesController < ApplicationController
   end
 
   def update
-
+    super
   end
 
   def destroy
-
+    super
   end
 
   private
 
-    def required_params
+    def permitted_params
       params.require(:airline).permit(:text, :code)
     end
 
