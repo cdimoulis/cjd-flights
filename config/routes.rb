@@ -45,7 +45,10 @@ Rails.application.routes.draw do
   # TRIPS
   ####
   resources :trips, constraints: { id: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i } do
-
+    member do
+      get :flights
+      put :flights, to: 'trips#update_flights'
+    end
   end
 
 end
