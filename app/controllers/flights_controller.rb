@@ -9,21 +9,23 @@ class FlightsController < ApplicationController
     # ONLY CURRENT FLIGHTS. TODAY AND FUTURE
     if params.has_key?(:current) and params[:current]
       records = Flight.where("arrival_date >= ?", DateTime.now.beginning_of_day)
+    end
 
-      # CURRENT FLIGHTS WITH SPECIFIC AIRCRAFT
-      if params.has_key?(:aircraft)
+
+    # CURRENT FLIGHTS WITH SPECIFIC AIRCRAFT
+    if params.has_key?(:aircraft)
+      if !records.nil?
         records = records.where("aircraft = ?", params[:aircraft])
+      else
+        records = Flight.where("aircraft = ?", params[:aircraft])
       end
+    end
+
+    # IF THERE ARE RECORDS, RETURN THEM, OTHERWISE SUPER
+    if !records.nil?
       respond_with( records )
     else
-
-      # ALL FLIGHTS OF SPECIFIC AIRCRAFT
-      if params.has_key?(:aircraft)
-        records = Flight.where("aircraft = ?", params[:aircraft])
-        respond_with( records )
-      else
-        super
-      end
+      super
     end
   end
 
