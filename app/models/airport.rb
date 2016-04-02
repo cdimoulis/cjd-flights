@@ -14,6 +14,7 @@
 #
 
 class Airport < ActiveRecord::Base
+  include Locations
 
   validates :country, inclusion: { in: COUNTRIES.keys }, allow_blank: false
 

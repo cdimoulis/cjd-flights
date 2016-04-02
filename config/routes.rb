@@ -36,7 +36,9 @@ Rails.application.routes.draw do
   # AIRLINES
   ####
   resources :airlines, constraints: { id: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i } do
-
+    member do
+      get :flights
+    end
   end
 
   ####
