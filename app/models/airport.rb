@@ -15,5 +15,16 @@
 
 class Airport < ActiveRecord::Base
 
-  
+  validates :country, inclusion: { in: COUNTRIES.keys }, allow_blank: false
+
+  def flights_as_departure
+    flights = Flight.where("departure_airport_id = ?", self.id)
+    return flights
+  end
+
+  def flights_as_arrival
+    flights = Flight.where("arrival_airport_id = ?", self.id)
+    return flights
+  end
+
 end
