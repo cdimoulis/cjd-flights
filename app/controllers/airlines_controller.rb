@@ -21,6 +21,20 @@ class AirlinesController < ApplicationController
     super
   end
 
+  ######
+  # END BASIC CRUD OPS
+  ######
+
+  def flights
+    airline = Airline.where("id = ?", params[:id]).take
+
+    if !airline.nil?
+      respond_with( airline.flights )
+    else
+      render :json => { error: 404 }, :status => 404
+    end
+  end
+
   private
 
     def permitted_params
