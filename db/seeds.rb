@@ -80,3 +80,15 @@ f2 = Flight.create(
   aircraft: "MD90",
   notes: "THIS IS A TEST FLIGHT. NOT REAL"
 )
+
+f3 = Flight.create(
+  airline_id: delta.id,
+  number: "1122",
+  departure_date: "2016-03-14 12:00:00",
+  arrival_date: "2016-03-14 02:07:00",
+  departure_airport_id: msp.id,
+  arrival_airport_id: bos.id,
+  cabin_code: "T",
+  aircraft: "A320",
+  notes: "THIS IS A TEST FLIGHT. NOT REAL"
+)

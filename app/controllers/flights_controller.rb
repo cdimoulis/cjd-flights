@@ -7,7 +7,12 @@ class FlightsController < ApplicationController
 
   def index
     puts "\n\nparams: #{params}\n\n"
-    super
+    if params.has_key?(:current) and params[:current]
+      records = Flight.where("arrival_date >= ?", DateTime.now.beginning_of_day)
+      respond_with(records);
+    else
+      super
+    end
   end
 
   def show
