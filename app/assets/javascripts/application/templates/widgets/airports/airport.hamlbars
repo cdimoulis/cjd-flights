@@ -8,5 +8,5 @@
         {{airport.attributes.text}}
       .mdl-cell.mdl-cell--1-offset-desktop.mdl-cell--11-col.col-cell--8-col-tablet.mdl-cell--4-phone
         {{display.location}} ({{display.tz}})
-  .mdl-cell.mdl-cell--1-col.mdl-cell--1-col-tablet.mdl-cell--1-col-phone
+  .mdl-cell.mdl-cell--1-col.mdl-cell--1-col-tablet.mdl-cell--1-col-phone.mdl-cell--middle
     {{view 'components/button/fab' data=components.edit}}
