@@ -1,0 +1,6 @@
+%header
+  %h5 New Airport
+%fieldset
+  .mdl-grid
+    .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.code}}

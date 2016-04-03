@@ -5,6 +5,7 @@ App.View.extend({
   },
   data_source: [
     {key: 'model', required: true},
+    {key: 'selected_airport', required: true},
   ],
   init_functions: [
     'setup',
@@ -23,6 +24,9 @@ App.View.extend({
     this.display.location += ', '+this.airport.get('country');
 
     this.display.tz = this.airport.getTimeZone();
+
+    // Listen for model changes
+    this.listenTo(this.airport, 'change', this.render);
   },
 
   setupEdit: function() {
@@ -32,7 +36,7 @@ App.View.extend({
       attributes: new App.Model({'class': 'background-accent'}),
       mini: true,
       event_handler: function() {
-
+        this.selected_airport.set(this.airport.attributes);
       },
     };
   },
