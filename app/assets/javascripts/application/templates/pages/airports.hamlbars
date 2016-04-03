@@ -1,0 +1,7 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col
+    %h3
+      Airports
+.mdl-grid
+  .mdl-cell.mdl-cell--6-col.mdl-cell--4-tablet.mdl-cell--4-phone
+    {{view 'components/list/main' data=data.list_airports}}

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   ####
   # PAGES
   ####
-
+  get 'pages/:page' => 'page#view'
 
   ##########
   # API DATA
