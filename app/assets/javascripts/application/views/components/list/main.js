@@ -25,10 +25,10 @@ App.View.extend({
     this.listenTo(this.data.collection, 'add', this.addItem);
     this.listenTo(this.data.collection, 'remove', this.removeItem);
     this.listenTo(this.data.collection, 'reset', function() {
-      this.clearAll(true, this.buildList);
+      this.clearAll(this.buildList);
     });
     this.listenTo(this.data.collection, 'sort', function() {
-      this.clearAll(true, this.buildList);
+      this.clearAll(this.buildList);
     });
     this.listenTo(this, 'rendered', this.buildList);
   },
@@ -76,37 +76,24 @@ App.View.extend({
   removeItem: function(model) {
     var _this = this;
     var view = this._views[model.cid];
-    view.$el.fadeOut(400, function(){
-      _this.removeView(view);
-      delete _this._views[model.cid];
-    });
+    _this.removeView(view);
+    delete _this._views[model.cid];
   },
 
-  clearAll: function(fade=true, complete) {
+  clearAll: function(complete) {
     var _this = this;
     count = _.size(this._views);
-    _.each(this._views, function(view, key) {
-      if (fade) {
-        view.$el.fadeOut(400, function() {
-          _this.removeView(view);
-          count--;
-          if (count == 0) {
-            if (_.isFunction(complete)) {
-              complete();
-            }
-          }
-        });
-      }
-      else {
-        _this.removeView(view);
-        count--;
-        if (count == 0) {
-          if (_.isFunction(complete)) {
-            complete();
-          }
+    views = _.clone(this._views);
+    
+    _.each(views, function(view, key) {
+      _this.removeView(view);
+      delete _this._views[key];
+      count--;
+      if (count == 0) {
+        if (_.isFunction(complete)) {
+          complete.apply(_this);
         }
       }
     });
-    this._views = {};
   },
 });
