@@ -1,0 +1,16 @@
+.page_airports {
+
+  .airport_info {
+    border-top: 1px solid #ccc;
+
+    paper-fab {
+      @media (max-width: 840px) {
+        float: right;
+        margin-top: 52px;
+      }
+      @media (min-width: 840px) {
+        margin-top: 24px;
+      }
+    }
+  }
+}

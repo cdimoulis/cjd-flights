@@ -21,7 +21,7 @@ App.View.extend({
     this._views = {};
 
     // Fetch the airports and listen for sync
-    this.listenTo(this.data.collection, 'sync', this.buildList);
+    // this.listenTo(this.data.collection, 'sync', this.buildList);
     this.listenTo(this.data.collection, 'add', this.addItem);
     this.listenTo(this.data.collection, 'remove', this.removeItem);
     this.listenTo(this.data.collection, 'reset', function() {
@@ -84,7 +84,7 @@ App.View.extend({
     var _this = this;
     count = _.size(this._views);
     views = _.clone(this._views);
-    
+
     _.each(views, function(view, key) {
       _this.removeView(view);
       delete _this._views[key];

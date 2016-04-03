@@ -3,5 +3,5 @@
     %h3
       Airports
 .mdl-grid
-  .mdl-cell.mdl-cell--6-col.mdl-cell--4-tablet.mdl-cell--4-phone
-    {{view 'components/list/main' data=data.list_airports}}
+  .mdl-cell.mdl-cell--5-col.mdl-cell--8-col-tablet.mdl-cell--4-col-phone
+    {{view 'components/list/main' data=components.list_airports}}

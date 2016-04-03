@@ -5,10 +5,10 @@ App.Collection.extend({
 
   comparator: function(a, b) {
     if (a.get('code') < b.get('code')) {
-      return 1;
+      return -1;
     }
     else {
-      return -1;
+      return 1;
     }
   },
 });

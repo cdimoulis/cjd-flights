@@ -1,6 +1,6 @@
 App.View.extend({
   name: 'components/list/list_item',
-  tagName: 'li',
+  // tagName: 'li',
   attributes: {
     'class': 'list_item',
   },
