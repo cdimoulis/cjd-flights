@@ -1,0 +1,17 @@
+@import "../../../theme";
+
+form.form_airports {
+  header {
+    span.form_status {
+      float: right;
+      span {
+        &.new, &.edit {
+          color: gray;
+        }
+        &.active {
+          color: $accent;
+        }
+      }
+    }
+  }
+}

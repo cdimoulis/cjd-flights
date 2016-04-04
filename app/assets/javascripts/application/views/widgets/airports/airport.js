@@ -30,13 +30,13 @@ App.View.extend({
   },
 
   setupEdit: function() {
-
+    var _this = this;
     this.components.edit = {
       icon: 'image:edit',
       attributes: new App.Model({'class': 'background-accent'}),
       mini: true,
       event_handler: function() {
-        this.selected_airport.set(this.airport.attributes);
+        _this.data.selected_airport.set(_this.airport.attributes);
       },
     };
   },
