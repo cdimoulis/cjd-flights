@@ -95,5 +95,9 @@ App.View.extend({
         }
       }
     });
+
+    if (count == 0 && _.isFunction(complete)) {
+      complete.apply(this);
+    }
   },
 });

@@ -15,7 +15,7 @@ App.View.extend({
   setup: function() {
     var _this = this;
     this.components = {};
-    this.result_airports = new App.Collections.Airports();
+    this.result_airports = new App.Collections.Airports(this.data.airports.models);
 
     this.listenTo(this.data.selected_airport, 'sync', function(model) {
       _this.data.selected_airport.set('id', model.get('id'));
@@ -28,6 +28,11 @@ App.View.extend({
       }
     });
 
+    this.listenTo(this.data.airports, 'sync', function() {
+      _this.result_airports.reset(_this.data.airports.models);
+    });
+
+    this.data.airports.fetch();
   },
 
   setupComponents: function() {
@@ -38,7 +43,7 @@ App.View.extend({
     };
 
     this.components.list_airports = {
-      collection: this.data.airports,
+      collection: this.result_airports,
       view: 'widgets/airports/airport',
       view_data: {
         selected_airport: this.data.selected_airport,

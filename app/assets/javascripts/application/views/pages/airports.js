@@ -13,9 +13,7 @@ App.Page.extend({
     this.components = {};
 
     this.selected_airport = new App.Models.Airport();
-
     this.airports = new App.Collections.Airports();
-    this.airports.fetch();
   },
 
   buildData: function() {
@@ -23,7 +21,7 @@ App.Page.extend({
       airports: this.airports,
       selected_airport: this.selected_airport,
     };
-    
+
     this.components.form = {
       model: this.selected_airport,
     };
