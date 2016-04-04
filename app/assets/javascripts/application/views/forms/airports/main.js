@@ -13,7 +13,7 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, 'save');
+    _.bindAll(this, 'clear', 'save');
     var _this = this;
     this.airport = this.data.model;
 
@@ -38,10 +38,46 @@ App.View.extend({
       attribute: 'code',
       label: "Airport Code",
     };
+
+    c.name = {
+      model: this.airport,
+      attribute: 'text',
+      label: "Airport Name",
+    };
+
+    c.city = {
+      model: this.airport,
+      attribute: 'city',
+      label: "City",
+    };
+
+    c.state = {
+      model: this.airport,
+      attribute: 'state',
+      label: "State",
+    };
+
+    c.country = {
+      model: this.airport,
+      attribute: 'country',
+      label: "Country",
+    };
+
+    c.clear = {
+      text: 'clear',
+      attributes: new App.Model({class: 'background-accent'}),
+      event_handler: this.clear,
+    };
+
+    c.save = {
+      text: 'save',
+      attributes: new App.Model({class: 'background-primary'}),
+      event_handler: this.save,
+    };
   },
 
   clear: function() {
-
+    this.airport.clear();
   },
 
   save: function() {

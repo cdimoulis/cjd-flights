@@ -8,5 +8,21 @@
       %span.edit edit
 %fieldset
   .mdl-grid
-    .mdl-cell.mdl-cell--3-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
+    .mdl-cell.mdl-cell--3-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
       {{view 'components/text/input' data=components.code}}
+    .mdl-cell.mdl-cell--9-col.mdl-cell--5-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.name}}
+  .mdl-grid
+    .mdl-cell.mdl-cell--4-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.city}}
+    .mdl-cell.mdl-cell--4-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.state}}
+    .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.country}}
+  .mdl-grid
+    .mdl-cell.mdl-cell--4-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
+      TBD
+    .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone.mdl-cell--4-offset-desktop.mdl-cell--1-offset-tablet
+      {{view 'components/button/main' data=components.clear}}
+    .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/button/main' data=components.save}}
