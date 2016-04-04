@@ -9,6 +9,7 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
+    'setupDisplay',
     'setupEdit',
   ],
 
@@ -16,6 +17,17 @@ App.View.extend({
     this.components = {};
     this.display = {};
     this.airport = this.data.model;
+
+    // Listen for model changes
+    this.listenTo(this.airport, 'change', function() {
+      this.setupDisplay();
+      this.render()
+    });
+  },
+
+  setupDisplay: function() {
+    this.display.code = this.airport.get('code');
+    this.display.text = this.airport.get('text');
 
     this.display.location = this.airport.get('city');
     if (this.airport.has('state')) {
@@ -25,8 +37,6 @@ App.View.extend({
 
     this.display.tz = this.airport.getTimezone();
 
-    // Listen for model changes
-    this.listenTo(this.airport, 'change', this.render);
   },
 
   setupEdit: function() {

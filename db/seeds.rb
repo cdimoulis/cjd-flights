@@ -12,7 +12,7 @@ stl = Airport.create(
   text: "St. Louis Lambert International Airport",
   city: "St. Louis",
   state: "Missouri",
-  country: "USA",
+  country: "United States",
   code: "STL",
   timezone: -360
 )
@@ -20,7 +20,7 @@ msp = Airport.create(
   text: "Minneapolis-Saint Paul International Airport",
   city: "Minneapolis",
   state: "Minnesota",
-  country: "USA",
+  country: "United States",
   code: "MSP",
   timezone: -360
 )
@@ -28,7 +28,7 @@ atl = Airport.create(
   text: "Atlanta Hartsfield International Airport",
   city: "Atlanta",
   state: "Georgia",
-  country: "USA",
+  country: "United States",
   code: "ATL",
   timezone: -300
 )
@@ -36,7 +36,7 @@ bos = Airport.create(
   text: "Boston Logan International Airport",
   city: "Boston",
   state: "Massachusetts",
-  country: "USA",
+  country: "United States",
   code: "BOS",
   timezone: -300
 )
@@ -44,7 +44,7 @@ ord = Airport.create(
   text: "Chicago O'Hare International Airport",
   city: "Chicago",
   state: "Illinois",
-  country: "USA",
+  country: "United States",
   code: "ORD",
   timezone: -360
 )
@@ -52,7 +52,7 @@ mdw = Airport.create(
   text: "Chicago Midway International Airport",
   city: "Chicago",
   state: "Illinois",
-  country: "USA",
+  country: "United States",
   code: "MDW",
   timezone: -360
 )

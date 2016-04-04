@@ -5,11 +5,16 @@ form.form_airports {
     span.form_status {
       float: right;
       span {
-        &.new, &.edit {
+        &.new {
           color: gray;
-        }
-        &.active {
-          color: $accent;
+          &.active {
+            color: $primary;
+          }
+        } &.edit {
+          color: gray;
+          &.active {
+            color: $accent;
+          }
         }
       }
     }

@@ -37,10 +37,10 @@ App.View.extend({
   setupTimezones: function() {
     var _this = this;
     this.selected_timezone = new App.Collection();
-    this.listenTo(this.selected_timezone, 'reset', function() {
+    this.listenTo(this.selected_timezone, 'add', function() {
       tz = _this.selected_timezone.first();
       if (!!tz) {
-        _this.airport.setTimezone(value, {silent: true});
+        _this.airport.setTimezone(tz.get('zone'), {silent: true});
       }
     })
 
@@ -93,37 +93,49 @@ App.View.extend({
     c.code = {
       model: this.airport,
       attribute: 'code',
+      attributes: new App.Model(),
+      required: true,
       label: "Airport Code",
     };
 
     c.name = {
       model: this.airport,
       attribute: 'text',
+      attributes: new App.Model(),
+      required: true,
       label: "Airport Name",
     };
 
     c.city = {
       model: this.airport,
       attribute: 'city',
+      attributes: new App.Model(),
+      required: true,
       label: "City",
     };
 
     c.state = {
       model: this.airport,
       attribute: 'state',
+      attributes: new App.Model(),
       label: "State",
     };
 
     c.country = {
       model: this.airport,
       attribute: 'country',
+      attributes: new App.Model(),
+      required: true,
+      error_message: "Required field",
       label: "Country",
     };
 
     c.timezone = {
       collection: this.timezones,
       attribute: 'zone',
+      attributes: new App.Model(),
       selected: this.selected_timezone,
+      required: true,
       label: "Timezone",
     };
 
@@ -145,6 +157,20 @@ App.View.extend({
   },
 
   save: function() {
+    var _this = this;
+    airport = this.airport.clone();
 
+    this.listenToOnce(airport, 'sync', function(model) {
+      _this.airport.set('id', model.get('id'));
+      App.showSuccess("Airport saved");
+      _this.airport.trigger('sync', model);
+    });
+
+    this.listenToOnce(airport, 'error', function() {
+      console.log('error', arguments);
+      App.showError('Airport cannot be saved');
+    });
+
+    airport.save();
   },
 });

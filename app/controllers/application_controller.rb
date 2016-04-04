@@ -49,11 +49,15 @@ class ApplicationController < ActionController::Base
 
   def update
     resource = params[:controller].singularize.classify.constantize
-    record = resource.where("id = ?", params[:id])
+    record = resource.where("id = ?", params[:id]).take
     if record.nil?
       render :json => {errors: "404"}, :status => 404
     else
-      ( record.update(permitted_params) ? two_hundred_response : four_hundred_response )
+      if record.update(permitted_params)
+        respond_with( record )
+      else
+        render :json => { errors: record.errors }, :status => 404
+      end
     end
   end
 
