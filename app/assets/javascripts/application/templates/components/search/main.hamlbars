@@ -1,0 +1,1 @@
+{{view 'components/text/input' data=components.input}}
