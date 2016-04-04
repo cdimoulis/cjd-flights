@@ -23,7 +23,7 @@ App.View.extend({
     }
     this.display.location += ', '+this.airport.get('country');
 
-    this.display.tz = this.airport.getTimeZone();
+    this.display.tz = this.airport.getTimezone();
 
     // Listen for model changes
     this.listenTo(this.airport, 'change', this.render);

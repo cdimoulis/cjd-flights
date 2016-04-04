@@ -10,6 +10,7 @@ App.View.extend({
   init_functions: [
     'setup',
     'setupTimezones',
+    'setSelectedTimezone',
     'setupComponents',
   ],
 
@@ -23,56 +24,67 @@ App.View.extend({
       if (_this.airport.has('id')) {
         _this.$el.find('span.edit').addClass('active', 400);
         _this.$el.find('span.new').removeClass('active', 400);
+        _this.setSelectedTimezone();
       }
       else {
         _this.$el.find('span.edit').removeClass('active', 400);
         _this.$el.find('span.new').addClass('active', 400);
+        _this.setSelectedTimezone();
       }
     });
   },
 
   setupTimezones: function() {
-    this.selected_timezone = new App.Model();
+    var _this = this;
+    this.selected_timezone = new App.Collection();
+    this.listenTo(this.selected_timezone, 'reset', function() {
+      tz = _this.selected_timezone.first();
+      if (!!tz) {
+        _this.airport.setTimezone(value, {silent: true});
+      }
+    })
+
+    // Timezone collection for selection
     this.timezones = new App.Collection([
       {zone: "-12:00"},
-      {zone: "12:00"},
-      {zone: "00:00"},
-      {zone: "00:30"},
       {zone: "-00:30"},
+      {zone: "00:00"},
+      {zone: "+00:30"},
+      {zone: "+12:00"},
     ]);
+
+    // Comparator to order properly
     this.timezones.comparator = function(a, b) {
-      x = parseInt(a.get('zone'));
-      y = parseInt(b.get('zone'));
-
-      if (x == y) {
-        if (b.get('zone').split(':')[1] == '30') {
-          return x < 0 ? 1 : -1
-        }
-
-        if (a.get('zone').split(':')[1] == '30') {
-          return x < 0 ? -1 : 1
-        }
-      }
-      else {
-        return x < y ? -1 : 1
-      }
+      x = parseFloat(a.get('zone').replace(':', '.'));
+      y = parseFloat(b.get('zone').replace(':', '.'));
+      return x < y ? -1 : 1
     }
 
+    // Build timezone collection
     var hour = 11;
-
     while (hour != 0) {
       z1 = moment(hour+':30','h:m').format('hh:mm');
       z2 = moment(hour+':00','h:m').format('hh:mm');
 
-      if (hour != 0) {
-        this.timezones.add({zone: z1});
-        this.timezones.add({zone: '-'+z1});
-        this.timezones.add({zone: z2});
-        this.timezones.add({zone: '-'+z2});
-      }
+      this.timezones.add({zone: '+'+z1});
+      this.timezones.add({zone: '-'+z1});
+      this.timezones.add({zone: '+'+z2});
+      this.timezones.add({zone: '-'+z2});
+
       hour--;
     }
-    window.timezones = this.timezones;
+  },
+
+  setSelectedTimezone: function() {
+    if (this.airport.has('timezone')) {
+      tz = this.timezones.findWhere({zone: this.airport.getTimezone()});
+      if (!!tz) {
+        this.selected_timezone.add(tz);
+      }
+    }
+    else {
+      this.selected_timezone.reset();
+    }
   },
 
   setupComponents: function() {
