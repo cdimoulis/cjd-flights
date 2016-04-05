@@ -96,6 +96,8 @@ App.View.extend({
       attributes: new App.Model(),
       required: true,
       label: "Airport Code",
+      required: true,
+      error_message: "Required field",
     };
 
     c.name = {
@@ -104,6 +106,8 @@ App.View.extend({
       attributes: new App.Model(),
       required: true,
       label: "Airport Name",
+      required: true,
+      error_message: "Required field",
     };
 
     c.city = {
@@ -112,6 +116,8 @@ App.View.extend({
       attributes: new App.Model(),
       required: true,
       label: "City",
+      required: true,
+      error_message: "Required field",
     };
 
     c.state = {
@@ -125,9 +131,9 @@ App.View.extend({
       model: this.airport,
       attribute: 'country',
       attributes: new App.Model(),
+      label: "Country",
       required: true,
       error_message: "Required field",
-      label: "Country",
     };
 
     c.timezone = {
@@ -137,6 +143,8 @@ App.View.extend({
       selected: this.selected_timezone,
       required: true,
       label: "Timezone",
+      required: true,
+      error_message: "Required field",
     };
 
     c.clear = {
