@@ -69,7 +69,7 @@ App.View.extend({
       view_data: this.data.view_data,
     };
 
-    var view = this.addView('components/list/list_item', data, '.list');
+    var view = this.addView('components/list/list_item', data, '.list_items');
     this._views[model.cid] = view;
   },
 

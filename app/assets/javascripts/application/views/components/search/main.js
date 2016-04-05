@@ -1,5 +1,8 @@
 App.View.extend({
   name: 'components/search/main',
+  attributes: {
+    'class': 'search',
+  },
   data_source: [
     {key: 'collection', required: true},
     {key: 'results', required: true},

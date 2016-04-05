@@ -45,6 +45,7 @@ App.View.extend({
     this.components.list_airports = {
       collection: this.result_airports,
       view: 'widgets/airports/airport',
+      // attributes: new App.Model({style: 'height: 800px !important;'}),
       view_data: {
         selected_airport: this.data.selected_airport,
       },

@@ -1,3 +1,9 @@
-.list_item {
+.list {
+  overflow: scroll;
   
+  .list_items {
+    .list_item {
+
+    }
+  }
 }

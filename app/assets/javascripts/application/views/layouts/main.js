@@ -6,9 +6,6 @@ App.View.extend({
     "paper-toolbar/paper-toolbar.html",
     "paper-icon-button/paper-icon-button.html",
   ],
-  attributes: {
-    style: 'height: 100%;'
-  },
   events: {
     'click #title': '_navigateHome',
   },
@@ -23,6 +20,7 @@ App.View.extend({
     _.bindAll(this, '_navigateHome');
     var _this = this;
     this.components = {};
+    this.page_name = this.data.page.split('/')[1].capitalize();
 
     this.components.menu = {
       icon: 'menu',
