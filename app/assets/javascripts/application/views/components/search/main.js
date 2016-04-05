@@ -23,8 +23,11 @@ App.View.extend({
       label: 'Search Airports',
     };
 
+    // Listen to changes in the search value and then performe the search/filter
     this.listenTo(this._search_val, 'change:text', this.search);
 
+    // Listen to the full collection as to alter filter needs
+    this.listenTo(this.data.collection, 'sync reset add remove', this.search);
   },
 
   search: function(model) {
