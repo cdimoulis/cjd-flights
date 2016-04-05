@@ -25,6 +25,7 @@ App.Component.extend({
     {key: 'model', required: true},
     {key: 'attribute', required: true},
     {key: 'attributes', required: false},
+    {key: 'required', required: false, default: false},
     {key: 'label', required: false, default: ''},
     {key: 'float_label', required: false, default: true},
     {key: 'always_float_label', require: false, default: false},
@@ -62,6 +63,10 @@ App.Component.extend({
     attrs.value = data.model.get(data.attribute) || '';
     attrs.label = data.label;
     attrs['error-message'] = data.error_message;
+
+    if (data.required) {
+      attrs.required = true;
+    }
 
     if (!!data.max_count){
       attrs.maxlength = data.max_count;

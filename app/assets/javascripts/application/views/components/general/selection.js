@@ -12,6 +12,8 @@ App.Component.extend({
     {key: 'attribute', required: true},
     {key: 'selected', required: true},
     {key: 'attributes', required: false},
+    {key: 'required', required: false, default: false},
+    {key: 'error_message', required: false, default: "Invalid Input"},
     {key: 'label', required: false, default: ''},
   ],
   init_functions: [
@@ -40,6 +42,11 @@ App.Component.extend({
       this.data.attributes.set('id', attrs.id);
     }
     attrs.label = this.data.label;
+    attrs['error-message'] = this.data.error_message;
+
+    if (this.data.required) {
+      attrs.required = true
+    }
 
     this.$el.attr(attrs);
 

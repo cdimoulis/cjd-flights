@@ -24,6 +24,9 @@
 //= require ./libs/model
 //= require ./libs/collection
 //= require ./libs/handlebars_helpers
+//= require ./libs/strings
 //= require application/app
 //= require application/init
+//= require_tree ./application/models
+//= require_tree ./application/collections
 //= require_tree ./application/views

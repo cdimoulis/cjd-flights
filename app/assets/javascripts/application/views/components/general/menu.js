@@ -107,15 +107,19 @@ App.Component.extend({
   setupSelected: function() {
     if (this.data.multi) {
       var _this = this;
-      var selected = [];
-      this.data.selected.each(function(model) {
-        var index = _this.data.collection.indexOf(model);
-        if (index >= 0) {
-          selected.push(index);
-        }
-      });
-      // this.$el.prop('selectedValues', selected);
-      this.el.selectedValues = selected;
+      if (this.data.selected.length > 0) {
+        var selected = [];
+        this.data.selected.each(function(model) {
+          var index = _this.data.collection.indexOf(model);
+          if (index >= 0) {
+            selected.push(index);
+          }
+        });
+        this.el.selectedValues = selected;
+      }
+      else {
+        this.el.selectedValues = [];
+      }
     }
     else {
       var index;
@@ -124,8 +128,10 @@ App.Component.extend({
         index = this.data.collection.indexOf(first);
       }
       if (index >= 0) {
-        // this.$el.prop('selected', index);
         this.el.selected = index;
+      }
+      else {
+        this.el.selected = undefined;
       }
     }
   },

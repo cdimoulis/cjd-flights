@@ -1,0 +1,12 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--11-col.mdl-cell--7-col-tablet.mdl-cell--3-col-phone
+    .mdl-grid
+      .mdl-cell.mdl-cell--2-col.mdl-cell--8-col-tablet.mdl-cell--4-phone
+        %strong
+          {{display.code}}
+      .mdl-cell.mdl-cell--10-col.col-cell--8-col-tablet.mdl-cell--4-phone
+        {{display.text}}
+      .mdl-cell.mdl-cell--2-offset-desktop.mdl-cell--10-col.col-cell--8-col-tablet.mdl-cell--4-phone
+        {{display.location}} ({{display.tz}})
+  .mdl-cell.mdl-cell--1-col.mdl-cell--1-col-tablet.mdl-cell--1-col-phone.mdl-cell--middle
+    {{view 'components/button/fab' data=components.edit}}

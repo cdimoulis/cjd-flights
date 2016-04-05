@@ -23,3 +23,11 @@ $accent: $paper-orange-500;
 .text-black {
   color: black;
 }
+
+// VISIBLE
+.visible {
+  opacity: 1;
+}
+.invisibile {
+  opacity: 0;
+}

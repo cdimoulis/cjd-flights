@@ -1,4 +1,5 @@
 Backbone.Model = Backbone.Model.extend({
+  railsParams: true,
 
   url: function(){
     var url = '';
@@ -19,5 +20,24 @@ Backbone.Model = Backbone.Model.extend({
     }
 
     return url;
-  }
+  },
+
+  toJSON: function() {
+    if (this.railsParams) {
+      var name = this['name'].toUnderscore().toLowerCase();
+      var obj = {};
+
+      if (!_.isUndefined(name)) {
+        obj[this['name'].toUnderscore()] = _.clone(this.attributes);
+      }
+      else {
+        obj = _.clone(this.attributes);
+      }
+    }
+    else {
+      obj = _.clone(this.attributes);
+    }
+    return obj;
+  },
+
 });

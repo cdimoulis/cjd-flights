@@ -7,9 +7,12 @@ App.Page.extend({
   setup: function() {
     this.components = c = {};
 
-    c.icon = {
-      icon: 'flight-takeoff',
+    c.airports = {
+      icon: 'device:airplanemode-active',
       attributes: new App.Model({class: 'background-accent'}),
+      event_handler: function() {
+        window.location.pathname = '/pages/airports';
+      }
     };
   },
 });
