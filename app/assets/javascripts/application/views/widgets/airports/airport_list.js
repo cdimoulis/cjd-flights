@@ -39,13 +39,12 @@ App.View.extend({
     this.components.search = {
       collection: this.data.airports,
       results: this.result_airports,
-      search_attributes: ['code', 'text', 'city', 'state', 'country'],
+      search_attributes: ['iata', 'text', 'city', 'state', 'country'],
     };
 
     this.components.list_airports = {
       collection: this.result_airports,
       view: 'widgets/airports/airport',
-      // attributes: new App.Model({style: 'height: 800px !important;'}),
       view_data: {
         selected_airport: this.data.selected_airport,
       },

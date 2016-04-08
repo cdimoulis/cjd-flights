@@ -9,5 +9,8 @@ class CreateTrips < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :trips, :cabin
+    add_index :trips, :trip_type
   end
 end

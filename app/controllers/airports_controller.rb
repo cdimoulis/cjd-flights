@@ -6,7 +6,15 @@ class AirportsController < ApplicationController
   end
 
   def index
-    super
+    if params.has_key?(:country)
+      country = params[:country]
+    else
+      country = "United States"
+    end
+
+    records = Airport.where(country: country)
+
+    respond_with( records )
   end
 
   def show
@@ -51,7 +59,7 @@ class AirportsController < ApplicationController
   private
 
     def permitted_params
-      params.require(:airport).permit(:text, :code, :city, :state,
+      params.require(:airport).permit(:text, :iata, :icao, :city, :state,
                                       :country, :timezone)
     end
 
