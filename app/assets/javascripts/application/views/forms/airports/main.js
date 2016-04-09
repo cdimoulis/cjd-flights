@@ -96,7 +96,6 @@ App.View.extend({
       attributes: new App.Model(),
       required: true,
       label: "Airport Code",
-      required: true,
       error_message: "Required field",
     };
 
@@ -116,7 +115,6 @@ App.View.extend({
       attributes: new App.Model(),
       required: true,
       label: "City",
-      required: true,
       error_message: "Required field",
     };
 
@@ -143,7 +141,6 @@ App.View.extend({
       selected: this.selected_timezone,
       required: true,
       label: "Timezone",
-      required: true,
       error_message: "Required field",
     };
 

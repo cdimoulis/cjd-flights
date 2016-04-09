@@ -3,6 +3,7 @@ App.Component.extend({
   tagName: 'paper-input',
   events: {
     'change': '_onChange',
+    'keyup': '_validate',
     'click paper-icon-button': '_onClick',
   },
   dependencies: [
@@ -47,7 +48,7 @@ App.Component.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, '_setValue', '_onChange', '_onClick');
+    _.bindAll(this, '_setValue', '_onChange', '_onClick', '_validate');
     var data = this.data;
     var attrs = {};
     data.attributes = data.attributes || new App.Model()
@@ -73,7 +74,7 @@ App.Component.extend({
     }
 
     if (!!data.pattern){
-      if (!!data.pattern && !!this._standard_patterns[data.pattern]) {
+      if (!!this._standard_patterns[data.pattern]) {
         attrs.pattern = this._standard_patterns[data.pattern];
       }
       else {
@@ -153,4 +154,8 @@ App.Component.extend({
       this.data.icon_event_handler(this.data.model);
     }
   },
+
+  _validate: function() {
+    this.el.validate();
+  }
 });
