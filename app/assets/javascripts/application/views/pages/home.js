@@ -15,8 +15,6 @@ App.Page.extend({
       }
     };
 
-
-
     c.trip = {
       icon: 'card-travel',
       attributes: new App.Model({class: 'background-accent'}),

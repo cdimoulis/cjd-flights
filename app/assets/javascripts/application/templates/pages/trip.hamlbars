@@ -1,3 +1,5 @@
 .mdl-grid
-  .mdl-cell.mdl-cell--12-col
-    %h4 Trip
+  .mdl-cell.mdl-cell--8-col.mdl-cell--8-col-tablet.mdl-cell--4-col-phone.mdl-cell--order-8-tablet.mdl-cell--order-8-phone
+    {{view 'forms/trip/flights' data=components.flights}}
+  .mdl-cell.mdl-cell--3-col.mdl-cell--8.col-tablet.mel-cell--4-col-phone.mdl-cell--order-1-tablet.mdl-cell--order-1-phone.mdl-cell--1-offset-desktop
+    {{view 'forms/trip/info' data=components.info}}
