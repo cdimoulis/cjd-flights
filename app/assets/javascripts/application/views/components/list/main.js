@@ -20,7 +20,6 @@ App.View.extend({
     this.data.attributes = this.data.attributes || new App.Model();
     this._views = {};
 
-
     // Fetch the airports and listen for sync
     this.listenTo(this.data.collection, 'sync', _this.buildList);
 
