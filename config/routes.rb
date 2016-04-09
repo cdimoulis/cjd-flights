@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   ####
   # PAGES
   ####
+  get 'pages/trip/' => 'page#trip'
+  get 'pages/trip/:id' => 'page#trip'
   get 'pages/:page' => 'page#view'
 
   ##########

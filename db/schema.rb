@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160401185608) do
   add_index "flights", ["airline_id"], name: "index_flights_on_airline_id", using: :btree
   add_index "flights", ["arrival_airport_id"], name: "index_flights_on_arrival_airport_id", using: :btree
   add_index "flights", ["departure_airport_id"], name: "index_flights_on_departure_airport_id", using: :btree
+  add_index "flights", ["number"], name: "index_flights_on_number", using: :btree
 
   create_table "trip_flights", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "trip_id",    null: false

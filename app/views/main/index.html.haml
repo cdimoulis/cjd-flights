@@ -2,5 +2,7 @@
 %paper-toast#toast
 %paper-toast#persistent_toast
   %paper-button.toast_button(onclick='persistent_toast.close()') Close
+
 %script
+  App.PageParams = new App.Model(#{raw @page_params});
   App.start()

@@ -15,6 +15,7 @@ this.Application = function (options) {
   this.Collection = Backbone.Collection.extend();
   this.Model = Backbone.Model.extend();
 
+  // Popup toasts
   this._toast = null;
   this._persistent_toast = {};
 
