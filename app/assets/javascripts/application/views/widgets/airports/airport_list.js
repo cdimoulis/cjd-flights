@@ -28,10 +28,6 @@ App.View.extend({
       }
     });
 
-    this.listenTo(this.data.airports, 'sync', function() {
-      _this.result_airports.reset(_this.data.airports.models);
-    });
-
     this.data.airports.fetch();
   },
 

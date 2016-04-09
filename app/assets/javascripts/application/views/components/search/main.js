@@ -26,7 +26,6 @@ App.View.extend({
       icon_event_handler: this.search,
       label: 'Search Airports',
     };
-
     // Listen to changes in the search value and then performe the search/filter
     this.listenTo(this._search_val, 'change:text', this.search);
 
@@ -35,10 +34,14 @@ App.View.extend({
     this.listenTo(this.data.collection, 'remove', function(model) {
       _this.data.results.remove(model);
     });
-    this.listenTo(this.data.collection, 'add', this.addModel);
+    this.listenTo(this.data.collection, 'add', function(model, collection, options) {
+      if (!options.sync) {
+        this.addModel(model);
+      }
+    });
   },
 
-  search: function(model) {
+  search: function() {
     var _this = this;
     var search_text = this._search_val.get('text');
     var results = new App.Collection();
@@ -56,7 +59,7 @@ App.View.extend({
         });
       });
     }
-
+    
     this.data.results.reset(results.models);
   },
 

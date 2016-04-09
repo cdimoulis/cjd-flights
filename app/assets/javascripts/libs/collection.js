@@ -1,7 +1,26 @@
 Backbone.Collection = Backbone.Collection.extend({
   railsParams: true,
+  _hasFetched: false,
 
-  url: function(){
+  initialize: function() {
+    var _this = this;
+    this.listenTo(this, 'sync', function() {
+      _this._hasFetched = true;
+    });
+
+    // Set sync true as an option
+    // This allows us to know if adds are result of a sync
+    this.__fetch = this.fetch;
+    this.fetch = function() {
+      this.__fetch({sync: true});
+    }
+  },
+
+  hasFetched: function() {
+    return this._hasFetched;
+  },
+
+  url: function() {
     var url = '';
 
     if (!!this.parent){

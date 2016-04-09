@@ -20,24 +20,24 @@ App.View.extend({
     this.data.attributes = this.data.attributes || new App.Model();
     this._views = {};
 
+
     // Fetch the airports and listen for sync
-    this.listenTo(this.data.collection, 'sync', function() {
-      _this.listenTo(_this.data.collection, 'add', _this.addItem);
-      _this.listenTo(_this.data.collection, 'sort', function() {
-        // console.log('sort');
-        _this.clearAll(this.buildList);
-      });
-      _this.buildList()
-    });
-    // this.listenTo(this.data.collection, 'add', this.addItem);
+    this.listenTo(this.data.collection, 'sync', _this.buildList);
+
     this.listenTo(this.data.collection, 'remove', this.removeItem);
     this.listenTo(this.data.collection, 'reset', function() {
       _this.clearAll(this.buildList);
     });
-    // this.listenTo(this.data.collection, 'sort', function() {
-    //   console.log('sort');
-    //   _this.clearAll(this.buildList);
-    // });
+
+    this.listenTo(this.data.collection, 'add', function(model, collection, options) {
+      if (!options.sync) {
+        _this.addItem(model);
+      }
+    });
+    this.listenTo(this.data.collection, 'sort', function() {
+      _this.clearAll(this.buildList);
+    });
+
     this.listenTo(this, 'rendered', this.buildList);
   },
 

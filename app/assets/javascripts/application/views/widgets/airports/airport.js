@@ -14,7 +14,6 @@ App.View.extend({
   ],
 
   setup: function() {
-    // console.log('setup airport')
     this.components = {};
     this.display = {};
     this.airport = this.data.model;
