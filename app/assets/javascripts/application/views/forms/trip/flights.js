@@ -12,7 +12,18 @@ App.View.extend({
   ],
 
   setup: function() {
-    
-  },
+    this.components = c = {};
+    this.trip = this.data.model;
+    this.flights = new App.Collections.Flights(this.trip.get('flights'));
+    this.selected_flight = new App.Models.Flight();
 
+    view_data = {
+      selected_flight: this.selected_flight,
+    };
+
+    c.flight_list = {
+      collection: this.flights,
+      view: ''
+    };
+  },
 });
