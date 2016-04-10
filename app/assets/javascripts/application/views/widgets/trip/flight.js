@@ -1,6 +1,5 @@
 App.View.extend({
-  name: 'forms/trip/flight',
-  tagName: 'form',
+  name: 'widgets/trip/flight',
   attributes: {
     'class': 'form_trip_flight',
   },
@@ -20,7 +19,7 @@ App.View.extend({
   },
 
   setupForm: function() {
-    this.formst = f = {};
+    this.forms = f = {};
 
     f.flight = {
       model: this.flight,

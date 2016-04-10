@@ -1,6 +1,5 @@
 App.View.extend({
-  name: 'forms/trip/flights',
-  tagName: 'form',
+  name: 'widgets/trip/flights',
   attributes: {
     'class': 'form_trip_flights',
   },
@@ -17,13 +16,19 @@ App.View.extend({
     this.flights = new App.Collections.Flights(this.trip.get('flights'));
     this.selected_flight = new App.Models.Flight();
 
+    //// TEST TEST TEST
+    test_flights = new App.Collections.Flights();
+    test_flights.fetch();
+    //// END TEST
+
     view_data = {
       selected_flight: this.selected_flight,
     };
 
     c.flight_list = {
-      collection: this.flights,
-      view: ''
+      collection: test_flights, //this.flights,
+      view: 'widgets/trip/flight',
+      view_data: view_data,
     };
   },
 });
