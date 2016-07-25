@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#index'
 
+  get 'testroute' => 'main#testroute'
   ####
   # PAGES
   ####
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
   ##########
   # API DATA
   ##########
+
+  get 'airports/code' => 'airports#search'
+  get 'flights/search' => 'flights#search'
 
   ####
   # FLIGHTS
