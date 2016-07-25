@@ -92,7 +92,7 @@ App.View.extend({
 
     c.code = {
       model: this.airport,
-      attribute: 'code',
+      attribute: 'iata',
       attributes: new App.Model(),
       required: true,
       label: "Airport Code",
