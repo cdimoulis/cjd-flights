@@ -22,5 +22,13 @@ App.Page.extend({
         window.location.pathname = '/pages/trip';
       }
     };
+
+    c.search = {
+      icon: 'search',
+      attributes: new App.Model({class: 'background-accent'}),
+      event_handler: function() {
+        window.location.pathname = '/pages/search';
+      }
+    };
   },
 });

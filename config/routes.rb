@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   ####
   # PAGES
   ####
-  get 'pages/trip/' => 'page#trip'
+  # get 'pages/trip/' => 'page#trip'
   get 'pages/trip/:id' => 'page#trip'
   get 'pages/:page' => 'page#view'
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # API DATA
   ##########
 
-  get 'airports/code' => 'airports#search'
+  get 'airports/search' => 'airports#search'
   get 'flights/search' => 'flights#search'
 
   ####

@@ -58,25 +58,7 @@ class AirportsController < ApplicationController
 
   def search
     q = params[:q]
-
-    post_params = {
-      method: "suggest",
-      params: {
-        "1": q,
-        "2": 3
-      }
-    }
-    
-    headers = {
-      "Content-Type" => "application/javascript",
-      "Accept" => "application/javascript"
-    }
-
-    uri = URI.parse('http://matrix.itasoftware.com/geosearch')
-    req = Net::HTTP.new(uri.host, uri.port)
-    res = req.post(uri.path, post_params.to_json, headers)
-
-    results = JSON.parse(res.body)["result"][1]
+    results = queryAirport q
     render :json => results.to_json
   end
 
@@ -85,6 +67,27 @@ class AirportsController < ApplicationController
     def permitted_params
       params.require(:airport).permit(:text, :iata, :icao, :city, :state,
                                       :country, :timezone)
+    end
+
+    def queryAirport(q)
+      post_params = {
+        method: "suggest",
+        params: {
+          "1": q,
+          "2": 4
+        }
+      }
+
+      headers = {
+        "Content-Type" => "application/javascript",
+        "Accept" => "application/javascript"
+      }
+
+      uri = URI.parse('http://matrix.itasoftware.com/geosearch')
+      req = Net::HTTP.new(uri.host, uri.port)
+      res = req.post(uri.path, post_params.to_json, headers)
+
+      results = JSON.parse(res.body)["result"][1]
     end
 
 end

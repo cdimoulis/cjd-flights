@@ -1,0 +1,3 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--5-col.mdl-cell--8-col-tablet.mdl-cell--4-col-phone.mdl-cell--order-8-tablet.mdl-cell--order-8-phone
+    {{view 'forms/search/route' data=components.search_route}}

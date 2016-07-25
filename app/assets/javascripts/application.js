@@ -27,6 +27,7 @@
 //= require ./libs/strings
 //= require application/app
 //= require application/init
+//= require ./libs/util
 //= require_tree ./application/models
 //= require_tree ./application/collections
 //= require_tree ./application/views

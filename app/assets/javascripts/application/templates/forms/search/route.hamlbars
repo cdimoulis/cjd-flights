@@ -1,0 +1,11 @@
+%header
+  %h5
+    Enter Route Information
+%fieldset
+  .mdl-grid
+    .mdl-cell.mdl-cell--3-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.departure}}
+    .mdl-cell.mdl-cell--3-col.mdl-cell--5-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/text/input' data=components.arrival}}
+    .mdl-cell.mdl-cell--4-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
+      {{view 'components/picker/date' data=components.date}}
