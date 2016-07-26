@@ -2,10 +2,9 @@ App.Component.extend({
   name: 'components/picker/date',
   tagName: 'paper-input',
   events: {
-    // 'ready': 'setupDateConfig',
   //   'change': '_onChange',
   //   'keyup': '_validate',
-  //   'click': '_onClick',
+    // 'click': '_onClick',
   },
   dependencies: [
     // "paper-date-picker/paper-date-picker.html",
@@ -16,6 +15,8 @@ App.Component.extend({
     {key: 'attributes', required: false},
     {key: 'required', required: false, default: false},
     {key: 'label', required: false, default: ''},
+    {key: 'future_date', required: false, default: false},
+    {key: 'past_date', required: false, default: false},
   ],
   init_functions: [
     'setup',
@@ -24,11 +25,16 @@ App.Component.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, '_setDate');
+    _.bindAll(this, '_setDate', '_selectDate');
     var data = this.data;
     var attrs = {};
     data.attributes = data.attributes || new App.Model();
     this.components = {};
+
+    if (this.data.model.get(this.data.attribute)) {
+      m = moment(this.data.model.get(this.data.attribute));
+      attrs.value = m.format("DD MMM YYYY");
+    }
 
     attrs.id = data.attributes.get('id') || this.cid+'_date_picker';
 
@@ -36,7 +42,6 @@ App.Component.extend({
       data.attributes.set('id', attrs.id);
     }
 
-    attrs.date = data.model.get(data.attribute) || moment().format("YYYY-MM-DD");
     attrs.label = this.data.label;
 
     this.$el.attr(attrs);
@@ -46,6 +51,7 @@ App.Component.extend({
 
     // Listen to attribute changes
     this.listenTo(this.data.attributes, 'change', this.setupAttributesModel);
+
   },
 
   setupAttributesModel: function() {
@@ -67,21 +73,39 @@ App.Component.extend({
   },
 
   setupDateConfig: function() {
-    var _this = this;
-    console.log(this.$el.width());
+    var m, dir = 0, _this = this;
+    if (this.data.model.get(this.data.attribute)) {
+      m = moment(this.data.model.get(this.data.attribute)).format("DD MMM YYYY");
+    }
+    if (this.data.future_date && this.data.past_date) {
+      dir = [moment(this.data.past_date).format('DD MMM YYYY'),moment(this.data.future_date).format('DD MMM YYYY')];
+    }
+    if (this.data.future_date && !this.data.past_date) {
+      dir = [true, moment(this.data.future_date).format('DD MMM YYYY')];
+    }
+    if (!this.data.future_date && this.data.past_date) {
+      // diff = moment(this.data.past_date).diff(moment(), 'days') - 1
+      dir = [false, moment(this.data.past_date).format('DD MMM YYYY')];
+    }
+    
     this.$el.Zebra_DatePicker({
       view: 'days',
       format: 'd M Y',
-      direction: [true,false],
-      // offset: [(this.$el.width()* -0.85), -5],
-      onSelect: function() {
-        _this._setDate.apply(_this, arguments)
-      },
+      direction: dir,
+      default_position: "below",
+      show_icon: false,
+      onSelect: this._selectDate,
+      start_date: m || moment().format("DD MMM YYYY"),
       // onClear: this._onClear
     });
   },
 
   _setDate: function(model, value) {
-    this.$el.attr({date: value});
+    // this.$el.attr({date: value});
+  },
+
+  _selectDate: function(d, date) {
+    console.log(d, date);
+    this.data.model.set(this.data.attribute,d, date);
   },
 });

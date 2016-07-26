@@ -45,6 +45,8 @@ App.View.extend({
       label: "Departure Date",
       error_message: "Required Field",
       label: "Departure Date",
+      future_date: "2016-08-15",
+      // past_date: "2016-06-15",
     };
   },
 });
