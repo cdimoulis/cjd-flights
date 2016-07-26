@@ -44,6 +44,7 @@ App.View.extend({
       required: true,
       label: "Departure Date",
       error_message: "Required Field",
+      label: "Departure Date",
     };
   },
 });
