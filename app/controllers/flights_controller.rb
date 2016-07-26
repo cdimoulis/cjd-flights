@@ -83,11 +83,7 @@ class FlightsController < ApplicationController
 
     parsed_flights = parseDeltaFlights res.body
 
-    flights = []
-    parsed_flights.each do |f|
-      obj = {flights: f}
-      flights.push obj
-    end
+    flights = buildRoutes parsed_flights
 
     render :json => flights.to_json
   end
@@ -137,8 +133,8 @@ class FlightsController < ApplicationController
           # DEPARTURE TIME
           time_val = flight.css("td[headers='depart-header depart-timedate-header flightnum-row-header_#{current_index}_#{current_fl_index}']").text.strip().gsub(/\s+/, " ")
           time_arr = time_val.split(' ')
-          flight_obj['departure_time'] = time_arr.shift
-          flight_obj['departure_date'] = time_arr.join ' '
+          t = time_arr.shift
+          flight_obj['departure_date'] = DateTime.parse("#{time_arr.join(' ')} #{t}").strftime("%Y-%m-%d %H:%M:%S")
 
           # ARRIVAL AIRPORT, TIME, DATE
           flight.css("td[headers='arrive-header arrive-airport-header flightnum-row-header_#{current_index}_#{current_fl_index}']").each_with_index do |td, i|
@@ -152,8 +148,8 @@ class FlightsController < ApplicationController
             when 1
               val = td.text.strip().gsub(/\s+/, " ")
               arr = val.split(' ')
-              flight_obj['arrival_time'] = arr.shift
-              flight_obj['arrival_date'] = arr.join ' '
+              t = arr.shift
+              flight_obj['arrival_date'] = DateTime.parse("#{arr.join(' ')} #{t}").strftime("%Y-%m-%d %H:%M:%S")
             when 2
               flight_obj['aircraft'] = td.text.strip().gsub(/\s+/, " ")
             end
@@ -164,5 +160,25 @@ class FlightsController < ApplicationController
       end
 
       return flights
+    end
+
+    def buildRoutes(flights)
+      routes = []
+      flights.each do |f|
+        dept_date = DateTime.parse f.first['departure_date']
+        arr_date = DateTime.parse f.last['arrival_date']
+
+        obj = {
+          departure_date: dept_date.strftime("%Y-%m-%d"),
+          departure_time: dept_date.strftime("%H:%M:%S"),
+          arrival_date: arr_date.strftime("%Y-%m-%d"),
+          arrival_time: arr_date.strftime("%H:%M:%S"),
+          num_legs: f.length,
+          flights: f
+        }
+        routes.push obj
+      end
+
+      return routes
     end
 end

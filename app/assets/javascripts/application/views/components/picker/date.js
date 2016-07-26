@@ -83,7 +83,6 @@ App.Component.extend({
       dir = [true, moment(this.data.future_date).format('DD MMM YYYY')];
     }
     if (!this.data.future_date && this.data.past_date) {
-      // diff = moment(this.data.past_date).diff(moment(), 'days') - 1
       dir = [false, moment(this.data.past_date).format('DD MMM YYYY')];
     }
 
