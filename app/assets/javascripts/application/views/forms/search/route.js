@@ -16,7 +16,7 @@ App.View.extend({
   setup: function() {
     this.routes = this.data.routes;
     this.search_data = new App.Model();
-
+    window.m = this.search_data;
   },
 
   setupComponents: function() {
@@ -45,8 +45,7 @@ App.View.extend({
       label: "Departure Date",
       error_message: "Required Field",
       label: "Departure Date",
-      future_date: "2016-08-15",
-      // past_date: "2016-06-15",
+      future_date: moment().add(1, 'year').format("YYYY-MM-DD"),
     };
   },
 });

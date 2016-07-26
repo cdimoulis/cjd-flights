@@ -1,13 +1,12 @@
 App.Component.extend({
   name: 'components/picker/date',
   tagName: 'paper-input',
-  events: {
-  //   'change': '_onChange',
-  //   'keyup': '_validate',
-    // 'click': '_onClick',
+  attributes: {
+    'class': 'datepicker',
   },
   dependencies: [
-    // "paper-date-picker/paper-date-picker.html",
+    "paper-input/paper-input.html",
+    "iron-icon/iron-icon.html"
   ],
   data_source: [
     {key: 'model', required: true},
@@ -87,7 +86,7 @@ App.Component.extend({
       // diff = moment(this.data.past_date).diff(moment(), 'days') - 1
       dir = [false, moment(this.data.past_date).format('DD MMM YYYY')];
     }
-    
+
     this.$el.Zebra_DatePicker({
       view: 'days',
       format: 'd M Y',
@@ -96,16 +95,21 @@ App.Component.extend({
       show_icon: false,
       onSelect: this._selectDate,
       start_date: m || moment().format("DD MMM YYYY"),
-      // onClear: this._onClear
+      onClear: this._selectDate,
     });
   },
 
   _setDate: function(model, value) {
-    // this.$el.attr({date: value});
+    if (value) {
+      date = moment(value).format("DD MMM YYYY");
+      this.$el.val(date);
+    }
+    else {
+      this.$el.val("");
+    }
   },
 
   _selectDate: function(d, date) {
-    console.log(d, date);
-    this.data.model.set(this.data.attribute,d, date);
+    this.data.model.set(this.data.attribute, date);
   },
 });
