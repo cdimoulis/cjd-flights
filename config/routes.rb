@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   ##########
 
   get 'airports/search' => 'airports#search'
-  get 'flights/search' => 'flights#search'
+  get 'routes/search' => 'routes#search'
 
   ####
   # FLIGHTS

@@ -9,11 +9,14 @@ App.Page.extend({
 
   setup: function() {
     this.components = c = {};
-    this.routes = new App.Collection();
+    this.routes = new App.Collections.Routes();
 
     c.search_route = {
-      routes: this.routes
+      routes: this.routes,
     };
 
+    c.route_list = {
+      routes: this.routes,
+    };
   },
 });

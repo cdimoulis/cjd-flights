@@ -14,6 +14,7 @@ App.View.extend({
   ],
 
   setup: function() {
+    _.bindAll(this, '_searchRoutes');
     this.routes = this.data.routes;
     this.search_data = new App.Model();
     window.m = this.search_data;
@@ -47,5 +48,16 @@ App.View.extend({
       label: "Departure Date",
       future_date: moment().add(1, 'year').format("YYYY-MM-DD"),
     };
+
+    c.search = {
+      text: 'Search',
+      button_color: 'accent',
+      icon: 'search',
+      event_handler: this._searchRoutes,
+    };
+  },
+
+  _searchRoutes: function() {
+    console.log('search', this.search_data.attributes);
   },
 });

@@ -31,3 +31,11 @@ $accent: $paper-orange-500;
 .invisibile {
   opacity: 0;
 }
+
+// POSITION CONTROL
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}

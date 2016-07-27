@@ -146,13 +146,13 @@ App.View.extend({
 
     c.clear = {
       text: 'clear',
-      attributes: new App.Model({class: 'background-accent'}),
+      button_color: 'accent',
       event_handler: this.clear,
     };
 
     c.save = {
       text: 'save',
-      attributes: new App.Model({class: 'background-primary'}),
+      button_color: 'primary',
       event_handler: this.save,
     };
   },
