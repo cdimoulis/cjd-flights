@@ -16,6 +16,6 @@ App.View.extend({
   },
 
   setupDisplay: function() {
-    console.log(this.model.attributes);
+    console.log(this.data.model.attributes);
   },
 });

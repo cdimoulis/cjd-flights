@@ -8,7 +8,6 @@ class RoutesController < ApplicationController
   respond_to :json
 
   def search
-    puts "\n\n#{params.inspect}\n\n"
     post_params = {
       "departureAirportCode": params[:departure],
       "arrivalAirportCode": params[:arrival],
@@ -18,19 +17,19 @@ class RoutesController < ApplicationController
       "skdEndRecord": 2000
     }
 
-    # headers = {
-    #   "Content-Type" => "text/html",
-    #   "Accept" => "application/x-www-form-urlencoded"
-    # }
-    #
-    # uri = URI.parse('https://www.delta.com/flightinfo/viewFlightSchedules.action')
-    # res = Net::HTTP.post_form(uri, post_params)
-    #
-    # parsed_flights = parseDeltaFlights res.body
-    #
-    # flights = buildRoutes parsed_flights
+    headers = {
+      "Content-Type" => "text/html",
+      "Accept" => "application/x-www-form-urlencoded"
+    }
 
-    render :json => {} #flights.to_json
+    uri = URI.parse('https://www.delta.com/flightinfo/viewFlightSchedules.action')
+    res = Net::HTTP.post_form(uri, post_params)
+
+    parsed_flights = parseDeltaFlights res.body
+
+    flights = buildRoutes parsed_flights
+
+    render :json => flights.to_json
   end
 
 
@@ -64,10 +63,13 @@ class RoutesController < ApplicationController
           # DEPARTURE AIRPORT
           depart_airport = flight.css("td[headers='depart-header depart-airport-header flightnum-row-header_#{current_index}_#{current_fl_index}']")
           if depart_airport.css('span.schedules_airport_code').length == 0
-            flight_obj['departure'] = depart_airport.css('span')[0].text.strip().gsub(/\s+/, " ")
+            dep = depart_airport.css('span')[0].text.strip().gsub(/\s+/, " ")
           else
-            flight_obj['departure'] = depart_airport.css('span.schedules_airport_code')[0].text.strip().gsub(/\s+/, " ") #each_with_index do |td, index|
+            dep = depart_airport.css('span.schedules_airport_code')[0].text.strip().gsub(/\s+/, " ")
           end
+          departure_airport = Airport.where(iata: dep).take
+          flight_obj['departure_airport_id'] = departure_airport.id
+          flight_obj['departure_airport'] = departure_airport
 
           # DEPARTURE TIME
           time_val = flight.css("td[headers='depart-header depart-timedate-header flightnum-row-header_#{current_index}_#{current_fl_index}']").text.strip().gsub(/\s+/, " ")
@@ -80,10 +82,13 @@ class RoutesController < ApplicationController
             case i
             when 0
               if td.css('span.schedules_airport_code').length == 0
-                flight_obj['arrival'] = td.css('span')[0].text.strip().gsub(/\s+/, " ")
+                arr = td.css('span')[0].text.strip().gsub(/\s+/, " ")
               else
-                flight_obj['arrival'] = td.css('span.schedules_airport_code')[0].text.strip().gsub(/\s+/, " ")
+                arr = td.css('span.schedules_airport_code')[0].text.strip().gsub(/\s+/, " ")
               end
+              arrival_airport = Airport.where(iata: arr).take
+              flight_obj['arrival_airport_id'] = arrival_airport.id
+              flight_obj['arrival_airport'] = arrival_airport
             when 1
               val = td.text.strip().gsub(/\s+/, " ")
               arr = val.split(' ')

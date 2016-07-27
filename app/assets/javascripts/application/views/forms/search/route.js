@@ -59,5 +59,6 @@ App.View.extend({
 
   _searchRoutes: function() {
     console.log('search', this.search_data.attributes);
+    this.routes.fetch({data: this.search_data.attributes})
   },
 });

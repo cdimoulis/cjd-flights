@@ -11,8 +11,10 @@ Backbone.Collection = Backbone.Collection.extend({
     // Set sync true as an option
     // This allows us to know if adds are result of a sync
     this.__fetch = this.fetch;
-    this.fetch = function() {
-      this.__fetch({sync: true});
+    this.fetch = function(options) {
+      console.log('opts',options)
+      options.sync = true
+      this.__fetch(options);
     }
   },
 
@@ -48,4 +50,5 @@ Backbone.Collection = Backbone.Collection.extend({
     obj[name] = models;
     return obj;
   },
+
 });
