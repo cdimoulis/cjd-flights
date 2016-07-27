@@ -1,1 +1,15 @@
-route
+.mdl-grid
+  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet
+    Dep: {{display.departure_date}} {{display.departure_time}}
+  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet
+    Arr: {{display.arrival_date}} {{display.arrival_time}}
+.mdl-grid
+  {{#each display.flights}}
+  .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet
+    %strong {{number}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet
+    Departs: {{departure_iata}} @ {{departure_time}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet
+    Arrives: {{arrival_iata}} @ {{arrival_time}}
+  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet
+  {{/each}}
