@@ -35,6 +35,9 @@ class RoutesController < ApplicationController
 
   private
 
+    ###
+    # Parse the flights returned by searching routes
+    ###
     def parseDeltaFlights(raw_html)
       page = Nokogiri::HTML(raw_html)
       table = page.css('tbody.schedulesTableBody')
@@ -122,6 +125,10 @@ class RoutesController < ApplicationController
         }
         routes.push obj
       end
+
+      ###
+      # END parse routes needs
+      ###
 
       return routes
     end

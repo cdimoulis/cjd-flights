@@ -1,7 +1,7 @@
 App.Page.extend({
-  name: "pages/search",
+  name: "pages/build",
   attributes: {
-    'class': 'page_search',
+    'class': 'page_build',
   },
   init_functions: [
     'setup'

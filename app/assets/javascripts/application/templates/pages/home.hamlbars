@@ -4,4 +4,4 @@
   .mdl-cell.mdl-cell--1-col
     {{view 'components/button/fab' data=components.trip}}
   .mdl-cell.mdl-cell--1-col
-    {{view 'components/button/fab' data=components.search}}
+    {{view 'components/button/fab' data=components.build}}

@@ -3,11 +3,10 @@
 
   </div>
   <paper-scroll-header-panel condenses main>
-    <paper-toolbar class='tall'>
+    <paper-toolbar class="{{display.toolbar_class}}">
       {{view 'components/button/icon' data=components.menu}}
-      <div id='title' class='title bottom'>
-        {{page_name}}
-      </div>
+      <div id='page_title' class='title bottom'>
+        {{display.page_name}}
       </div>
     </paper-toolbar>
     <div id="page-content">

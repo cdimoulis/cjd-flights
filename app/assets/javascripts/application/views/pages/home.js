@@ -23,11 +23,11 @@ App.Page.extend({
       }
     };
 
-    c.search = {
-      icon: 'search',
+    c.build = {
+      icon: 'flight-takeoff',
       attributes: new App.Model({class: 'background-accent'}),
       event_handler: function() {
-        window.location.pathname = '/pages/search';
+        window.location.pathname = '/pages/build';
       }
     };
   },

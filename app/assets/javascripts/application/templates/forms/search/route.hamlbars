@@ -1,6 +1,4 @@
 .mdl-grid
-  .mdl-cell.mdl-cell--12-col
-    %h5 Enter Route Information
   .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
     {{view 'components/text/input' data=components.departure}}
   .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
