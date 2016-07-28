@@ -1,0 +1,9 @@
+.mdl-grid.no-padding
+  .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet
+    %strong {{display.number}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet
+    Departs: {{display.departure_iata}} @ {{display.departure_time}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet
+    Arrives: {{display.arrival_iata}} @ {{display.arrival_time}}
+  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet
+    {{display.aircraft}}

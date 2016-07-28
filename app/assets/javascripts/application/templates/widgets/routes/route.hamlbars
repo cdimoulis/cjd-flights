@@ -9,12 +9,7 @@
       .mdl-cell.mdl-cell--12-col
         Duration: {{display.duration}}
 .mdl-grid
-  {{#each display.flights}}
-  .mdl-cell.mdl-cell--1-col.mdl-cell--2-col-tablet
-    %strong {{number}}
-  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet
-    Departs: {{departure_iata}} @ {{departure_time}}
-  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet
-    Arrives: {{arrival_iata}} @ {{arrival_time}}
-  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet
+  {{#each configs.flights}}
+  .mdl-cell.mdl-cell--12-col
+    {{view 'widgets/routes/flight' data=this}}
   {{/each}}

@@ -9,11 +9,14 @@ App.View.extend({
   init_functions: [
     'setup',
     'setupRouteDisplay',
-    'setupFlightDisplay',
+    'setupFlightData',
   ],
 
   setup: function() {
     this.display = {};
+    this.configs = {
+      flights: []
+    };
     this.flights = new App.Collections.Flights(this.data.model.get('flights'))
 
   },
@@ -37,21 +40,11 @@ App.View.extend({
     }
   },
 
-  setupFlightDisplay: function() {
+  setupFlightData: function() {
     var _this = this;
 
-    this.display.flights = [];
     this.flights.each(function(flight) {
-      dm = moment(flight.get('departure_date'));
-      am = moment(flight.get('arrival_date'));
-      obj = {
-        departure_iata: flight.get('departure_airport').iata,
-        arrival_iata: flight.get('arrival_airport').iata,
-        number: flight.get('number'),
-        departure_time: dm.format('hh:mm A'),
-        arrival_time: am.format('hh:mm A')
-      };
-      _this.display.flights.push(obj)
+      _this.configs.flights.push({model: flight});
     });
   },
 });
