@@ -13,6 +13,7 @@ Backbone.Collection = Backbone.Collection.extend({
     this.__fetch = this.fetch;
     this.fetch = function(options) {
       options.sync = true
+      this.trigger('fetch', this);
       this.__fetch(options);
     }
   },

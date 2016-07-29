@@ -1,10 +1,11 @@
 .mdl-grid
-  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
     {{view 'components/text/input' data=components.departure}}
-  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
     {{view 'components/text/input' data=components.arrival}}
-  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--2-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
     {{view 'components/picker/date' data=components.date}}
-.mdl-grid
-  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--1-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset
+    {{view 'components/toggles/checkbox' data=components.direct}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
     {{view 'components/button/main' data=components.search}}

@@ -87,14 +87,15 @@ App.Component.extend({
     }
 
     this.$el.Zebra_DatePicker({
-      view: 'days',
-      format: 'd M Y',
-      direction: dir,
       default_position: "below",
-      show_icon: false,
-      onSelect: this._selectDate,
-      start_date: m || moment().format("DD MMM YYYY"),
+      direction: dir,
+      first_day_of_week: 0,
+      format: 'd M Y',
       onClear: this._selectDate,
+      onSelect: this._selectDate,
+      show_icon: false,
+      start_date: m || moment().format("DD MMM YYYY"),
+      view: 'days',
     });
   },
 

@@ -13,7 +13,7 @@ class RoutesController < ApplicationController
       "arrivalAirportCode": params[:arrival],
       "flightDateField": params[:date].gsub('-','/'),
       "flightDate": params[:date],
-      "departureTime": "N/A",
+      "departureTime": params[:departure_time],
       "skdEndRecord": 2000
     }
 
