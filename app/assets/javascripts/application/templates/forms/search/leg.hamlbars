@@ -7,3 +7,5 @@
     {{view 'components/picker/date' data=components.date}}
   .mdl-cell.mdl-cell--1-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset
     {{view 'components/toggles/checkbox' data=components.direct}}
+  .mdl-cell.mdl-cell--1-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset
+    {{view 'components/button/icon' data=components.delete}}

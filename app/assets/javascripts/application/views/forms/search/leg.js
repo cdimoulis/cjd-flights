@@ -15,6 +15,8 @@ App.View.extend({
   ],
 
   setup: function() {
+    _.bindAll(this, '_deleteLeg');
+
     this.leg = this.data.model;
     this.leg.set('departure_time', 'N/A');
 
@@ -71,6 +73,17 @@ App.View.extend({
       attribute: 'direct',
       label: "Direct",
     };
+
+    c.delete = {
+      icon: 'clear',
+      event_handler: this._deleteLeg
+    }
+  },
+
+  _deleteLeg: function() {
+    if (this.data.legs.length > 1) {
+      this.data.legs.remove(this.leg);
+    }
   },
 
 });

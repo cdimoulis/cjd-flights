@@ -19,7 +19,6 @@ App.Component.extend({
   ],
 
   setup: function() {
-    console.log('setup');
     _.bindAll(this, 'handleModelChange', '_onChange');
     this.data.attributes = this.data.attributes || new App.Model()
 

@@ -11,10 +11,6 @@ App.Page.extend({
     this.components = c = {};
     this.routes = new App.Collections.Routes();
 
-    // c.search_route = {
-    //   routes: this.routes,
-    // };
-
     c.legs = {
       routes: this.routes,
     };
