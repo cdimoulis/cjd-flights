@@ -2,7 +2,7 @@
   .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
     %h5 Enter Route Information
   .mdl-cell.mdl-cell--9-col.mdl-cell--6-col-tablet.mdl-cell--4-col-phone
-    {{view 'forms/search/route' data=components.search_route}}
+    {{view 'widgets/build/legs' data=components.legs}}
 .mdl-grid
   .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
     %h5 Search Results

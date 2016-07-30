@@ -1,0 +1,8 @@
+.mdl-grid--no-spacing
+  .mdl-cell.mdl-cell--12-col
+    {{view 'components/list/main' data=components.list_legs}}
+.mdl-grid
+  .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+    {{view 'components/button/main' data=components.add}}
+  .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+    {{view 'components/button/main' data=components.search}}
