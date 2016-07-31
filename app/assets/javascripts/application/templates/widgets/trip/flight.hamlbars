@@ -1,1 +1,0 @@
-{{view 'forms/flight/main' data=forms.flight}}

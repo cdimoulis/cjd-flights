@@ -12,6 +12,7 @@ Backbone.Collection = Backbone.Collection.extend({
     // This allows us to know if adds are result of a sync
     this.__fetch = this.fetch;
     this.fetch = function(options) {
+      options = options || {};
       options.sync = true
       this.trigger('fetch', this);
       this.__fetch(options);
