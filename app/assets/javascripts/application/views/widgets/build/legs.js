@@ -4,7 +4,7 @@ App.View.extend({
     'class': 'build_legs',
   },
   data_source: [
-    {key: 'routes', required: true},
+    {key: 'legs', required: true},
   ],
   init_functions: [
     'setup',
@@ -12,10 +12,14 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, '_addLeg', '_searchRoutes')
+    _.bindAll(this, '_addLeg')
     var _this = this;
     this.components = {};
-    this.legs = new App.Collection([new App.Model()]);
+    this.legs = this.data.legs;
+
+    if (this.legs.length == 0) {
+      this.legs.add(new App.Model());
+    }
 
   },
 
@@ -30,13 +34,6 @@ App.View.extend({
       },
     };
 
-    c.search = {
-      text: 'Search',
-      button_color: 'accent',
-      icon: 'search',
-      event_handler: this._searchRoutes,
-    };
-
     c.add = {
       text: 'Add Leg',
       button_color: 'primary',
@@ -48,11 +45,5 @@ App.View.extend({
 
   _addLeg: function() {
     this.legs.add(new App.Model());
-  },
-
-  _searchRoutes: function() {
-    this.legs.each(function(leg) {
-      console.log('leg', leg.attributes);
-    });
   },
 });

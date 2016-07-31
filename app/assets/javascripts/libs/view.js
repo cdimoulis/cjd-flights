@@ -27,7 +27,7 @@ Backbone.View = Backbone.View.extend({
   _processData: function(hash) {
     var _this = this,
     data = hash.data || {};
-
+    
     _.each(this.data_source, function(source) {
       var val;
       // If required check exists

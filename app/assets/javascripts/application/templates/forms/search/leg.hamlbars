@@ -5,7 +5,7 @@
     {{view 'components/text/input' data=components.arrival}}
   .mdl-cell.mdl-cell--2-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
     {{view 'components/picker/date' data=components.date}}
-  .mdl-cell.mdl-cell--1-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset
+  .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset-desktop
     {{view 'components/toggles/checkbox' data=components.direct}}
-  .mdl-cell.mdl-cell--1-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset
-    {{view 'components/button/icon' data=components.delete}}
+  .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset-desktop
+    {{view 'components/button/fab' data=components.delete}}

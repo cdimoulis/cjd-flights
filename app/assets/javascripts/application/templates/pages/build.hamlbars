@@ -1,11 +1,14 @@
 .mdl-grid
-  .mdl-cell.mdl-cell--3-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
     %h5 Enter Route Information
-  .mdl-cell.mdl-cell--9-col.mdl-cell--6-col-tablet.mdl-cell--4-col-phone
+    .mdl-grid
+      .mdl-cell.mdl-cell--12-col.mdl-cell--8-col-tablet.mdl-cell--4-col-phone
+        {{view 'components/button/main' data=components.search}}
+  .mdl-cell.mdl-cell--7-col.mdl-cell--6-col-tablet.mdl-cell--4-col-phone
     {{view 'widgets/build/legs' data=components.legs}}
 .mdl-grid
-  .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
     %h5 Search Results
 .mdl-grid
-  .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
+  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
     {{view 'widgets/routes/list' data=components.route_list}}

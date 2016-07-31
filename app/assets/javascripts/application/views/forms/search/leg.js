@@ -18,10 +18,10 @@ App.View.extend({
     _.bindAll(this, '_deleteLeg');
 
     this.leg = this.data.model;
-    this.leg.set('departure_time', 'N/A');
+    this.leg.set('departure_time', 'D');
 
     this.direct = new App.Model({
-      direct: false,
+      direct: true,
     });
 
   },
@@ -71,12 +71,14 @@ App.View.extend({
     c.direct = {
       model: this.direct,
       attribute: 'direct',
-      label: "Direct",
+      label: "Prefer Direct",
     };
 
     c.delete = {
       icon: 'clear',
-      event_handler: this._deleteLeg
+      button_color: 'accent',
+      event_handler: this._deleteLeg,
+      mini: true,
     }
   },
 
