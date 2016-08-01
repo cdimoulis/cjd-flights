@@ -16,6 +16,15 @@ App.Page.extend({
       title: "Enter Route Information",
     }
 
+    this.legs.comparator = function(a,b) {
+      if (a.get('order') < b.get('order')) {
+        return -1;
+      }
+      else {
+        return 1;
+      }
+    }
+
     c.build_legs = {
       legs: this.legs,
       next: this.resultsView,

@@ -1,5 +1,5 @@
 App.View.extend({
-  name: 'widgets/build/selected_flights',
+  name: 'widgets/build/results/selected_flights',
   attributes: {
     'class': 'build_selected_flights',
   },

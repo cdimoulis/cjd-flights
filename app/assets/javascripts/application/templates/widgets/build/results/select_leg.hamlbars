@@ -1,0 +1,9 @@
+.mdl-grid.no-padding
+  .mdl-cell.mdl-cell--12-col
+    .leg-selection
+      {{#if components.legs.length}}
+      .info Select leg to view flights
+      {{/if}}
+      {{#each components.legs}}
+      {{view 'components/button/main' data=this}}
+      {{/each}}

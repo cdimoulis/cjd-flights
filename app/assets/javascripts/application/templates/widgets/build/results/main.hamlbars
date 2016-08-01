@@ -1,5 +1,5 @@
 .mdl-grid.no-padding
   .mdl-cell.mdl-cell--8-col
-    {{view 'widgets/build/results/list' data=components.result_list}}
+    {{view 'widgets/build/results/selection' data=components.result_list}}
   .mdl-cell.mdl-cell--4-col
-    {{view 'widgets/build/selected_flights' data=components.selected_flights}}
+    {{view 'widgets/build/results/selected_flights' data=components.selected_flights}}
