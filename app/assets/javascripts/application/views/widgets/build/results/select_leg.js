@@ -1,5 +1,5 @@
 App.View.extend({
-  name: 'widgets/build/results/selection',
+  name: 'widgets/build/results/select_leg',
   attributes: {
     'class': 'build_results_selection',
   },
@@ -31,7 +31,7 @@ App.View.extend({
         event_handler: function() {
           _this._selectLeg(leg);
         },
-        attributes: new App.Model({'data-index': leg.get('order'), 'selected': selected}),
+        attributes: new App.Model({'data-order': leg.get('order'), 'selected': selected}),
       }
       _this.components.legs.push(c);
     });
