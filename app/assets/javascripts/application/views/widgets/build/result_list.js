@@ -20,6 +20,7 @@ App.View.extend({
     this.components = {};
     this.leg_routes = new App.Collection();
     this.view_routes = new App.Collections.Routes();
+    this.current_leg = 0;
 
     this.leg_routes.comparator = function(a,b) {
       if (a.get('order') < b.get('order')) {
@@ -119,6 +120,7 @@ App.View.extend({
     $n_sel.removeClass('background-accent');
     $n_sel.addClass('background-primary');
 
+    this.current_leg = index;
     var leg = this.leg_routes.findWhere({order: index});
     this.view_routes.reset(leg.get('routes').models);
   }

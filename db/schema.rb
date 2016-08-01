@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160401185608) do
   create_table "trip_flights", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "trip_id",    null: false
     t.uuid     "flight_id",  null: false
+    t.integer  "order",      null: false
+    t.integer  "group",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
