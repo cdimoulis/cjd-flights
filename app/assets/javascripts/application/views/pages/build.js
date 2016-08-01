@@ -8,7 +8,7 @@ App.Page.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, 'buildLegsView', 'resultsView');
+    _.bindAll(this, 'buildLegsView', 'resultsView', 'tripView');
     this.components = c = {};
     this.current_view = null;
     this.legs = new App.Collection()
@@ -23,6 +23,8 @@ App.Page.extend({
 
     c.route_results = {
       legs: this.legs,
+      next: this.tripView,
+      previous: this.buildLegsView
     };
 
     this.listenTo(this, 'rendered', this.buildLegsView);
@@ -40,5 +42,9 @@ App.Page.extend({
       this.removeView(this.current_view);
     }
     this.current_view = this.addView('widgets/build/results', this.components.route_results, this.$el.find('.current-view') )
+  },
+
+  tripView: function() {
+
   },
 });

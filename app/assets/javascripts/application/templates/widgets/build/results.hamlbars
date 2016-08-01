@@ -1,15 +1,4 @@
-.mdl-grid
-  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone
-    %h5 Search Results
 .mdl-grid.no-padding
-  .mdl-cell.mdl-cell--12-col
-    .leg-selection
-      {{#if components.legs.length}}
-      .info Select leg to view flights
-      {{/if}}
-      {{#each components.legs}}
-      {{view 'components/button/main' data=this}}
-      {{/each}}
-.mdl-grid
-  .mdl-cell.mdl-cell--12-col
-    {{view 'components/list/main' data=components.list_routes}}
+  .mdl-cell.mdl-cell--8-col
+    {{view 'widgets/build/result_list' data=components.result_list}}
+  .mdl-cell.mdl-cell--4-col
