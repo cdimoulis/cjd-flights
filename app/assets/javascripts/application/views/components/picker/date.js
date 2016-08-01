@@ -8,6 +8,9 @@ App.Component.extend({
     "paper-input/paper-input.html",
     "iron-icon/iron-icon.html"
   ],
+  events: {
+    'focus': '_focus',
+  },
   data_source: [
     {key: 'model', required: true},
     {key: 'attribute', required: true},
@@ -24,7 +27,7 @@ App.Component.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, '_setDate', '_selectDate');
+    _.bindAll(this, '_setDate', '_selectDate', '_focus');
     var data = this.data;
     var attrs = {};
     data.attributes = data.attributes || new App.Model();
@@ -111,5 +114,9 @@ App.Component.extend({
 
   _selectDate: function(d, date) {
     this.data.model.set(this.data.attribute, date);
+  },
+
+  _focus: function() {
+    this.$el.data('Zebra_DatePicker').show();
   },
 });

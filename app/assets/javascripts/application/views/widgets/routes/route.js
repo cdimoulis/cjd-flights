@@ -33,10 +33,10 @@ App.View.extend({
     this.display.arrival_date = arrival_date.format('MMMM Do');
     this.display.arrival_time = arrival_date.format('h:mm A');
     if (duration.days()) {
-      this.display.duration = duration.days()+" Days "+duration.hours()+" Hours "+duration.minutes()+" Minutes";
+      this.display.duration = duration.days()+"d "+duration.hours()+"h "+duration.minutes()+"m";
     }
     else {
-      this.display.duration = duration.hours()+" Hours "+duration.minutes()+" Minutes";
+      this.display.duration = duration.hours()+"h "+duration.minutes()+"m";
     }
   },
 

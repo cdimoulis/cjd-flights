@@ -1,4 +1,3 @@
 .mdl-grid--no-spacing
   .mdl-cell.mdl-cell--12-col
-    {{view 'components/general/spinner' data=components.spinner}}
     {{view 'components/list/main' data=components.list_routes}}

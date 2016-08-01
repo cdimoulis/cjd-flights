@@ -4,34 +4,41 @@ App.Page.extend({
     'class': 'page_build',
   },
   init_functions: [
-    'setup'
+    'setup',
   ],
 
   setup: function() {
-    _.bindAll(this, '_searchRoutes');
+    _.bindAll(this, 'buildLegsView', 'resultsView');
     this.components = c = {};
-    this.routes = new App.Collections.Routes();
+    this.current_view = null;
     this.legs = new App.Collection()
+    this.display = {
+      title: "Enter Route Information",
+    }
 
-    c.legs = {
+    c.build_legs = {
+      legs: this.legs,
+      next: this.resultsView,
+    };
+
+    c.route_results = {
       legs: this.legs,
     };
 
-    c.route_list = {
-      routes: this.routes,
-    };
-
-    c.search = {
-      text: 'Search',
-      button_color: 'accent',
-      icon: 'search',
-      event_handler: this._searchRoutes,
-    };
+    this.listenTo(this, 'rendered', this.buildLegsView);
   },
 
-  _searchRoutes: function() {
-    this.legs.each(function(leg) {
-      console.log(leg.attributes);
-    });
+  buildLegsView: function() {
+    if (this.current_view) {
+      this.removeView(this.current_view);
+    }
+    this.current_view = this.addView('widgets/build/legs', this.components.build_legs, this.$el.find('.current-view') )
+  },
+
+  resultsView: function() {
+    if (this.current_view) {
+      this.removeView(this.current_view);
+    }
+    this.current_view = this.addView('widgets/build/results', this.components.route_results, this.$el.find('.current-view') )
   },
 });

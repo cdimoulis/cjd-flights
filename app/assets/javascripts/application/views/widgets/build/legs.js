@@ -5,6 +5,7 @@ App.View.extend({
   },
   data_source: [
     {key: 'legs', required: true},
+    {key: 'next', required: true},
   ],
   init_functions: [
     'setup',
@@ -39,6 +40,13 @@ App.View.extend({
       button_color: 'primary',
       icon: 'add',
       event_handler: this._addLeg,
+    };
+
+    c.search = {
+      text: 'Search',
+      button_color: 'accent',
+      icon: 'search',
+      event_handler: this.data.next,
     };
 
   },
