@@ -1,5 +1,5 @@
 App.View.extend({
-  name: 'widgets/build/results',
+  name: 'widgets/build/results/main',
   attributes: {
     'class': 'build_results',
   },

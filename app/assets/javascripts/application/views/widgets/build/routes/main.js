@@ -1,7 +1,7 @@
 App.View.extend({
-  name: 'widgets/build/legs',
+  name: 'widgets/build/routes/main',
   attributes: {
-    'class': 'build_legs',
+    'class': 'build_routes_main',
   },
   data_source: [
     {key: 'legs', required: true},

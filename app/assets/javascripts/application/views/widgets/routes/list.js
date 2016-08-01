@@ -5,6 +5,7 @@ App.View.extend({
   },
   data_source: [
     {key: 'routes', required: true},
+    {key: 'selected_route', required: false},
   ],
   init_functions: [
     'setup',

@@ -1,10 +1,11 @@
 App.View.extend({
-  name: 'widgets/build/result_list',
+  name: 'widgets/build/results/list',
   attributes: {
-    'class': 'build_result_list',
+    'class': 'build_results_list',
   },
   data_source: [
     {key: 'legs', required: true},
+    {key: 'selected_flights', required: false},
   ],
   init_functions: [
     'setup',

@@ -34,14 +34,14 @@ App.Page.extend({
     if (this.current_view) {
       this.removeView(this.current_view);
     }
-    this.current_view = this.addView('widgets/build/legs', this.components.build_legs, this.$el.find('.current-view') )
+    this.current_view = this.addView('widgets/build/routes/main', this.components.build_legs, this.$el.find('.current-view') )
   },
 
   resultsView: function() {
     if (this.current_view) {
       this.removeView(this.current_view);
     }
-    this.current_view = this.addView('widgets/build/results', this.components.route_results, this.$el.find('.current-view') )
+    this.current_view = this.addView('widgets/build/results/main', this.components.route_results, this.$el.find('.current-view') )
   },
 
   tripView: function() {
