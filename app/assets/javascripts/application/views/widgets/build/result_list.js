@@ -29,6 +29,13 @@ App.View.extend({
         return 1;
       }
     }
+
+    // For spinner
+    this.spinner_control = new App.Model({load: true});
+
+    this.listenTo(this.data.airports, 'sync', function() {
+      _this.spinner_control.set('load', false);
+    });
   },
 
   setupListeners: function() {
@@ -38,6 +45,12 @@ App.View.extend({
 
   setupLegComponents: function() {
     var _this = this;
+
+    this.components.spinner = {
+      model: this.spinner_control,
+      attribute: 'load',
+    };
+
     this.components.legs = [];
 
     this.leg_routes.each( function(leg) {
@@ -65,10 +78,16 @@ App.View.extend({
 
   searchRoutes: function() {
     var _this = this;
+    var count = 0;
     this.data.legs.each( function(leg, index) {
       var routes = new App.Collections.Routes()
       _this.listenToOnce(routes, 'sync', function() {
         _this._addLegRoute(leg, routes, index);
+        count++;
+        // Turn off spinner if done fetching
+        if (count == _this.data.legs.length) {
+          _this.spinner_control.set('load', false);
+        }
       })
 
       routes.fetch({data: leg.attributes});

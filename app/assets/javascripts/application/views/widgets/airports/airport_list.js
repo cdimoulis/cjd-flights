@@ -49,7 +49,7 @@ App.View.extend({
     this.components.spinner = {
       model: this.spinner_control,
       attribute: 'load',
-    }
+    };
 
     this.components.list_airports = {
       collection: this.result_airports,

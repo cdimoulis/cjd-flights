@@ -15,6 +15,7 @@ App.View.extend({
 
   setup: function() {
     this.components = {}
+    this.selected_flights = new App.Collections.Flights();
   },
 
   setupComponents: function() {
@@ -22,6 +23,10 @@ App.View.extend({
 
     c.result_list = {
       legs: this.data.legs,
+    };
+
+    c.selected_flights = {
+
     };
 
   },
