@@ -5,10 +5,14 @@ class CreateAirports < ActiveRecord::Migration
       t.string :city, null: false
       t.string :state
       t.string :country, null: false
-      t.string :code, null: false
+      t.string :iata, null: false
+      t.string :icao, null: false
       t.integer :timezone, null: false
 
       t.timestamps null: false
     end
+
+    add_index :airports, :country
+    add_index :airports, :iata
   end
 end

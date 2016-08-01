@@ -1,0 +1,29 @@
+@import "theme";
+
+button.Zebra_DatePicker_Icon.Zebra_DatePicker_Icon {
+  right: 7px !important;
+}
+
+.datepicker {
+  iron-icon {
+    color: $accent;
+  }
+}
+
+.Zebra_DatePicker {
+  width: 210px !important;
+  .dp_header, .dp_monthpicker, .dp_yearpicker, .dp_footer {
+    width: 210px !important;
+  }
+  .dp_header {
+    background: $accent;
+    td.dp_caption, td.dp_next, td.dp_previous {
+      &.dp_hover {
+        background: darken($accent, 5%);
+      }
+    }
+  }
+  .dp_visible {
+    z-index: 999;
+  }
+}

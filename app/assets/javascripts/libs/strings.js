@@ -18,3 +18,10 @@ String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
+
+
+String.prototype.capitalize = function() {
+  var letter = this[0].toUpperCase();
+  var str = letter+this.substr(1);
+  return str;
+}

@@ -14,5 +14,21 @@ App.Page.extend({
         window.location.pathname = '/pages/airports';
       }
     };
+
+    c.trip = {
+      icon: 'card-travel',
+      attributes: new App.Model({class: 'background-accent'}),
+      event_handler: function() {
+        window.location.pathname = '/pages/trip';
+      }
+    };
+
+    c.build = {
+      icon: 'flight-takeoff',
+      attributes: new App.Model({class: 'background-accent'}),
+      event_handler: function() {
+        window.location.pathname = '/pages/build';
+      }
+    };
   },
 });

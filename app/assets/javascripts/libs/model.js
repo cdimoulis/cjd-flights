@@ -1,6 +1,14 @@
 Backbone.Model = Backbone.Model.extend({
   railsParams: true,
 
+  initialize: function() {
+    this.__fetch = this.fetch;
+    this.fetch = function(options){
+      this.trigger('fetch', this);
+      this.__fetch(options);
+    }
+  },
+
   url: function(){
     var url = '';
 

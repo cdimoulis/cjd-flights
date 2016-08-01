@@ -5,6 +5,8 @@
 #  id         :uuid             not null, primary key
 #  trip_id    :uuid             not null
 #  flight_id  :uuid             not null
+#  order      :integer          not null
+#  group      :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

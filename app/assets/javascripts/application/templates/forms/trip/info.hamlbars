@@ -1,0 +1,24 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col
+    %h5 Trip Info
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col
+    {{view 'components/text/input' data=components.name}}
+  .mdl-cell.mdl-cell--12-col
+    {{view 'components/text/input' data=components.price}}
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col
+    %strong Cabin:
+  .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+    {{view 'components/toggles/radio' data=components.first}}
+  .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone
+    {{view 'components/toggles/radio' data=components.coach}}
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col
+    %strong Trip Type:
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+    {{view 'components/toggles/radio' data=components.one_way}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+    {{view 'components/toggles/radio' data=components.round_trip}}
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+    {{view 'components/toggles/radio' data=components.multi_city}}

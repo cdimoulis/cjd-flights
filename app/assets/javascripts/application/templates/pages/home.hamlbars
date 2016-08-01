@@ -1,3 +1,7 @@
 .mdl-grid
   .mdl-cell.mdl-cell--1-col
     {{view 'components/button/fab' data=components.airports}}
+  .mdl-cell.mdl-cell--1-col
+    {{view 'components/button/fab' data=components.trip}}
+  .mdl-cell.mdl-cell--1-col
+    {{view 'components/button/fab' data=components.build}}

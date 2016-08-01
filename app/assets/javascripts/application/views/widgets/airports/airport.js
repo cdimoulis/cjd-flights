@@ -26,7 +26,7 @@ App.View.extend({
   },
 
   setupDisplay: function() {
-    this.display.code = this.airport.get('code');
+    this.display.code = this.airport.get('iata');
     this.display.text = this.airport.get('text');
 
     this.display.location = this.airport.get('city');

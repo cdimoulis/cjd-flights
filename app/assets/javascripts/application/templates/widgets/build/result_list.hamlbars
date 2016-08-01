@@ -1,0 +1,17 @@
+.mdl-grid.no-padding
+  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone.no-margin
+    %h5 Search Results
+  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone.no-margin
+    {{view 'components/general/spinner' data=components.spinner}}
+.mdl-grid.no-padding
+  .mdl-cell.mdl-cell--12-col
+    .leg-selection
+      {{#if components.legs.length}}
+      .info Select leg to view flights
+      {{/if}}
+      {{#each components.legs}}
+      {{view 'components/button/main' data=this}}
+      {{/each}}
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col.no-margin
+    {{view 'widgets/routes/list' data=components.list_routes}}

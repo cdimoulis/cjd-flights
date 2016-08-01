@@ -21,15 +21,22 @@ App.View.extend({
     this._views = {};
 
     // Fetch the airports and listen for sync
-    // this.listenTo(this.data.collection, 'sync', this.buildList);
-    this.listenTo(this.data.collection, 'add', this.addItem);
+    this.listenTo(this.data.collection, 'sync', _this.buildList);
+
     this.listenTo(this.data.collection, 'remove', this.removeItem);
     this.listenTo(this.data.collection, 'reset', function() {
-      this.clearAll(this.buildList);
+      _this.clearAll(this.buildList);
+    });
+
+    this.listenTo(this.data.collection, 'add', function(model, collection, options) {
+      if (!options.sync) {
+        _this.addItem(model);
+      }
     });
     this.listenTo(this.data.collection, 'sort', function() {
-      this.clearAll(this.buildList);
+      _this.clearAll(this.buildList);
     });
+
     this.listenTo(this, 'rendered', this.buildList);
   },
 
@@ -69,7 +76,7 @@ App.View.extend({
       view_data: this.data.view_data,
     };
 
-    var view = this.addView('components/list/list_item', data, '.list');
+    var view = this.addView('components/list/list_item', data, '.list_items');
     this._views[model.cid] = view;
   },
 

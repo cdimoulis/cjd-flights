@@ -71,5 +71,4 @@ class FlightsController < ApplicationController
                                       :arrival_airport_id, :cabin_code, :fare_basis,
                                       :aircraft, :notes)
     end
-
 end

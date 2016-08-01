@@ -92,11 +92,10 @@ App.View.extend({
 
     c.code = {
       model: this.airport,
-      attribute: 'code',
+      attribute: 'iata',
       attributes: new App.Model(),
       required: true,
       label: "Airport Code",
-      required: true,
       error_message: "Required field",
     };
 
@@ -116,7 +115,6 @@ App.View.extend({
       attributes: new App.Model(),
       required: true,
       label: "City",
-      required: true,
       error_message: "Required field",
     };
 
@@ -143,19 +141,18 @@ App.View.extend({
       selected: this.selected_timezone,
       required: true,
       label: "Timezone",
-      required: true,
       error_message: "Required field",
     };
 
     c.clear = {
       text: 'clear',
-      attributes: new App.Model({class: 'background-accent'}),
+      button_color: 'accent',
       event_handler: this.clear,
     };
 
     c.save = {
       text: 'save',
-      attributes: new App.Model({class: 'background-primary'}),
+      button_color: 'primary',
       event_handler: this.save,
     };
   },

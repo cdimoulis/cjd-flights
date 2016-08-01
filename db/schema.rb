@@ -29,11 +29,15 @@ ActiveRecord::Schema.define(version: 20160401185608) do
     t.string   "city",       null: false
     t.string   "state"
     t.string   "country",    null: false
-    t.string   "code",       null: false
+    t.string   "iata",       null: false
+    t.string   "icao",       null: false
     t.integer  "timezone",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "airports", ["country"], name: "index_airports_on_country", using: :btree
+  add_index "airports", ["iata"], name: "index_airports_on_iata", using: :btree
 
   create_table "flights", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "airline_id",           null: false
@@ -50,9 +54,17 @@ ActiveRecord::Schema.define(version: 20160401185608) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "flights", ["aircraft"], name: "index_flights_on_aircraft", using: :btree
+  add_index "flights", ["airline_id"], name: "index_flights_on_airline_id", using: :btree
+  add_index "flights", ["arrival_airport_id"], name: "index_flights_on_arrival_airport_id", using: :btree
+  add_index "flights", ["departure_airport_id"], name: "index_flights_on_departure_airport_id", using: :btree
+  add_index "flights", ["number"], name: "index_flights_on_number", using: :btree
+
   create_table "trip_flights", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "trip_id",    null: false
     t.uuid     "flight_id",  null: false
+    t.integer  "order",      null: false
+    t.integer  "group",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,5 +78,8 @@ ActiveRecord::Schema.define(version: 20160401185608) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
+
+  add_index "trips", ["cabin"], name: "index_trips_on_cabin", using: :btree
+  add_index "trips", ["trip_type"], name: "index_trips_on_trip_type", using: :btree
 
 end

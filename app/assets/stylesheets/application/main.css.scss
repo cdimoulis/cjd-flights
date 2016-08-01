@@ -1,10 +1,11 @@
 @import "../theme";
 
 body {
-  height: 100%;
 
   paper-scroll-header-panel {
-    height: 100%;
+    // #mainContainer {
+    //   padding-top: 192px !important;
+    // }
     #headerContainer {
       paper-toolbar {
         background: transparent;

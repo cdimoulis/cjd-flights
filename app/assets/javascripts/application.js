@@ -19,6 +19,7 @@
 //= require ../../../public/assets/components/webcomponentsjs/webcomponents.js
 //= require_tree ./application/templates
 //= require moment
+//= require zebra_datepicker/zebra_datepicker
 //= require ./libs/view
 //= require ./libs/component
 //= require ./libs/model
@@ -27,6 +28,7 @@
 //= require ./libs/strings
 //= require application/app
 //= require application/init
+//= require ./libs/util
 //= require_tree ./application/models
 //= require_tree ./application/collections
 //= require_tree ./application/views

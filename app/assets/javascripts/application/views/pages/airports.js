@@ -9,7 +9,6 @@ App.Page.extend({
   ],
 
   setup: function() {
-    var _this = this;
     this.components = {};
 
     this.selected_airport = new App.Models.Airport();

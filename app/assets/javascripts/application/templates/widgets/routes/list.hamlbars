@@ -1,0 +1,3 @@
+.mdl-grid--no-spacing
+  .mdl-cell.mdl-cell--12-col.no-margin
+    {{view 'components/list/main' data=components.list_routes}}

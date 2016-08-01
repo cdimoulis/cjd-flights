@@ -6,11 +6,8 @@ App.View.extend({
     "paper-toolbar/paper-toolbar.html",
     "paper-icon-button/paper-icon-button.html",
   ],
-  attributes: {
-    style: 'height: 100%;'
-  },
   events: {
-    'click #title': '_navigateHome',
+    'click #page_title': '_navigateHome',
   },
   data_source: [
     {key: 'page', required: true},
@@ -23,11 +20,18 @@ App.View.extend({
     _.bindAll(this, '_navigateHome');
     var _this = this;
     this.components = {};
+    this.display = {
+      page_name: this.data.page.split('/')[1].capitalize(),
+    };
 
     this.components.menu = {
       icon: 'menu',
       attributes: new App.Model({"paper-drawer-toggle": true, class: 'top'}),
     };
+
+    if (_.isEqual(this.display.page_name, "Home")) {
+      this.display.toolbar_class = "tall";
+    }
   },
 
   _navigateHome: function() {

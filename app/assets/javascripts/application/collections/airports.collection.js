@@ -4,7 +4,7 @@ App.Collection.extend({
   urlRoot: "/airports",
 
   comparator: function(a, b) {
-    if (a.get('code') < b.get('code')) {
+    if (a.get('iata') < b.get('iata')) {
       return -1;
     }
     else {

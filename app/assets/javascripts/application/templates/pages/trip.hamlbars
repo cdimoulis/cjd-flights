@@ -1,0 +1,3 @@
+.mdl-grid
+  .mdl-cell.mdl-cell--3-col.mdl-cell--8.col-tablet.mel-cell--4-col-phone.mdl-cell--order-1-tablet.mdl-cell--order-1-phone
+    {{view 'forms/trip/info' data=components.info}}

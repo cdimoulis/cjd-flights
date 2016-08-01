@@ -1,61 +1,36 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-
+puts "\n\nBegin data seed...\n\n"
 
 delta = Airline.create(
   text: 'Delta',
   code: 'DL'
 )
 
-stl = Airport.create(
-  text: "St. Louis Lambert International Airport",
-  city: "St. Louis",
-  state: "Missouri",
-  country: "United States",
-  code: "STL",
-  timezone: -360
-)
-msp = Airport.create(
-  text: "Minneapolis-Saint Paul International Airport",
-  city: "Minneapolis",
-  state: "Minnesota",
-  country: "United States",
-  code: "MSP",
-  timezone: -360
-)
-atl = Airport.create(
-  text: "Atlanta Hartsfield International Airport",
-  city: "Atlanta",
-  state: "Georgia",
-  country: "United States",
-  code: "ATL",
-  timezone: -300
-)
-bos = Airport.create(
-  text: "Boston Logan International Airport",
-  city: "Boston",
-  state: "Massachusetts",
-  country: "United States",
-  code: "BOS",
-  timezone: -300
-)
-ord = Airport.create(
-  text: "Chicago O'Hare International Airport",
-  city: "Chicago",
-  state: "Illinois",
-  country: "United States",
-  code: "ORD",
-  timezone: -360
-)
-mdw = Airport.create(
-  text: "Chicago Midway International Airport",
-  city: "Chicago",
-  state: "Illinois",
-  country: "United States",
-  code: "MDW",
-  timezone: -360
-)
+airport_file = File.read("#{Dir.pwd}/db/airports.json")
+airports = JSON.parse(airport_file)
+
+airports.each do |airport|
+  tz = Float(airport["timezone"]) *  60
+  if !airport["iata"].empty? and !airport["icao"].empty?
+    Airport.create(
+      text: airport["name"],
+      city: airport["city"],
+      country: airport["country"],
+      iata: airport["iata"],
+      icao: airport["icao"],
+      timezone: tz
+    )
+  end
+end
+
+stl = Airport.where(iata: "STL").take
+msp = Airport.where(iata: "MSP").take
+atl = Airport.where(iata: "ATL").take
+bos = Airport.where(iata: "BOS").take
+ord = Airport.where(iata: "ORD").take
+mdw = Airport.where(iata: "MDW").take
 
 f1 = Flight.create(
   airline_id: delta.id,
@@ -92,3 +67,6 @@ f3 = Flight.create(
   aircraft: "A320",
   notes: "THIS IS A TEST FLIGHT. NOT REAL"
 )
+
+
+puts "\n\nEnd data seed!\n\n"

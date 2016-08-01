@@ -17,6 +17,7 @@ App.View.extend({
     this.components = {};
     this.result_airports = new App.Collections.Airports(this.data.airports.models);
 
+    // In case the selected airport collection is synced
     this.listenTo(this.data.selected_airport, 'sync', function(model) {
       _this.data.selected_airport.set('id', model.get('id'));
       airport = _this.data.airports.get(model.get('id'))
@@ -28,8 +29,11 @@ App.View.extend({
       }
     });
 
+    // For spinner
+    this.spinner_control = new App.Model({load: true});
+
     this.listenTo(this.data.airports, 'sync', function() {
-      _this.result_airports.reset(_this.data.airports.models);
+      _this.spinner_control.set('load', false);
     });
 
     this.data.airports.fetch();
@@ -39,7 +43,12 @@ App.View.extend({
     this.components.search = {
       collection: this.data.airports,
       results: this.result_airports,
-      search_attributes: ['code', 'text', 'city', 'state', 'country'],
+      search_attributes: ['iata', 'text', 'city', 'state', 'country'],
+    };
+
+    this.components.spinner = {
+      model: this.spinner_control,
+      attribute: 'load',
     };
 
     this.components.list_airports = {
