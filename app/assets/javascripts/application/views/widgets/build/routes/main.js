@@ -20,7 +20,7 @@ App.View.extend({
     this.legs = this.data.legs;
 
     if (this.legs.length == 0) {
-      this.legs.add(new App.Model({order: 0}));
+      this.legs.add(new App.Model({order: 0, group: 0}));
     }
     window.legs = this.legs;
   },
@@ -70,6 +70,7 @@ App.View.extend({
 
   _addLeg: function() {
     var last = this.legs.last()
-    this.legs.add(new App.Model({order: last.get('order')+1}));
+    var model = new App.model({order: last.get('order')+1, group: last.get('group')+1})
+    this.legs.add(model);
   },
 });

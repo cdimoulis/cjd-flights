@@ -9,7 +9,6 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
-    // 'setupListeners',
     'setupLegComponents',
   ],
 
