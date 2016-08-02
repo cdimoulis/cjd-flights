@@ -46,7 +46,6 @@ App.View.extend({
       if (f) {
         this.show[f.get('text')] = true
       }
-      console.log('show',f.get('text'));
       this._setupConnectionRoutes();
       this.render();
     });
@@ -115,6 +114,8 @@ App.View.extend({
       var flights = new App.Collections.Flights(_.flatten(this.connections.single.pluck('flights')));
       var flights_a = new App.Collections.Flights(flights.where({flight_order: 0}));
       var flights_b = new App.Collections.Flights(flights.where({flight_order: 1}));
+      flights_a.removeDuplicates()
+      flights_b.removeDuplicates()
       this.routes.a.reset(this._setupRoutes(flights_a));
       this.routes.b.reset(this._setupRoutes(flights_b));
     }
@@ -123,6 +124,9 @@ App.View.extend({
       var flights_a = new App.Collections.Flights(flights.where({flight_order: 0}));
       var flights_b = new App.Collections.Flights(flights.where({flight_order: 1}));
       var flights_c = new App.Collections.Flights(flights.where({flight_order: 2}));
+      flights_a.removeDuplicates()
+      flights_b.removeDuplicates()
+      flights_c.removeDuplicates()
       this.routes.a.reset(this._setupRoutes(flights_a));
       this.routes.b.reset(this._setupRoutes(flights_b));
       this.routes.c.reset(this._setupRoutes(flights_c));

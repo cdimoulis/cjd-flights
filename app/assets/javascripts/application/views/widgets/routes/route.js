@@ -30,7 +30,9 @@ App.View.extend({
 
     this.display.departure_date = departure_date.format('MMMM Do');
     this.display.departure_time = departure_date.format('h:mm A');
-    this.display.arrival_date = arrival_date.format('MMMM Do');
+    if (!moment(departure_date.format('YYYY-MM-DD')).isSame(moment(arrival_date.format('YYYY-MM-DD')))) {
+      this.display.arrival_date = arrival_date.format('MMMM Do');
+    }
     this.display.arrival_time = arrival_date.format('h:mm A');
     if (duration.days()) {
       this.display.duration = duration.days()+"d "+duration.hours()+"h "+duration.minutes()+"m";

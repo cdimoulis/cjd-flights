@@ -1,16 +1,19 @@
-.mdl-grid
+.mdl-grid.no-padding-left.no-padding-right
   .mdl-cell.mdl-cell--2-col.mdl-cell--1-tablet
     %img{:src => "/assets/img/delta.png"}
   .mdl-cell.mdl-cell--10-col.mdl-cell--7-tablet
     .mdl-grid.no-padding
       .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet
-        {{display.departure_time}} {{display.departure_date}}
+        {{display.departure_date}}
+        {{#if display.arrival_date}}
+        &#8594 {{display.arrival_date}}
+        {{/if}}
       .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet
         Duration: {{display.duration}}
     .mdl-grid.no-padding
       .mdl-cell.mdl-cell--6-col
-        {{display.arrival_time}} {{display.arrival_date}}
-.mdl-grid
+        {{display.departure_time}} / {{display.arrival_time}}
+.mdl-grid.no-padding-left.no-padding-right
   {{#each configs.flights}}
   .mdl-cell.mdl-cell--12-col
     {{view 'widgets/routes/flight' data=this}}
