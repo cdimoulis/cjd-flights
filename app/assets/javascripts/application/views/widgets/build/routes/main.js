@@ -70,7 +70,7 @@ App.View.extend({
 
   _addLeg: function() {
     var last = this.legs.last()
-    var model = new App.model({order: last.get('order')+1, group: last.get('group')+1})
+    var model = new App.Model({order: last.get('order')+1, group: last.get('group')+1})
     this.legs.add(model);
   },
 });

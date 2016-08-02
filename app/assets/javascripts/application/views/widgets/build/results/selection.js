@@ -5,21 +5,21 @@ App.View.extend({
   },
   data_source: [
     {key: 'legs', required: true},
-    {key: 'selected_flights', required: false},
+    {key: 'selected_routes', required: false},
   ],
   init_functions: [
     'setup',
     'setupListeners',
-    'setupComponents',
     'fetchRoutes',
+    'setupComponents',
   ],
 
   setup: function() {
-    _.bindAll(this, '_selectLeg')
+    _.bindAll(this, '_selectLeg');
     var _this = this;
     this.components = {};
     this.view_routes = new App.Collections.Routes();
-    this.selected_leg = this.data.legs.findWhere({order: 0}).clone();
+    this.selected_leg = new App.Model();
 
     // For spinner
     this.spinner_control = new App.Model({load: true});
@@ -33,6 +33,31 @@ App.View.extend({
     var _this = this;
 
     this.listenTo(this.selected_leg, 'change', this._selectLeg);
+  },
+
+  fetchRoutes: function() {
+    var _this = this;
+    var count = 0;
+    this.data.legs.each( function(leg) {
+      var routes = new App.Collections.Routes()
+      // Get the fetch attributes before setting routes
+      var fetch_attrs = leg.clone().attributes;
+      leg.set('routes', routes);
+      _this.listenToOnce(routes, 'sync', function() {
+        if (leg.get('order') == 0) {
+          _this.selected_leg.set(leg.attributes);
+          _this.view_routes.reset(leg.get('routes').models)
+        }
+
+        count++;
+        // Turn off spinner if done fetching
+        if (count == _this.data.legs.length) {
+          _this.spinner_control.set('load', false);
+        }
+      });
+
+      routes.fetch({data: fetch_attrs});
+    });
   },
 
   setupComponents: function() {
@@ -50,33 +75,13 @@ App.View.extend({
       routes: this.view_routes,
     };
 
-  },
+    this.components.connections = {
+      leg: this.selected_leg,
+    };
 
-  fetchRoutes: function() {
-    var _this = this;
-    var count = 0;
-    this.data.legs.each( function(leg) {
-      var routes = new App.Collections.Routes()
-      // Get the fetch attributes before setting routes
-      var fetch_attrs = leg.clone().attributes;
-      leg.set('routes', routes);
-      _this.listenToOnce(routes, 'sync', function() {
-        if (leg.get('order') == this.selected_leg.get('order')) {
-          this.view_routes.reset(leg.get('routes').models)
-        }
-
-        count++;
-        // Turn off spinner if done fetching
-        if (count == _this.data.legs.length) {
-          _this.spinner_control.set('load', false);
-        }
-      });
-
-      routes.fetch({data: fetch_attrs});
-    });
   },
 
   _selectLeg: function(model) {
     this.view_routes.reset(model.get('routes').models);
-  }
+  },
 });

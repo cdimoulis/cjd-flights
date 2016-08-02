@@ -7,3 +7,4 @@
 .mdl-grid
   .mdl-cell.mdl-cell--12-col.no-margin
     {{view 'widgets/routes/list' data=components.list_routes}}
+    {{view 'widgets/build/results/connections' data=components.connections}}

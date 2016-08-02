@@ -1,7 +1,7 @@
 App.View.extend({
   name: 'widgets/build/results/select_leg',
   attributes: {
-    'class': 'build_results_selection',
+    'class': 'build_results_select_leg',
   },
   data_source: [
     {key: 'legs', required: true},
@@ -9,12 +9,17 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
+    'setupListeners',
     'setupLegComponents',
   ],
 
   setup: function() {
     _.bindAll(this, '_selectLeg');
     this.components = {};
+  },
+
+  setupListeners: function() {
+    this.listenTo(this.data.selected_leg, 'change', this._selectLeg);
   },
 
   setupLegComponents: function() {
@@ -37,6 +42,7 @@ App.View.extend({
   },
 
   _selectLeg: function(leg) {
+    console.log('leg',leg.get('departure'), leg.get('arrival'));
     var $o_sel = this.$el.find('paper-button[selected]');
     var $n_sel = this.$el.find('paper-button[data-order='+leg.get('order')+']');
     $o_sel.removeAttr('selected');

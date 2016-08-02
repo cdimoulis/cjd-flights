@@ -15,7 +15,7 @@ App.View.extend({
 
   setup: function() {
     this.components = {}
-    this.selected_flights = new App.Collections.Flights();
+    this.selected_routes = new App.Collections.Routes();
   },
 
   setupComponents: function() {

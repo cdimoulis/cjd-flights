@@ -27,9 +27,9 @@ class RoutesController < ApplicationController
 
     parsed_flights = parseDeltaFlights res.body
 
-    flights = buildRoutes parsed_flights
+    routes = buildRoutes parsed_flights
 
-    render :json => flights.to_json
+    render :json => routes.to_json
   end
 
 
@@ -59,6 +59,7 @@ class RoutesController < ApplicationController
           end
 
           flight_obj = {}
+          flight_obj['flight_order'] = current_fl_index-1
 
           # FLIGHT NUMBER
           flight_obj["number"] = flight.css('input[name="flightNumber"]')[0]['value']\
