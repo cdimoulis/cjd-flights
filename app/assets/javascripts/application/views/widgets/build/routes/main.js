@@ -69,6 +69,25 @@ App.View.extend({
       event_handler: this.data.next,
     };
 
+
+    var col = new App.Collection([
+      {text: 'a'},
+      {text: 'b'},
+      {text: 'c'},
+      {text: 'd'},
+    ]);
+    var sel = new App.Collection();
+    window.col = col;
+    window.sel = sel;
+
+    c.group = {
+      collection: col,
+      selected: sel,
+      label_attr: 'text',
+      title: "Test:",
+      single_selection: false,
+    };
+
   },
 
   _addLeg: function() {

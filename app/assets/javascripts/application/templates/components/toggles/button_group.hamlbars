@@ -1,0 +1,15 @@
+.mdl-grid.no-padding
+  .mdl-cell.mdl-cell--12-col
+    .selection
+      {{#if data.title}}
+      %span.title {{data.title}}
+      {{/if}}
+      {{#if data.single_selection}}
+      {{#each components.buttons}}
+      {{view 'components/button/main' data=this}}
+      {{/each}}
+      {{else}}
+      {{#each components.buttons}}
+      {{view 'components/toggles/button' data=this}}
+      {{/each}}
+      {{/if}}
