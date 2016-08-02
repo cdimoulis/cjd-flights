@@ -14,7 +14,6 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this, '_changeLeg');
-    console.log('setup', this.data.leg.get('departure'), this.data.leg.get('arrival'));
   },
 
   setupListeners: function() {
@@ -22,11 +21,12 @@ App.View.extend({
   },
 
   _changeLeg: function() {
-    console.log('parse', this.data.leg.get('departure'), this.data.leg.get('arrival'));
-    var direct_routes = this.data.leg.get('routes').where({num_legs: 1})
-    var single_connection = this.data.leg.get('routes').where({num_legs: 2});
-    var double_connection = this.data.leg.get('routes').where({num_legs: 3});
+    if (this.data.leg.has('routes')) {
+      var direct_routes = this.data.leg.get('routes').where({num_legs: 1})
+      var single_connection = this.data.leg.get('routes').where({num_legs: 2});
+      var double_connection = this.data.leg.get('routes').where({num_legs: 3});
 
-    console.log('counts:',direct_routes.length, single_connection.length, double_connection.length);
+      console.log('counts:',direct_routes.length, single_connection.length, double_connection.length);
+    }
   },
 });
