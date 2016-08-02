@@ -3,22 +3,35 @@ App.View.extend({
   attributes: {
     'class': 'route_info',
   },
+  events: {
+    'click': '_selectRoute',
+  },
   data_source: [
     {key: 'model', required: true},
+    {key: 'selected_route', required: false},
   ],
   init_functions: [
     'setup',
+    'setupListeners',
     'setupRouteDisplay',
     'setupFlightData',
   ],
 
   setup: function() {
+    _.bindAll(this, '_selectedChange', '_selectRoute');
     this.display = {};
     this.configs = {
       flights: []
     };
     this.flights = new App.Collections.Flights(this.data.model.get('flights'))
 
+    if (this.data.selected_route && this.data.selected_route.isSame(this.data.model)) {
+      this.$el.addClass('selected');
+    }
+  },
+
+  setupListeners: function() {
+    this.listenTo(this.data.selected_route, 'change', this._selectedChange);
   },
 
   setupRouteDisplay: function() {
@@ -49,4 +62,18 @@ App.View.extend({
       _this.configs.flights.push({model: flight});
     });
   },
+
+  _selectedChange: function() {
+    if (this.data.selected_route.isSame(this.data.model)) {
+      this.$el.addClass('selected');
+    }
+    else {
+      this.$el.removeClass('selected');
+    }
+  },
+
+  _selectRoute: function() {
+    this.data.selected_route.set(this.data.model.attributes);
+    this.$el.addClass('selected');
+  }
 });

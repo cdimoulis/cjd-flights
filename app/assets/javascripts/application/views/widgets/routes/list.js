@@ -22,7 +22,7 @@ App.View.extend({
       collection: this.data.routes,
       view: 'widgets/routes/route',
       view_data: {
-
+        selected_route: this.data.selected_route,
       },
     };
 

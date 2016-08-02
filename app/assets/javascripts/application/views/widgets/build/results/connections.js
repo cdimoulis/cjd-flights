@@ -31,10 +31,14 @@ App.View.extend({
       b: new App.Collections.Routes(),
       c: new App.Collections.Routes(),
     };
+    this.selected = {
+      a: new App.Models.Route(),
+      b: new App.Models.Route(),
+      c: new App.Models.Route(),
+    }
 
     this.possible_connections = new App.Collection();
     this.selected_connections = new App.Collection();
-    this.temp_routes = new App.Collections.Routes();
   },
 
   setupListeners: function() {
@@ -62,14 +66,17 @@ App.View.extend({
 
     c.a_routes = {
       routes: this.routes.a,
+      selected_route: this.selected.a,
     };
 
     c.b_routes = {
       routes: this.routes.b,
+      selected_route: this.selected.b,
     };
 
     c.c_routes = {
       routes: this.routes.c,
+      selected_route: this.selected.c,
     };
   },
 

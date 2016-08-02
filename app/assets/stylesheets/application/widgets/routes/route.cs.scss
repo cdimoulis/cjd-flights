@@ -1,10 +1,18 @@
+@import "theme";
+
 .route_info {
   background: #EEEEEE;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   margin-right: 5px;
   cursor: pointer;
 
   &:hover {
     background: #DDDDDD;
+  }
+
+  &.selected {
+    border: 2px solid $primary;
+    margin-bottom: 1px;
+    margin-right: 3px;
   }
 }
