@@ -20,6 +20,7 @@ App.View.extend({
     this.components = {};
     this.view_routes = new App.Collections.Routes();
     this.selected_leg = new App.Model();
+    this.selected_legs = new App.Collection();
 
     // For spinner
     this.spinner_control = new App.Model({load: true});
@@ -32,7 +33,13 @@ App.View.extend({
   setupListeners: function() {
     var _this = this;
 
-    this.listenTo(this.selected_leg, 'change', this._selectLeg);
+    this.listenTo(this.selected_legs, 'reset', function() {
+      var model = _this.selected_legs.first();
+      if (model) {
+        _this._selectLeg(model);
+        _this.selected_leg.set(model.attributes);
+      }
+    });
   },
 
   fetchRoutes: function() {
@@ -43,9 +50,11 @@ App.View.extend({
       // Get the fetch attributes before setting routes
       var fetch_attrs = leg.clone().attributes;
       leg.set('routes', routes);
+      leg.set('title', leg.get('departure')+'-'+leg.get('arrival'));
       _this.listenToOnce(routes, 'sync', function() {
         if (leg.get('order') == 0) {
           _this.selected_leg.set(leg.attributes);
+          _this.selected_legs.add(leg);
           _this.view_routes.reset(leg.get('routes').models)
         }
 
@@ -71,6 +80,13 @@ App.View.extend({
       selected_leg: this.selected_leg,
     }
 
+    this.components.select_leg = {
+      collection: this.data.legs,
+      selected: this.selected_legs,
+      label_attr: 'title',
+      title: 'Leg:',
+    }
+
     this.components.list_routes = {
       routes: this.view_routes,
     };
@@ -82,6 +98,8 @@ App.View.extend({
   },
 
   _selectLeg: function(model) {
-    this.view_routes.reset(model.get('routes').models);
+    if (model) {
+      this.view_routes.reset(model.get('routes').models);
+    }
   },
 });
