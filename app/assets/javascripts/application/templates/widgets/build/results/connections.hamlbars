@@ -1,0 +1,1 @@
+{{view 'components/toggles/button_group' data=components.select_connection}}

@@ -10,23 +10,64 @@ App.View.extend({
   init_functions: [
     'setup',
     'setupListeners',
+    'setupComponents',
   ],
 
   setup: function() {
-    _.bindAll(this, '_changeLeg');
+    _.bindAll(this, '_changeLeg', '_splitConnections', '_setupConnectionCollection');
+    this.components = {};
+    this.connections = {
+      direct: new App.Collections.Routes(),
+      single: new App.Collections.Routes(),
+      double: new App.Collections.Routes(),
+    };
+    this.possible_connections = new App.Collection();
+    this.selected_connections = new App.Collection();
   },
 
   setupListeners: function() {
     this.listenTo(this.data.leg, 'change', this._changeLeg);
   },
 
-  _changeLeg: function() {
-    if (this.data.leg.has('routes')) {
-      var direct_routes = this.data.leg.get('routes').where({num_legs: 1})
-      var single_connection = this.data.leg.get('routes').where({num_legs: 2});
-      var double_connection = this.data.leg.get('routes').where({num_legs: 3});
+  setupComponents: function() {
+    var c = this.components;
+    c.select_connection = {
+      collection: this.possible_connections,
+      selected: this.selected_connections,
+      label_attr: 'text',
+      title: 'Connections:',
+    }
+  },
 
-      console.log('counts:',direct_routes.length, single_connection.length, double_connection.length);
+  _changeLeg: function() {
+    console.log('leg',this.data.leg.get('routes').length)
+    this._splitConnections();
+    this._setupConnectionCollection();
+  },
+
+  _splitConnections: function() {
+    if (this.data.leg.has('routes')) {
+      this.connections.direct.reset(this.data.leg.get('routes').where({num_legs: 1}));
+      this.connections.single.reset(this.data.leg.get('routes').where({num_legs: 2}));
+      this.connections.double.reset(this.data.leg.get('routes').where({num_legs: 3}));
+    }
+  },
+
+  _setupConnectionCollection: function() {
+    var con = [];
+    _.each(this.connections, function(val, key) {
+      if (val.length > 0){
+        var m = new App.Model({text: key, collection: val});
+        con.push(m);
+      }
+    });
+    if (con.length > 0) {
+      this.selected_connections.add(_.first(con));
+      this.possible_connections.reset(con);
+    }
+    else {
+      this.selected_connections.reset([]);
+      this.possible_connections.reset([]);
     }
   },
 });

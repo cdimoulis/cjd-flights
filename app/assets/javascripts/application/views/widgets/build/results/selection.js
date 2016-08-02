@@ -76,11 +76,6 @@ App.View.extend({
     };
 
     this.components.select_leg = {
-      legs: this.data.legs,
-      selected_leg: this.selected_leg,
-    }
-
-    this.components.select_leg = {
       collection: this.data.legs,
       selected: this.selected_legs,
       label_attr: 'title',

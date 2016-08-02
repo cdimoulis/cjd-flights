@@ -13,7 +13,7 @@ App.View.extend({
   init_functions: [
     'setup',
     'setupListeners',
-    'setupLegComponents',
+    'setupComponents',
   ],
 
   setup: function() {
@@ -24,6 +24,11 @@ App.View.extend({
 
   setupListeners: function() {
     var _this = this;
+    this.listenTo(this.data.collection, 'reset', function() {
+      _this.setupComponents();
+      _this.render();
+    })
+
     this.listenTo(this.data.selected, 'add', function(model) {
       if (_this.data.single_selection) {
         _this._singleSelect(model);
@@ -46,13 +51,13 @@ App.View.extend({
     });
 
     this.listenTo(this.data.selected, 'reset', function() {
-      _this.setupLegComponents();
+      _this.setupComponents();
       _this.render();
     })
 
   },
 
-  setupLegComponents: function() {
+  setupComponents: function() {
     var _this = this;
     this.components.buttons = [];
 

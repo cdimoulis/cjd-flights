@@ -1,9 +1,0 @@
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--12-col
-    .leg-selection
-      {{#if components.legs.length}}
-      %span.info Leg:
-      {{/if}}
-      {{#each components.legs}}
-      {{view 'components/button/main' data=this}}
-      {{/each}}
