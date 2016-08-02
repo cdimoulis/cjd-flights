@@ -1,4 +1,22 @@
 {{view 'components/toggles/button_group' data=components.select_connection}}
 .mdl-grid
   .mdl-cell.mdl-cell--12-col.no-margin
-    {{view 'widgets/routes/list' data=components.list_routes}}
+    {{#if show.direct}}
+    {{view 'widgets/routes/list' data=components.a_routes}}
+    {{/if}}
+    {{#if show.single}}
+    .mdl-grid.no-padding
+      .mdl-cell.mdl-cell--6-col.no-margin
+        {{view 'widgets/routes/list' data=components.a_routes}}
+      .mdl-cell.mdl-cell--6-col.no-margin
+        {{view 'widgets/routes/list' data=components.b_routes}}
+    {{/if}}
+    {{#if show.double}}
+    .mdl-grid.no-padding
+      .mdl-cell.mdl-cell--4-col.no-margin
+        {{view 'widgets/routes/list' data=components.a_routes}}
+      .mdl-cell.mdl-cell--4-col.no-margin
+        {{view 'widgets/routes/list' data=components.b_routes}}
+      .mdl-cell.mdl-cell--4-col.no-margin
+        {{view 'widgets/routes/list' data=components.c_routes}}
+    {{/if}}

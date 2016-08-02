@@ -21,13 +21,35 @@ App.View.extend({
       single: new App.Collections.Routes(),
       double: new App.Collections.Routes(),
     };
+    this.show = {
+      direct: true,
+      single: false,
+      double: false,
+    };
+    this.routes = {
+      a: new App.Collections.Routes(),
+      b: new App.Collections.Routes(),
+      c: new App.Collections.Routes(),
+    };
+
     this.possible_connections = new App.Collection();
     this.selected_connections = new App.Collection();
-    this.routes = new App.Collections.Routes();
+    this.temp_routes = new App.Collections.Routes();
   },
 
   setupListeners: function() {
     this.listenTo(this.data.leg, 'change', this._changeLeg);
+
+    this.listenTo(this.selected_connections, 'reset', function() {
+      var f = this.selected_connections.first();
+      this.show.direct = this.show.single = this.show.double = false;
+      if (f) {
+        this.show[f.get('text')] = true
+      }
+      console.log('show',f.get('text'));
+      this._setupConnectionRoutes();
+      this.render();
+    });
   },
 
   setupComponents: function() {
@@ -39,14 +61,24 @@ App.View.extend({
       title: 'Connections:',
     }
 
-    c.list_routes = {
-      routes: this.routes,
+    c.a_routes = {
+      routes: this.routes.a,
+    };
+
+    c.b_routes = {
+      routes: this.routes.b,
+    };
+
+    c.c_routes = {
+      routes: this.routes.c,
     };
   },
 
   _changeLeg: function() {
     this._splitConnections();
     this._setupConnectionCollection();
+    this._setupConnectionRoutes();
+    this.render();
   },
 
   _splitConnections: function() {
@@ -68,12 +100,49 @@ App.View.extend({
     if (con.length > 0) {
       this.selected_connections.add(_.first(con));
       this.possible_connections.reset(con);
-      this.routes.reset(this.data.leg.get('routes').models);
     }
     else {
       this.selected_connections.reset([]);
       this.possible_connections.reset([]);
-      this.routes.reset([]);
     }
+  },
+
+  _setupConnectionRoutes: function() {
+    if (this.show.direct) {
+      this.routes.a.reset(this.connections.direct.models);
+    }
+    else if (this.show.single) {
+      var flights = new App.Collections.Flights(_.flatten(this.connections.single.pluck('flights')));
+      var flights_a = new App.Collections.Flights(flights.where({flight_order: 0}));
+      var flights_b = new App.Collections.Flights(flights.where({flight_order: 1}));
+      this.routes.a.reset(this._setupRoutes(flights_a));
+      this.routes.b.reset(this._setupRoutes(flights_b));
+    }
+    else {
+      var flights = new App.Collections.Flights(_.flatten(this.connections.double.pluck('flights')));
+      var flights_a = new App.Collections.Flights(flights.where({flight_order: 0}));
+      var flights_b = new App.Collections.Flights(flights.where({flight_order: 1}));
+      var flights_c = new App.Collections.Flights(flights.where({flight_order: 2}));
+      this.routes.a.reset(this._setupRoutes(flights_a));
+      this.routes.b.reset(this._setupRoutes(flights_b));
+      this.routes.c.reset(this._setupRoutes(flights_c));
+    }
+  },
+
+  _setupRoutes: function(flights) {
+    var routes = [];
+    flights.each( function(flight) {
+      var depart = moment(flight.get('departure_date'));
+      var arrive = moment(flight.get('arrival_date'));
+      model = new App.Models.Flight({
+        arrival_date: arrive.format('YYYY-MM-DD'),
+        arrival_time: arrive.format('HH:mm:ss'),
+        departure_date: depart.format('YYYY-MM-DD'),
+        departure_time: depart.format('HH:mm:ss'),
+        flights: [flight],
+      });
+      routes.push(model);
+    });
+    return routes;
   },
 });
