@@ -39,6 +39,9 @@ class RoutesController < ApplicationController
     # Parse the flights returned by searching routes
     ###
     def parseDeltaFlights(raw_html)
+      delta = Airline.where(text: "Delta").take
+      throw "\n\nCould not find Delta airline.\n\n" if delta.nil?
+
       page = Nokogiri::HTML(raw_html)
       table = page.css('tbody.schedulesTableBody')
 
@@ -59,6 +62,8 @@ class RoutesController < ApplicationController
           end
 
           flight_obj = {}
+          flight_obj['airline_id'] = delta.id
+          flight_obj['airline'] = delta
           flight_obj['flight_order'] = current_fl_index-1
 
           # FLIGHT NUMBER
