@@ -87,7 +87,6 @@ Backbone.View = Backbone.View.extend({
 
   addView: function(view_name, data, selector){
     var view;
-
     if (_.has(App.Views, view_name)) {
       var view = new App.Views[view_name]({parent: this, hash: {data: data}});
     }
@@ -98,7 +97,7 @@ Backbone.View = Backbone.View.extend({
       console.warn('View or Component '+view_name+'does not exist.');
       return;
     }
-    
+
     this.children[view.cid] = view;
     view.render();
     $selector = this.$el.find(selector);

@@ -22,7 +22,7 @@ App.View.extend({
     if (this.legs.length == 0) {
       this.legs.add(new App.Model({order: 0, group: 0}));
     }
-    window.legs = this.legs;
+
   },
 
   setupListeners: function() {
@@ -31,11 +31,14 @@ App.View.extend({
       // If leg is removed, shift the order of any after
       var done = false;
       var order = model.get('order');
+      var group = model.get('group');
       var next = _this.legs.findWhere({order: order+1});
 
       while (next) {
         next.set('order', order);
+        next.set('group', group);
         order++;
+        group++;
         next = _this.legs.findWhere({order: order+1});
       }
     });
@@ -69,8 +72,8 @@ App.View.extend({
   },
 
   _addLeg: function() {
-    var last = this.legs.last()
-    var model = new App.Model({order: last.get('order')+1, group: last.get('group')+1})
+    var last = this.legs.last();
+    var model = new App.Model({order: last.get('order')+1, group: last.get('group')+1});
     this.legs.add(model);
   },
 });

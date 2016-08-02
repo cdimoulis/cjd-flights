@@ -16,12 +16,13 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this, '_deleteLeg');
-
     this.leg = this.data.model;
-    this.leg.set('departure_time', 'D');
+    if (!this.leg.has('departure_time')) {
+      this.leg.set('departure_time', 'D');
+    }
 
     this.direct = new App.Model({
-      direct: true,
+      direct: this.leg.get('departure_time') == 'D',
     });
 
   },
@@ -29,7 +30,7 @@ App.View.extend({
   setupListeners: function() {
     var _this = this;
 
-    this.listenTo(this.direct, 'change:direct', function(model,value) {
+    this.listenTo(this.direct, 'change:direct', function(model, value) {
       if (value) {
         _this.leg.set('departure_time', 'D');
       }
