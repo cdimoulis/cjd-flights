@@ -5,6 +5,3 @@
     {{view 'components/general/spinner' data=components.spinner}}
 {{view 'components/toggles/button_group' data=components.select_leg}}
 {{view 'widgets/build/results/connections' data=components.connections}}
-.mdl-grid
-  .mdl-cell.mdl-cell--12-col.no-margin
-    {{view 'widgets/routes/list' data=components.list_routes}}

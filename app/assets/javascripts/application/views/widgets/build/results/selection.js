@@ -15,7 +15,6 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, '_selectLeg');
     var _this = this;
     this.components = {};
     this.view_routes = new App.Collections.Routes();
@@ -36,7 +35,6 @@ App.View.extend({
     this.listenTo(this.selected_legs, 'reset', function() {
       var model = _this.selected_legs.first();
       if (model) {
-        _this._selectLeg(model);
         _this.selected_leg.set(model.attributes);
       }
     });
@@ -82,19 +80,10 @@ App.View.extend({
       title: 'Leg:',
     }
 
-    this.components.list_routes = {
-      routes: this.view_routes,
-    };
-
     this.components.connections = {
       leg: this.selected_leg,
     };
 
   },
 
-  _selectLeg: function(model) {
-    if (model) {
-      this.view_routes.reset(model.get('routes').models);
-    }
-  },
 });

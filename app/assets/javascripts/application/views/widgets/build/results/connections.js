@@ -23,6 +23,7 @@ App.View.extend({
     };
     this.possible_connections = new App.Collection();
     this.selected_connections = new App.Collection();
+    this.routes = new App.Collections.Routes();
   },
 
   setupListeners: function() {
@@ -37,10 +38,13 @@ App.View.extend({
       label_attr: 'text',
       title: 'Connections:',
     }
+
+    c.list_routes = {
+      routes: this.routes,
+    };
   },
 
   _changeLeg: function() {
-    console.log('leg',this.data.leg.get('routes').length)
     this._splitConnections();
     this._setupConnectionCollection();
   },
@@ -64,10 +68,12 @@ App.View.extend({
     if (con.length > 0) {
       this.selected_connections.add(_.first(con));
       this.possible_connections.reset(con);
+      this.routes.reset(this.data.leg.get('routes').models);
     }
     else {
       this.selected_connections.reset([]);
       this.possible_connections.reset([]);
+      this.routes.reset([]);
     }
   },
 });

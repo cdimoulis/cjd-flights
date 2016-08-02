@@ -1,1 +1,4 @@
 {{view 'components/toggles/button_group' data=components.select_connection}}
+.mdl-grid
+  .mdl-cell.mdl-cell--12-col.no-margin
+    {{view 'widgets/routes/list' data=components.list_routes}}
