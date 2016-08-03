@@ -100,7 +100,6 @@ App.View.extend({
       route = new App.Models.Route({order: this.selected_leg.get('order')});
     }
     route.set(this.selected_route.attributes);
-    console.log('route', route.attributes);
   },
 
 });
