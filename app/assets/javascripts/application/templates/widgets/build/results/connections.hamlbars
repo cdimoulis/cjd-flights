@@ -1,5 +1,5 @@
 {{view 'components/toggles/button_group' data=components.select_connection}}
-.mdl-grid
+.mdl-grid.no-padding
   .mdl-cell.mdl-cell--12-col.no-margin
     {{#if show.direct}}
     {{view 'widgets/routes/list' data=components.a_routes}}

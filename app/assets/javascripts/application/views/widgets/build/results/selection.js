@@ -21,6 +21,9 @@ App.View.extend({
     this.selected_leg = new App.Model();
     this.selected_legs = new App.Collection();
 
+    // For user route selection
+    this.selected_route = new App.Models.Route();
+
     // For spinner
     this.spinner_control = new App.Model({load: true});
 
@@ -33,11 +36,14 @@ App.View.extend({
     var _this = this;
 
     this.listenTo(this.selected_legs, 'reset', function() {
-      var model = _this.selected_legs.first();
-      if (model) {
-        _this.selected_leg.set(model.attributes);
+      var leg = _this.selected_legs.first();
+      if (leg) {
+        _this.selected_route.clear();
+        _this.selected_leg.set(leg.attributes);
       }
     });
+
+    this.listenTo(this.selected_route, 'change', this.handleSelectedRoute);
   },
 
   fetchRoutes: function() {
@@ -82,8 +88,13 @@ App.View.extend({
 
     this.components.connections = {
       leg: this.selected_leg,
+      selected_route: this.selected_route,
     };
 
+  },
+
+  handleSelectedRoute: function() {
+    console.log('route change',this.selected_route.get('flights'));
   },
 
 });

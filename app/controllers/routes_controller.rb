@@ -64,7 +64,7 @@ class RoutesController < ApplicationController
           flight_obj = {}
           flight_obj['airline_id'] = delta.id
           flight_obj['airline'] = delta
-          flight_obj['flight_order'] = current_fl_index-1
+          flight_obj['route_order'] = current_fl_index-1
 
           # FLIGHT NUMBER
           flight_obj["number"] = flight.css('input[name="flightNumber"]')[0]['value']\
