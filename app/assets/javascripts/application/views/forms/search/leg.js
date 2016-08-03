@@ -18,7 +18,7 @@ App.View.extend({
     _.bindAll(this, '_deleteLeg');
     this.leg = this.data.model;
     if (!this.leg.has('departure_time')) {
-      this.leg.set('departure_time', 'D');
+      this.leg.set('departure_time', 'N/A');
     }
 
     this.direct = new App.Model({

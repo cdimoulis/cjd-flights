@@ -14,7 +14,7 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, '_changeLeg', '_splitConnections', '_setSelectedRoute', '_setupConnectionCollection', '_buildRoute');;
+    _.bindAll(this, '_changeLeg', '_setupSelected', '_splitConnections', '_setSelectedRoute', '_setupConnectionCollection', '_buildRoute');;
     this.components = {};
     this.connections = {
       direct: new App.Collections.Routes(),
@@ -31,11 +31,11 @@ App.View.extend({
       b: new App.Collections.Routes(),
       c: new App.Collections.Routes(),
     };
-    this.selected = {
-      a: new App.Models.Route(),
-      b: new App.Models.Route(),
-      c: new App.Models.Route(),
-    }
+    this.selected = [
+      new App.Models.Route(),
+      new App.Models.Route(),
+      new App.Models.Route(),
+    ]
 
     this.possible_connections = new App.Collection();
     this.selected_connections = new App.Collection();
@@ -54,9 +54,9 @@ App.View.extend({
       this.render();
     });
 
-    this.listenTo(this.selected.a, 'change', this._setSelectedRoute);
-    this.listenTo(this.selected.b, 'change', this._setSelectedRoute);
-    this.listenTo(this.selected.c, 'change', this._setSelectedRoute);
+    this.listenTo(this.selected[0], 'change', this._setSelectedRoute);
+    this.listenTo(this.selected[1], 'change', this._setSelectedRoute);
+    this.listenTo(this.selected[2], 'change', this._setSelectedRoute);
   },
 
   setupComponents: function() {
@@ -70,25 +70,40 @@ App.View.extend({
 
     c.a_routes = {
       routes: this.routes.a,
-      selected_route: this.selected.a,
+      selected_route: this.selected[0],
     };
 
     c.b_routes = {
       routes: this.routes.b,
-      selected_route: this.selected.b,
+      selected_route: this.selected[1],
     };
 
     c.c_routes = {
       routes: this.routes.c,
-      selected_route: this.selected.c,
+      selected_route: this.selected[2],
     };
   },
 
   _changeLeg: function() {
+    this._setupSelected();
     this._splitConnections();
     this._setupConnectionCollection();
     this._setupConnectionRoutes();
     this.render();
+  },
+
+  _setupSelected: function() {
+    var _this = this;
+    this.selected[0].clear({silent:true});
+    this.selected[1].clear({silent:true});
+    this.selected[2].clear({silent:true});
+
+    if (this.data.selected_route.has('flights')) {
+      _.each(this.data.selected_route.get('flights'), function(flight, index) {
+        var route = _this._buildRoute([flight]);
+        _this.selected[index].set(route.attributes);
+      });
+    }
   },
 
   _splitConnections: function() {
@@ -119,7 +134,8 @@ App.View.extend({
 
   _setupConnectionRoutes: function() {
     if (this.show.direct) {
-      this.routes.a.reset(this.connections.direct.models);
+      var flights = new App.Collections.Flights(_.flatten(this.connections.direct.pluck('flights')));
+      this.routes.a.reset(this._setupRoutes(flights));
     }
     else if (this.show.single) {
       var flights = new App.Collections.Flights(_.flatten(this.connections.single.pluck('flights')));
@@ -152,8 +168,6 @@ App.View.extend({
       }
       return _.flatten(memo);
     }, []);
-
-    console.log('flights', flights);
 
     var route = this._buildRoute(flights);
     this.data.selected_route.set(route.attributes);

@@ -39,7 +39,13 @@ App.View.extend({
     this.listenTo(this.selected_legs, 'reset', function() {
       var leg = _this.selected_legs.first();
       if (leg) {
-        _this.selected_route.clear();
+        var route = _this.data.selected_routes.findWhere({order: leg.get('order')});
+        if (route) {
+          _this.selected_route.set(route.attributes,{silent:true});
+        }
+        else {
+          _this.selected_route.clear({silent:true});
+        }
         _this.selected_leg.set(leg.attributes);
       }
     });
@@ -98,6 +104,7 @@ App.View.extend({
     var route = this.data.selected_routes.findWhere({order: this.selected_leg.get('order')});
     if (!route) {
       route = new App.Models.Route({order: this.selected_leg.get('order')});
+      this.data.selected_routes.add(route);
     }
     route.set(this.selected_route.attributes);
   },

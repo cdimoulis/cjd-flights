@@ -16,6 +16,7 @@ App.View.extend({
   setup: function() {
     this.components = {}
     this.selected_routes = new App.Collections.Routes();
+    window.sel = this.selected_routes;
   },
 
   setupComponents: function() {
