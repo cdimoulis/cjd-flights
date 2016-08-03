@@ -15,6 +15,7 @@ App.View.extend({
   ],
 
   setup: function() {
+    _.bindAll(this, 'handleSelectedRoute');
     var _this = this;
     this.components = {};
     this.view_routes = new App.Collections.Routes();
@@ -94,7 +95,12 @@ App.View.extend({
   },
 
   handleSelectedRoute: function() {
-    console.log('route change',this.selected_route.get('flights'));
+    var route = this.data.selected_routes.findWhere({order: this.selected_leg.get('order')});
+    if (!route) {
+      route = new App.Models.Route({order: this.selected_leg.get('order')});
+    }
+    route.set(this.selected_route.attributes);
+    console.log('route', route.attributes);
   },
 
 });

@@ -23,6 +23,7 @@ App.View.extend({
 
     c.result_list = {
       legs: this.data.legs,
+      selected_routes: this.selected_routes,
     };
 
     c.selected_flights = {
