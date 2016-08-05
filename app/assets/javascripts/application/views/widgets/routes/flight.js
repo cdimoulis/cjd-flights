@@ -26,8 +26,8 @@ App.View.extend({
     this.display.arrival_iata = flight.get('arrival_airport').iata;
     this.display.airline = airline.get('code');
     this.display.number = flight.get('number');
-    this.display.departure_time = dm.format('hh:mm A');
-    this.display.arrival_time = am.format('hh:mm A');
+    this.display.departure_time = dm.format('h:mm A');
+    this.display.arrival_time = am.format('h:mm A');
     this.display.aircraft = flight.get('aircraft');
   },
 });

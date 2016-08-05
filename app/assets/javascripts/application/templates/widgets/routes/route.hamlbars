@@ -1,17 +1,18 @@
 .mdl-grid.no-padding-left.no-padding-right
-  .mdl-cell.mdl-cell--2-col.mdl-cell--1-tablet
+  .mdl-cell.mdl-cell--2-col.mdl-cell--1-tablet.mdl-cell--1-col.phone
     %img{:src => "/assets/img/delta.png"}
-  .mdl-cell.mdl-cell--10-col.mdl-cell--7-tablet
+  .mdl-cell.mdl-cell--10-col.mdl-cell--7-tablet.mdl-cell--3-col-phone.no-margin
     .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet
+      .mdl-cell.mdl-cell--12-col.mdl-cell--8-col-tablet.no-margin
         {{display.departure_date}}
         {{#if display.arrival_date}}
         &#8594 {{display.arrival_date}}
         {{/if}}
-      .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet
+    .mdl-grid.no-padding
+      .mdl-cell.mdl-cell--12-col.mdl-cell--8-col-tablet.no-margin
         Duration: {{display.duration}}
     .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--6-col
+      .mdl-cell.mdl-cell--12-col.no-margin
         {{display.departure_time}} / {{display.arrival_time}}
 .mdl-grid.no-padding-left.no-padding-right
   {{#each configs.flights}}
