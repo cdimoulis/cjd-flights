@@ -1,8 +1,8 @@
 .mdl-grid.no-padding
-  .mdl-cell.mdl-cell--2-col.mdl-cell--3-col-tablet.mdl-cell--4-phone
+  .mdl-cell.mdl-cell--3-col.mdl-cell--3-col-tablet.mdl-cell--4-phone
     %strong {{display.airline}} {{display.number}}
-  .mdl-cell.mdl-cell--10-col.mdl-cell--5-col-tablet.mdl-cell--4-phone
+  .mdl-cell.mdl-cell--9-col.mdl-cell--5-col-tablet.mdl-cell--4-phone
     {{display.departure_iata}} @ {{display.departure_time}} &#8594 {{display.arrival_iata}} @ {{display.arrival_time}}
 .mdl-grid.no-padding
-  .mdl-cell.mdl-cell--10-col.mdl-cell--2-offset-desktop.no-margin-top
+  .mdl-cell.mdl-cell--10-col.mdl-cell--3-offset-desktop.no-margin-top
     {{display.aircraft}}

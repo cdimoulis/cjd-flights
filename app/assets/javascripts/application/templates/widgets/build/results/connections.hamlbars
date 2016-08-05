@@ -1,22 +1,20 @@
 {{view 'components/toggles/button_group' data=components.select_connection}}
 .mdl-grid.no-padding
+  {{#if show.direct}}
   .mdl-cell.mdl-cell--12-col.no-margin
-    {{#if show.direct}}
     {{view 'widgets/routes/list' data=components.a_routes}}
-    {{/if}}
-    {{#if show.single}}
-    .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--6-col.no-margin
-        {{view 'widgets/routes/list' data=components.a_routes}}
-      .mdl-cell.mdl-cell--6-col.no-margin
-        {{view 'widgets/routes/list' data=components.b_routes}}
-    {{/if}}
-    {{#if show.double}}
-    .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--4-col.no-margin
-        {{view 'widgets/routes/list' data=components.a_routes}}
-      .mdl-cell.mdl-cell--4-col.no-margin
-        {{view 'widgets/routes/list' data=components.b_routes}}
-      .mdl-cell.mdl-cell--4-col.no-margin
-        {{view 'widgets/routes/list' data=components.c_routes}}
-    {{/if}}
+  {{/if}}
+  {{#if show.single}}
+  .mdl-cell.mdl-cell--6-col.no-margin
+    {{view 'widgets/routes/list' data=components.a_routes}}
+  .mdl-cell.mdl-cell--6-col.no-margin
+    {{view 'widgets/routes/list' data=components.b_routes}}
+  {{/if}}
+  {{#if show.double}}
+  .mdl-cell.mdl-cell--4-col.no-margin
+    {{view 'widgets/routes/list' data=components.a_routes}}
+  .mdl-cell.mdl-cell--4-col.no-margin
+    {{view 'widgets/routes/list' data=components.b_routes}}
+  .mdl-cell.mdl-cell--4-col.no-margin
+    {{view 'widgets/routes/list' data=components.c_routes}}
+  {{/if}}

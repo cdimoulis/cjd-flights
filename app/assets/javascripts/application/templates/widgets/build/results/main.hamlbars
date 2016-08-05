@@ -1,5 +1,5 @@
 .mdl-grid.no-padding
-  .mdl-cell.mdl-cell--8-col
+  .mdl-cell.mdl-cell--8-col.mdl-cell--6-tablet.mdl-cell--4-hphone
     {{view 'widgets/build/results/selection' data=components.result_list}}
-  .mdl-cell.mdl-cell--4-col
+  .mdl-cell.mdl-cell--4-col.mdl-cell--2-tablet.mdl-cell--hide-phone
     {{view 'widgets/build/results/selected_routes' data=components.selected_routes}}

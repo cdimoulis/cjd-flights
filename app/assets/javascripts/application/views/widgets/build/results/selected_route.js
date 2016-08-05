@@ -1,7 +1,7 @@
 App.View.extend({
   name: 'widgets/build/results/selected_route',
   attributes: {
-    'class': 'build_selected_flights',
+    'class': 'build_results_selected_route',
   },
   data_source: [
     {key: 'route', required: true},
