@@ -1,24 +1,24 @@
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--2-col.mdl-cell--3-col-tablet.mdl-cell--1-col-phone
-    .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--12-col.no-margin
+.row
+  .col.col-xs-2.col-md-2
+    .row
+      .col.col-xs-12
         .text-center
           %strong {{display.airline}}
-    .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--12-col.no-margin
+    .row
+      .col.col-xs-12
         .text-center
           %strong {{display.number}}
-  .mdl-cell.mdl-cell--10-col.mdl-cell--5-col-tablet.mdl-cell--3-col-phone
-    .mdl-grid.no-padding
-      .mdl-cell.mdl-cell--5-col.mdl-cell--5-col-tablet.mdl-cell--4-phone.no-margin
+  .col.col-xs-8.col-md-10
+    .row
+      .col.col-xs-12.col-md-5
         .text-center
           {{display.departure_iata}} @ {{display.departure_time}}
-      .mdl-cell.mdl-cell--2-col.mdl-cell--hide-tablet.mdl-cell--hide-phone.no-margin
+      .col.hidden-sm.col-md-2
         .text-center
           &#8594
-      .mdl-cell.mdl-cell--5-col.mdl-cell--5-col-tablet.mdl-cell--4-phone.mdl-cell--3-offset-tablet.no-margin
+      .col.col-xs-12.col-md-5
         .text-center
           {{display.arrival_iata}} @ {{display.arrival_time}}
-      .mdl-cell.mdl-cell--12-col.no-margin
+      .col.col-xs-12
         .text-center
           {{display.aircraft}}
