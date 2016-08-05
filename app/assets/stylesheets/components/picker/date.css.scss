@@ -12,6 +12,8 @@ button.Zebra_DatePicker_Icon.Zebra_DatePicker_Icon {
 
 .Zebra_DatePicker {
   width: 210px !important;
+  padding: 0px;
+  
   .dp_header, .dp_monthpicker, .dp_yearpicker, .dp_footer {
     width: 210px !important;
   }

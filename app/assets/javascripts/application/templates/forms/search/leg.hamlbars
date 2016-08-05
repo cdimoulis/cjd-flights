@@ -1,11 +1,11 @@
-.mdl-grid
-  .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+.row
+  .col.col-xs-6.col-sm-3.col-md-2
     {{view 'components/text/input' data=components.departure}}
-  .mdl-cell.mdl-cell--2-col.mdl-cell--2-col-tablet.mdl-cell--4-col-phone
+  .col.col-xs-6.col-sm-3.col-md-2
     {{view 'components/text/input' data=components.arrival}}
-  .mdl-cell.mdl-cell--2-col.mdl-cell--3-col-tablet.mdl-cell--4-col-phone
+  .col.col-xs-6.col-sm-3.col-md-2
     {{view 'components/picker/date' data=components.date}}
-  .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset-desktop
+  .col.col-xs-3.col-sm-2.col-md-2
     {{view 'components/toggles/checkbox' data=components.direct}}
-  .mdl-cell.mdl-cell--2-col.mdl-cell--4-col-tablet.mdl-cell--2-col-phone.mdl-cell--1-offset-desktop
+  .col.col-xs-3.col-sm-2.col-md-2
     {{view 'components/button/fab' data=components.delete}}
