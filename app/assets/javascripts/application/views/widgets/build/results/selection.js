@@ -59,7 +59,7 @@ App.View.extend({
     this.data.legs.each( function(leg) {
       var routes = new App.Collections.Routes()
       // Get the fetch attributes before setting routes
-      var fetch_attrs = leg.clone().attributes;
+      var fetch_attrs = leg.clone().unset('routes').attributes;
       leg.set('routes', routes);
       leg.set('title', leg.get('departure')+'-'+leg.get('arrival'));
       _this.listenToOnce(routes, 'sync', function() {

@@ -16,11 +16,16 @@ App.View.extend({
   setup: function() {
     this.components = {}
     this.selected_routes = new App.Collections.Routes();
-    window.sel = this.selected_routes;
   },
 
   setupComponents: function() {
     var c = this.components;
+
+    c.modify = {
+      text: "Modify Routes",
+      icon: 'arrow-back',
+      event_handler: this.data.previous,
+    };
 
     c.result_list = {
       legs: this.data.legs,
