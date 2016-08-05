@@ -27,8 +27,8 @@ App.View.extend({
       selected_routes: this.selected_routes,
     };
 
-    c.selected_flights = {
-
+    c.selected_routes = {
+      selected_routes: this.selected_routes,
     };
 
   },

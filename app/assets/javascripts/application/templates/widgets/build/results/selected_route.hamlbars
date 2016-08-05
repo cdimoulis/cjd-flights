@@ -1,0 +1,1 @@
+{{view 'components/list/main' data=components.list}}

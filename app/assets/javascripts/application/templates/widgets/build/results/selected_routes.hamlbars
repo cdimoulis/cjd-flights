@@ -3,3 +3,4 @@
     %h5 Selected Flights
 .mdl-grid.no-padding
   .mdl-cell.mdl-cell--12-col
+    .routes
