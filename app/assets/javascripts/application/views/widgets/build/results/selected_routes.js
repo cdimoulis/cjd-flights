@@ -13,7 +13,13 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this,'addRoute', 'removeRoute');
+    var _this = this;
     this.route_views = {};
+
+    this.data.selected_routes.each( function(route) {
+      console.log('route',route.attribute);
+      _this.addRoute(route);
+    });
   },
 
   setupListeners: function() {

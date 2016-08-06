@@ -12,6 +12,7 @@ App.Page.extend({
     this.components = c = {};
     this.current_view = null;
     this.legs = new App.Collection()
+    this.selected_routes = new App.Collections.Routes();
     this.display = {
       title: "Enter Route Information",
     }
@@ -32,9 +33,15 @@ App.Page.extend({
 
     c.route_results = {
       legs: this.legs,
+      selected_routes: this.selected_routes,
       next: this.tripView,
       previous: this.buildLegsView
     };
+
+    c.trip = {
+      routes: this.selected_routes,
+      previous: this.resultsView,
+    }
 
     this.listenTo(this, 'rendered', this.buildLegsView);
   },
@@ -43,17 +50,20 @@ App.Page.extend({
     if (this.current_view) {
       this.removeView(this.current_view);
     }
-    this.current_view = this.addView('widgets/build/routes/main', this.components.build_legs, this.$el.find('.current-view') )
+    this.current_view = this.addView('widgets/build/routes/main', this.components.build_legs, this.$el.find('.current-view') );
   },
 
   resultsView: function() {
     if (this.current_view) {
       this.removeView(this.current_view);
     }
-    this.current_view = this.addView('widgets/build/results/main', this.components.route_results, this.$el.find('.current-view') )
+    this.current_view = this.addView('widgets/build/results/main', this.components.route_results, this.$el.find('.current-view') );
   },
 
   tripView: function() {
-
+    if (this.current_view) {
+      this.removeView(this.current_view);
+    }
+    this.current_view = this.addView('widgets/build/trip/main', this.components.trip, this.$el.find('.current-view') );
   },
 });

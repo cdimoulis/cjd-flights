@@ -61,7 +61,7 @@ App.View.extend({
       // Get the fetch attributes before setting routes
       var fetch_attrs = leg.clone().unset('routes').attributes;
       leg.set('routes', routes);
-      leg.set('title', leg.get('departure')+'-'+leg.get('arrival'));
+      leg.set('title', leg.get('departure')+' » '+leg.get('arrival'));
       _this.listenToOnce(routes, 'sync', function() {
         if (leg.get('order') == 0) {
           _this.selected_leg.set(leg.attributes);

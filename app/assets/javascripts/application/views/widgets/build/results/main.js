@@ -5,6 +5,7 @@ App.View.extend({
   },
   data_source: [
     {key: 'legs', required: true},
+    {key: 'selected_routes', required: true},
     {key: 'next', required: true},
     {key: 'previous', required: true},
   ],
@@ -15,7 +16,6 @@ App.View.extend({
 
   setup: function() {
     this.components = {}
-    this.selected_routes = new App.Collections.Routes();
   },
 
   setupComponents: function() {
@@ -27,13 +27,20 @@ App.View.extend({
       event_handler: this.data.previous,
     };
 
+    c.flights = {
+      text: "View Flights",
+      icon: 'arrow-forward',
+      pre_icon: false,
+      event_handler: this.data.next,
+    };
+
     c.result_list = {
       legs: this.data.legs,
-      selected_routes: this.selected_routes,
+      selected_routes: this.data.selected_routes,
     };
 
     c.selected_routes = {
-      selected_routes: this.selected_routes,
+      selected_routes: this.data.selected_routes,
     };
 
   },

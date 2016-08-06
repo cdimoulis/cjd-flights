@@ -1,0 +1,6 @@
+.row
+  .col.col-xs-12.navigation
+    {{view 'components/button/main' data=components.results}}
+.row
+  .col.col-xs-12.col-sm-5.col-md-4
+    {{view 'widgets/build/results/selected_routes' data=components.routes}}
