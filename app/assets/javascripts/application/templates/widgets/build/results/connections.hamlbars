@@ -1,5 +1,5 @@
 {{view 'components/toggles/button_group' data=components.select_connection}}
-.row
+.row.list
   {{#if show.direct}}
   .col.col-xs-12.route-list
     {{view 'widgets/routes/list' data=components.a_routes}}
