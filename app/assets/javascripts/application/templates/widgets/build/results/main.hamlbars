@@ -1,8 +1,8 @@
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--12-col
+.row
+  .col.col-xs-12
     {{view 'components/button/main' data=components.modify}}
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--8-col.mdl-cell--6-tablet.mdl-cell--4-hphone
+.row
+  .col.col-xs-12.col-sm-9.col-md-8
     {{view 'widgets/build/results/selection' data=components.result_list}}
-  .mdl-cell.mdl-cell--4-col.mdl-cell--2-tablet.mdl-cell--hide-phone
+  .col.hidden-xs.col-sm-3.col-md-4
     {{view 'widgets/build/results/selected_routes' data=components.selected_routes}}

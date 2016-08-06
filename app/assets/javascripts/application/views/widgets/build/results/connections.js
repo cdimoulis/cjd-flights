@@ -1,7 +1,7 @@
 App.View.extend({
   name: 'widgets/build/results/connections',
   attributes: {
-    'class': 'build_results_selection',
+    'class': 'build_results_connections',
   },
   data_source: [
     {key: 'leg', required: true},

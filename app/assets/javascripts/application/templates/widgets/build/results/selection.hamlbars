@@ -1,7 +1,11 @@
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone.no-margin
-    %h5 Search Results
-  .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone.no-margin
+.row
+  .col.col-xs-10.col-sm-8.col-md-4
+    %h4 Search Results
+  .col.col-xs-2.col-sm-4.col-md-4
     {{view 'components/general/spinner' data=components.spinner}}
-{{view 'components/toggles/button_group' data=components.select_leg}}
-{{view 'widgets/build/results/connections' data=components.connections}}
+.row
+  .col.col-xs-12
+    {{view 'components/toggles/button_group' data=components.select_leg}}
+.row
+  .col.col-xs-12
+    {{view 'widgets/build/results/connections' data=components.connections}}
