@@ -14,7 +14,6 @@ App.View.extend({
 
   setup: function() {
     this.components = {};
-    console.log('routes',this.data.routes.pluck('flights'));
   },
 
   setupComponents: function() {
@@ -23,7 +22,7 @@ App.View.extend({
     c.results = {
       text: "Results",
       icon: "arrow-back",
-      event_handler: this.previous,
+      event_handler: this.data.previous,
     };
 
     c.routes = {

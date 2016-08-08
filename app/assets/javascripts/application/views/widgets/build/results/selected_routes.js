@@ -13,16 +13,17 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this,'addRoute', 'removeRoute');
-    var _this = this;
     this.route_views = {};
-
-    this.data.selected_routes.each( function(route) {
-      console.log('route',route.attribute);
-      _this.addRoute(route);
-    });
   },
 
   setupListeners: function() {
+    var _this = this;
+    
+    this.listenTo(this, 'rendered', function() {
+      this.data.selected_routes.each( function(route) {
+        _this.addRoute(route);
+      });
+    });
     this.listenTo(this.data.selected_routes,'add', this.addRoute);
     this.listenTo(this.data.selected_routes,'remove', this.removeRoute);
   },

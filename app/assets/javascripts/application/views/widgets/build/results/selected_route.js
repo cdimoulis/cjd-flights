@@ -14,7 +14,7 @@ App.View.extend({
 
   setup: function() {
     this.components = {};
-    this.flights = new App.Collections.Flights()
+    this.flights = new App.Collections.Flights(this.data.route.get('flights'));
   },
 
   setupListeners: function () {
