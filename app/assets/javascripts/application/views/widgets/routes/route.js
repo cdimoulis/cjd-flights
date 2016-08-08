@@ -14,7 +14,7 @@ App.View.extend({
     'setup',
     'setupListeners',
     'setupRouteDisplay',
-    'setupFlightData',
+    'setupFlightConfigs',
   ],
 
   setup: function() {
@@ -70,7 +70,7 @@ App.View.extend({
     return moment.duration(arr_date.valueOf() - dep_date.valueOf());
   },
 
-  setupFlightData: function() {
+  setupFlightConfigs: function() {
     var _this = this;
 
     this.flights.each(function(flight) {

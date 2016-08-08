@@ -34,7 +34,7 @@ App.View.extend({
       event_handler: this.data.next,
     };
 
-    c.result_list = {
+    c.selection = {
       legs: this.data.legs,
       selected_routes: this.data.selected_routes,
     };

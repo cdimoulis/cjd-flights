@@ -9,12 +9,14 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
+    // 'setupSelected',
     'setupListeners',
     'setupComponents',
   ],
 
   setup: function() {
-    _.bindAll(this, '_changeLeg', '_setupSelected', '_splitConnections', '_setSelectedRoute', '_setupConnectionCollection', '_buildRoute');;
+    _.bindAll(this, '_changeLeg', 'setupSelected', '_splitConnections', '_setSelectedRoute', '_setupConnectionCollection', '_buildRoute');
+    var _this = this;
     this.components = {};
     this.connections = {
       direct: new App.Collections.Routes(),
@@ -35,10 +37,24 @@ App.View.extend({
       new App.Models.Route(),
       new App.Models.Route(),
       new App.Models.Route(),
-    ]
+    ];
 
     this.possible_connections = new App.Collection();
     this.selected_connections = new App.Collection();
+  },
+
+  setupSelected: function() {
+    var _this = this;
+    this.selected[0].clear({silent:true});
+    this.selected[1].clear({silent:true});
+    this.selected[2].clear({silent:true});
+
+    if (this.data.selected_route.has('flights')) {
+      _.each(this.data.selected_route.get('flights'), function(flight, index) {
+        var route = _this._buildRoute([flight]);
+        _this.selected[index].set(route.attributes);
+      });
+    }
   },
 
   setupListeners: function() {
@@ -51,7 +67,7 @@ App.View.extend({
         this.show[f.get('text')] = true
       }
       this._setupConnectionRoutes();
-      this.render();
+      // this.render();
     });
 
     this.listenTo(this.selected[0], 'change', this._setSelectedRoute);
@@ -85,25 +101,11 @@ App.View.extend({
   },
 
   _changeLeg: function() {
-    this._setupSelected();
+    this.setupSelected();
     this._splitConnections();
     this._setupConnectionCollection();
     this._setupConnectionRoutes();
-    this.render();
-  },
-
-  _setupSelected: function() {
-    var _this = this;
-    this.selected[0].clear({silent:true});
-    this.selected[1].clear({silent:true});
-    this.selected[2].clear({silent:true});
-
-    if (this.data.selected_route.has('flights')) {
-      _.each(this.data.selected_route.get('flights'), function(flight, index) {
-        var route = _this._buildRoute([flight]);
-        _this.selected[index].set(route.attributes);
-      });
-    }
+    // this.render();
   },
 
   _splitConnections: function() {
@@ -133,6 +135,7 @@ App.View.extend({
   },
 
   _setupConnectionRoutes: function() {
+    console.log('setup connection routes');
     if (this.show.direct) {
       var flights = new App.Collections.Flights(_.flatten(this.connections.direct.pluck('flights')));
       this.routes.a.reset(this._setupRoutes(flights));

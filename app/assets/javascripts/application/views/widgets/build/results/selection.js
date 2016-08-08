@@ -27,10 +27,6 @@ App.View.extend({
 
     // For spinner
     this.spinner_control = new App.Model({load: true});
-
-    this.listenTo(this.data.airports, 'sync', function() {
-      _this.spinner_control.set('load', false);
-    });
   },
 
   setupListeners: function() {
