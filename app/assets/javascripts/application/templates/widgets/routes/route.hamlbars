@@ -1,7 +1,7 @@
 .row
   .col.col-xs-2
     %img{:src => "/assets/img/delta.png"}
-  .col.col-xs-10
+  .col.col-xs-10.summary
     .row
       .col.col-xs-12
         {{display.departure_date}}

@@ -4,3 +4,11 @@
 .row
   .col.col-xs-12.col-sm-5.col-md-4
     {{view 'widgets/build/results/selected_routes' data=components.routes}}
+.row
+  .col.col-xs-3
+    {{view 'components/button/main' data=components.show_url}}
+  .col.col-xs-3
+    {{view 'components/button/main' data=components.open_url}}
+.row
+  .col.col-xs-12.col-md-6
+    {{view 'components/text/area' data=components.url}}

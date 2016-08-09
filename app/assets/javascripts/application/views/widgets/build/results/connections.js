@@ -157,6 +157,8 @@ App.View.extend({
       var flights = new App.Collections.Flights(_.flatten(this.connections.single.pluck('flights')));
       var flights_a = new App.Collections.Flights(flights.where({route_order: 0}));
       var flights_b = new App.Collections.Flights(flights.where({route_order: 1}));
+      var a_apt = new App.Collections.Airports(_.uniq(flights_a.pluck('arrival_airport')));
+      // console.log(a_apt.pluck('iata'));
       flights_a.removeDuplicates()
       flights_b.removeDuplicates()
       this.routes.a.reset(this._setupRoutes(flights_a));
@@ -168,6 +170,10 @@ App.View.extend({
       var flights_a = new App.Collections.Flights(flights.where({route_order: 0}));
       var flights_b = new App.Collections.Flights(flights.where({route_order: 1}));
       var flights_c = new App.Collections.Flights(flights.where({route_order: 2}));
+      var a_apt = new App.Collections.Airports(_.uniq(flights_a.pluck('arrival_airport')));
+      var b_apt = new App.Collections.Airports(_.uniq(flights_b.pluck('arrival_airport')));
+      // console.log(a_apt.pluck('iata'));
+      // console.log(b_apt.pluck('iata'));
       flights_a.removeDuplicates()
       flights_b.removeDuplicates()
       flights_c.removeDuplicates()

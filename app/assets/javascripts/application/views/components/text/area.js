@@ -115,8 +115,9 @@ App.Component.extend({
   },
 
   _setValue: function(model,value) {
-    var $input = this.$el.find('paper-textarea');
-    $input.val(value);
+    // var $input = this.$el.find('paper-textarea');
+    // $input.val(value);
+    this.$el.val(value);
   },
 
   _onChange: function(e) {
