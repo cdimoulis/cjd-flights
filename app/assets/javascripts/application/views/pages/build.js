@@ -53,6 +53,7 @@ App.Page.extend({
     this.legs.each( function(leg) {
       leg.unset('routes');
     });
+    this.selected_routes.reset();
     this.current_view = this.addView('widgets/build/routes/main', this.components.build_legs, this.$el.find('.current-view') );
   },
 
