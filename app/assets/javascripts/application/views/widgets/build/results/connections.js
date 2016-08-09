@@ -21,21 +21,26 @@ App.View.extend({
     _.bindAll(this, '_changeLeg', 'setupSelected', '_splitConnections', '_setSelectedRoute', '_setupConnectionCollection', '_buildRoute');
     var _this = this;
     this.components = {};
+    // The connection routes
     this.connections = {
       direct: new App.Collections.Routes(),
       single: new App.Collections.Routes(),
       double: new App.Collections.Routes(),
     };
+    // Which connections to show
     this.show = {
       direct: true,
       single: false,
       double: false,
     };
+    this.num_legs = 1;
+    // The routes for each different row
     this.routes = {
       a: new App.Collections.Routes(),
       b: new App.Collections.Routes(),
       c: new App.Collections.Routes(),
     };
+    // The selected route in seach row: 0,1,2
     this.selected = [
       new App.Models.Route(),
       new App.Models.Route(),
@@ -53,10 +58,14 @@ App.View.extend({
     this.selected[2].clear({silent:true});
 
     if (this.data.selected_route.has('flights')) {
-      _.each(this.data.selected_route.get('flights'), function(flight, index) {
-        var route = _this._buildRoute([flight]);
-        _this.selected[index].set(route.attributes);
-      });
+      var flights = this.data.selected_route.get('flights');
+      // Only set selected if num legs is the same as the number of flights
+      if (this.num_legs == flights.length) {
+        _.each(flights, function(flight, index) {
+          var route = _this._buildRoute([flight]);
+          _this.selected[index].set(route.attributes);
+        });
+      }
     }
   },
 
@@ -70,7 +79,7 @@ App.View.extend({
         this.show[f.get('text')] = true
       }
       this._setupConnectionRoutes();
-
+      this.setupSelected();
       this.render();
     });
 
@@ -139,10 +148,12 @@ App.View.extend({
 
   _setupConnectionRoutes: function() {
     if (this.show.direct) {
+      this.num_legs = 1;
       var flights = new App.Collections.Flights(_.flatten(this.connections.direct.pluck('flights')));
       this.routes.a.reset(this._setupRoutes(flights));
     }
     else if (this.show.single) {
+      this.num_legs = 2;
       var flights = new App.Collections.Flights(_.flatten(this.connections.single.pluck('flights')));
       var flights_a = new App.Collections.Flights(flights.where({route_order: 0}));
       var flights_b = new App.Collections.Flights(flights.where({route_order: 1}));
@@ -152,6 +163,7 @@ App.View.extend({
       this.routes.b.reset(this._setupRoutes(flights_b));
     }
     else {
+      this.num_legs = 3;
       var flights = new App.Collections.Flights(_.flatten(this.connections.double.pluck('flights')));
       var flights_a = new App.Collections.Flights(flights.where({route_order: 0}));
       var flights_b = new App.Collections.Flights(flights.where({route_order: 1}));
@@ -195,7 +207,7 @@ App.View.extend({
     }
     else {
       first = flights.first();
-      last = flights.last;
+      last = flights.last();
     }
 
     var depart = moment(first.get('departure_date'));
@@ -205,6 +217,7 @@ App.View.extend({
       arrival_time: arrive.format('HH:mm:ss'),
       departure_date: depart.format('YYYY-MM-DD'),
       departure_time: depart.format('HH:mm:ss'),
+      num_legs: flights.length,
       flights: flights,
     });
     return route;
