@@ -9,9 +9,12 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
-    // 'setupSelected',
+    'setupSelected',
     'setupListeners',
     'setupComponents',
+    '_splitConnections',
+    '_setupConnectionCollection',
+    '_setupConnectionRoutes',
   ],
 
   setup: function() {
@@ -67,7 +70,8 @@ App.View.extend({
         this.show[f.get('text')] = true
       }
       this._setupConnectionRoutes();
-      // this.render();
+
+      this.render();
     });
 
     this.listenTo(this.selected[0], 'change', this._setSelectedRoute);
@@ -105,7 +109,6 @@ App.View.extend({
     this._splitConnections();
     this._setupConnectionCollection();
     this._setupConnectionRoutes();
-    // this.render();
   },
 
   _splitConnections: function() {
@@ -135,7 +138,6 @@ App.View.extend({
   },
 
   _setupConnectionRoutes: function() {
-    console.log('setup connection routes');
     if (this.show.direct) {
       var flights = new App.Collections.Flights(_.flatten(this.connections.direct.pluck('flights')));
       this.routes.a.reset(this._setupRoutes(flights));
