@@ -10,18 +10,26 @@ App.View.extend({
   init_functions: [
     'setup',
     'setupComponents',
+    'setupListeners',
     'showURL',
   ],
 
   setup: function() {
-    _.bindAll(this, 'openURL');
+    _.bindAll(this, 'openURL', 'showURL');
     this.components = {};
     this.url = new App.Model();
-    window.uu = this.url;
+    this.selected_class = new App.Collection();
   },
 
   setupComponents: function() {
     var c = this.components;
+    var service_class = new App.Collection([
+      {id:1, text: 'Economy', value: 'ECONOMY'},
+      {id:2, text: 'Premium Economy', value: 'COMFORT-PLUS-PREMIUM-ECONOMY'},
+      {id:3, text: 'Business/First', value: 'BUSINESS-FIRST'},
+    ]);
+
+    this.selected_class.add(service_class.get(1));
 
     c.results = {
       text: "Results",
@@ -33,13 +41,15 @@ App.View.extend({
       selected_routes: this.data.routes,
     };
 
-    c.show_url = {
-      text: "URL",
-      event_handler: this.showURL,
-    };
+    c.class_of_service = {
+      collection: service_class,
+      selected: this.selected_class,
+      label_attr: 'text',
+      title: 'Class of Service:',
+    }
 
     c.open_url = {
-      text: "OPEN",
+      text: "View on Delta",
       event_handler: this.openURL,
     };
 
@@ -49,13 +59,19 @@ App.View.extend({
     };
   },
 
+  setupListeners: function() {
+    this.listenTo(this.selected_class, 'reset', this.showURL);
+  },
+
   openURL: function() {
     window.open(this.url.get('text'), '_blank');
   },
 
   showURL: function() {
     var count = 0;
-    var url = "https://www.delta.com/air-shopping/priceTripAction.action?dispatchMethod=priceItin&\npaxCount=1&\ntripType=multiCity&\ncabin=B5-Coach&\n";
+    var url = "https://www.delta.com/air-shopping/priceTripAction.action?dispatchMethod=priceItin&\npaxCount=1&\ntripType=multiCity&\n";
+    var selected_class = this.selected_class.first()
+    url += "cabin="+ selected_class.get('value') +"&\n";
 
     this.data.routes.each( function(route) {
       _.each(route.get('flights'), function(flight) {
@@ -72,9 +88,8 @@ App.View.extend({
       });
     });
     url += 'numOfSegments='+count+"&\n";
-    url += "price=0&\ncurrencyCd=USD&\nfareBasis=&\nexitCountry=US";
+    url += "fareBasis=";
 
-    console.log(url);
     this.url.set('text',url);
   },
 });
