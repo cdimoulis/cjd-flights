@@ -3,6 +3,9 @@
 # This controller is to facilitate the searching of routes
 # using 3rd party requests. There are no server models
 # associated with this
+require 'open-uri'
+require 'nokogiri'
+require 'net/http'
 
 class RoutesController < ApplicationController
   respond_to :json
