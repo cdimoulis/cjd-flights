@@ -117,6 +117,6 @@ App.Component.extend({
   },
 
   _focus: function() {
-    this.$el.data('Zebra_DatePicker').show();
+    // this.$el.data('Zebra_DatePicker').show();
   },
 });

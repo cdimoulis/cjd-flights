@@ -49,12 +49,17 @@ rerun.txt
 pickle-email-*.html
 .DS_Store
 
+# Ruby
 .rvmrc
 .ruby-version
 .ruby-gemset
 .nvmrc
 latest.dump
 
+# Node
+node_modules/
+
+# Misc
 *.lock
 
 *.pid

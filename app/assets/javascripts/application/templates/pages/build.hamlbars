@@ -1,3 +1,4 @@
-.mdl-grid
-  .mdl-cell.mdl-cell--9-col.mdl-cell--6-col-tablet.mdl-cell--4-col-phone.no-margin
+.row
+  .col.col-xs-12.col-sm-10
     .current-view
+  .col.hidden-xs.col-sm-2

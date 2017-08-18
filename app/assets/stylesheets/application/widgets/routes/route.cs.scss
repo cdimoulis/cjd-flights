@@ -1,9 +1,30 @@
+@import "theme";
+
 .route_info {
   background: #EEEEEE;
+  padding: 10px;
   margin-bottom: 5px;
+  margin-right: 5px;
   cursor: pointer;
 
   &:hover {
     background: #DDDDDD;
+  }
+
+  &.selected {
+    border: 2px solid $primary;
+    margin-bottom: 3px;
+    margin-right: 3px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .summary {
+    padding-bottom: 5px;
   }
 }

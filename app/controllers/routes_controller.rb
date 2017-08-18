@@ -27,9 +27,9 @@ class RoutesController < ApplicationController
 
     parsed_flights = parseDeltaFlights res.body
 
-    flights = buildRoutes parsed_flights
+    routes = buildRoutes parsed_flights
 
-    render :json => flights.to_json
+    render :json => routes.to_json
   end
 
 
@@ -39,6 +39,9 @@ class RoutesController < ApplicationController
     # Parse the flights returned by searching routes
     ###
     def parseDeltaFlights(raw_html)
+      delta = Airline.where(text: "Delta").take
+      throw "\n\nCould not find Delta airline.\n\n" if delta.nil?
+
       page = Nokogiri::HTML(raw_html)
       table = page.css('tbody.schedulesTableBody')
 
@@ -59,6 +62,9 @@ class RoutesController < ApplicationController
           end
 
           flight_obj = {}
+          flight_obj['airline_id'] = delta.id
+          flight_obj['airline'] = delta
+          flight_obj['route_order'] = current_fl_index-1
 
           # FLIGHT NUMBER
           flight_obj["number"] = flight.css('input[name="flightNumber"]')[0]['value']\

@@ -1,5 +1,0 @@
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--12-col.mdl-cell--4-col-tablet.mdl-cell--4-col-phone.no-margin
-    %h5 Selected Flights
-.mdl-grid.no-padding
-  .mdl-cell.mdl-cell--12-col

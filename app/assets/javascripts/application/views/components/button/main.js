@@ -14,6 +14,7 @@ App.Component.extend({
     {key: 'button_color', required: false, default: false, options: ['primary','accent']},
     {key: 'text_color', required: false, default: 'black', options: ['black', 'white']},
     {key: 'icon', required: false},
+    {key: 'pre_icon', required: false, default: true},
     {key: 'event_handler', required: false},
     {key: 'attributes', required: false},
   ],

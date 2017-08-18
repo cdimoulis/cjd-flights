@@ -1,0 +1,6 @@
+.row
+  .col.col-xs-12
+    %h4 Selected Flights
+.row
+  .col.col-xs-12
+    .routes

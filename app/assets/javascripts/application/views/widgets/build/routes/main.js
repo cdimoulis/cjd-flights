@@ -1,7 +1,7 @@
 App.View.extend({
-  name: 'widgets/build/legs',
+  name: 'widgets/build/routes/main',
   attributes: {
-    'class': 'build_legs',
+    'class': 'build_routes_main',
   },
   data_source: [
     {key: 'legs', required: true},
@@ -9,6 +9,7 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
+    'setupListeners',
     'setupComponents',
   ],
 
@@ -19,9 +20,28 @@ App.View.extend({
     this.legs = this.data.legs;
 
     if (this.legs.length == 0) {
-      this.legs.add(new App.Model());
+      this.legs.add(new App.Model({order: 0, group: 0}));
     }
 
+  },
+
+  setupListeners: function() {
+    var _this = this;
+    this.listenTo(this.legs, 'remove', function(model) {
+      // If leg is removed, shift the order of any after
+      var done = false;
+      var order = model.get('order');
+      var group = model.get('group');
+      var next = _this.legs.findWhere({order: order+1});
+
+      while (next) {
+        next.set('order', order);
+        next.set('group', group);
+        order++;
+        group++;
+        next = _this.legs.findWhere({order: order+1});
+      }
+    });
   },
 
   setupComponents: function() {
@@ -48,10 +68,12 @@ App.View.extend({
       icon: 'search',
       event_handler: this.data.next,
     };
-
+    
   },
 
   _addLeg: function() {
-    this.legs.add(new App.Model());
+    var last = this.legs.last();
+    var model = new App.Model({order: last.get('order')+1, group: last.get('group')+1});
+    this.legs.add(model);
   },
 });

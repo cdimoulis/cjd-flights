@@ -1,5 +1,13 @@
+{{#if data.pre_icon}}
 {{#if display.icon}}
 <iron-icon icon="{{display.icon}}">
 </iron-icon>
 {{/if}}
 <span>{{display.text}}</span>
+{{else}}
+<span>{{display.text}}</span>
+{{#if display.icon}}
+<iron-icon icon="{{display.icon}}">
+</iron-icon>
+{{/if}}
+{{/if}}

@@ -10,7 +10,7 @@ gem 'passenger', '~> 5.0.26'
 gem 'sidekiq', '~> 4.1.1'
 gem 'redis-rails', '~> 4.0.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.4'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -23,6 +23,7 @@ gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'haml',   '~> 4.0.7'
 gem 'haml-rails', '~> 0.9'
 gem 'handlebars_assets', '~> 0.21'
+gem 'bootstrap-sass', '~> 3.3.5.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc

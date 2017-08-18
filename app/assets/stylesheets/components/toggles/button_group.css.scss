@@ -1,0 +1,10 @@
+.toggle_button_group {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid gray;
+
+  .selection {
+    min-height: 40px;
+    min-width: 75px;
+  }
+}

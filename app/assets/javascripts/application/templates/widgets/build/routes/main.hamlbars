@@ -1,0 +1,11 @@
+.row
+  .col.col-xs-12
+    %h4 Enter Route Information
+.row
+  .col.col-xs-12
+    {{view 'components/list/main' data=components.list_legs}}
+.row
+  .col-col-xs-2.col-sm-3
+    {{view 'components/button/main' data=components.add}}
+  .col-col-xs-2.col-sm-3
+    {{view 'components/button/main' data=components.search}}
