@@ -17,7 +17,7 @@ App.Page.extend({
       title: "Enter Route Information",
     }
 
-    this.legs.comparator = function(a,b) {
+    var order_comparator = function(a,b) {
       if (a.get('order') < b.get('order')) {
         return -1;
       }
@@ -25,6 +25,9 @@ App.Page.extend({
         return 1;
       }
     }
+
+    this.legs.comparator = order_comparator;
+    this.selected_routes.comparator = order_comparator;
 
     c.build_legs = {
       legs: this.legs,

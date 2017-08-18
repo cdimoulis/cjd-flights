@@ -12,20 +12,29 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this,'addRoute', 'removeRoute');
+    _.bindAll(this, 'setupRoutes', 'addRoute', 'removeRoutes', 'removeRoute');
     this.route_views = {};
   },
 
   setupListeners: function() {
-    var _this = this;
-    
-    this.listenTo(this, 'rendered', function() {
-      this.data.selected_routes.each( function(route) {
-        _this.addRoute(route);
-      });
-    });
-    this.listenTo(this.data.selected_routes,'add', this.addRoute);
+    this.listenTo(this, 'rendered', this.setupRoutes);
+    this.listenTo(this.data.selected_routes,'add', this.setupRoutes);
     this.listenTo(this.data.selected_routes,'remove', this.removeRoute);
+  },
+
+  setupRoutes: function() {
+    var _this = this;
+    this.removeRoutes();
+    this.data.selected_routes.each( function(route) {
+      _this.addRoute(route);
+    });
+  },
+
+  removeRoutes: function() {
+    var _this = this;
+    this.data.selected_routes.each( function(model) {
+      _this.removeRoute(model);
+    });
   },
 
   addRoute: function(model) {
@@ -36,6 +45,8 @@ App.View.extend({
   },
 
   removeRoute: function(model) {
-    this.removeView(this.route_view[model.cid])
+    if (_.has(this.route_views, model.cid)) {
+      this.removeView(this.route_views[model.cid]);
+    }
   },
 });
