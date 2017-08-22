@@ -1,6 +1,7 @@
 .row
   .col.col-xs-12
     %h4 Enter Route Information
+    %h5 Use the 3-letter airport code. For example: ORD, ATL, BOS, LAX...
 .row
   .col.col-xs-12
     {{view 'components/list/main' data=components.list_legs}}
