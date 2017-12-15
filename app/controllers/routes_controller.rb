@@ -30,6 +30,7 @@ class RoutesController < ApplicationController
     #
     # parsed_flights = parseDeltaFlights res.body
     # routes = buildRoutes parsed_flights
+    temp
 
     stops = params[:departure_time] == 'D' ? '0' : '0,1,2'
 
@@ -53,11 +54,21 @@ class RoutesController < ApplicationController
     req = Net::HTTP::Get.new(uri.request_uri)
     res = http.request(req)
 
-    Rails.logger.info("\nresponse:\ncode: #{res.code}\n#{res.body.inspect}\n\n")
+    Rails.logger.info("\ndelta response:\ncode: #{res.code}\n#{res.body.inspect}\n\n")
 
     routes = buildRoutes JSON.parse(res.body)['routes']
 
     render :json => routes.to_json
+  end
+
+  def temp
+    uri = URI('https://www.google.com/search?q=cheese')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    req = Net::HTTP::Get.new(uri.request_uri)
+    res = http.request(req)
+    Rails.logger.info("\nTEST response:\ncode: #{res.code}\n\n")
   end
 
 
