@@ -52,9 +52,14 @@ class RoutesController < ApplicationController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     req = Net::HTTP::Get.new(uri.request_uri)
+    req.add_field(':authority','www.delta.com')
+    req.add_field(':method', 'GET')
+    req.add_field(':path',uri.request_uri)
+    req.add_field(':scheme', 'https')
+    req.add_field('user-agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36')
     res = http.request(req)
 
-    Rails.logger.info("\ndelta response:\ncode: #{res.code}\n#{res.body.inspect}\n\n")
+    Rails.logger.info("\ndelta response:\ncode: #{res.code}\n\n")
 
     routes = buildRoutes JSON.parse(res.body)['routes']
 
