@@ -42,9 +42,13 @@ class RoutesController < ApplicationController
       first: true
     }
 
+    Rails.logger.info("\nrequest with: #{get_params.inspect}\n\n")
+
     query = URI.encode_www_form(get_params)
     uri = URI.parse("https://www.delta.com/flights/routes?#{query}")
     res = Net::HTTP.get(uri)
+
+    Rails.logger.info("\nresponse:\n#{res.inspect}\n\n")
 
     routes = buildRoutes JSON.parse(res)['routes']
 
