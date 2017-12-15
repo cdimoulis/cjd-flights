@@ -11,26 +11,42 @@ class RoutesController < ApplicationController
   respond_to :json
 
   def search
-    post_params = {
-      "departureAirportCode": params[:departure],
-      "arrivalAirportCode": params[:arrival],
-      "flightDateField": params[:date].gsub('-','/'),
-      "flightDate": params[:date],
-      "departureTime": params[:departure_time],
-      "skdEndRecord": 2000
+    # post_params = {
+    #   "departureAirportCode": params[:departure],
+    #   "arrivalAirportCode": params[:arrival],
+    #   "flightDateField": params[:date].gsub('-','/'),
+    #   "flightDate": params[:date],
+    #   "departureTime": params[:departure_time],
+    #   "skdEndRecord": 2000
+    # }
+    #
+    # headers = {
+    #   "Content-Type" => "text/html",
+    #   "Accept" => "application/x-www-form-urlencoded"
+    # }
+
+    # uri = URI.parse('https://www.delta.com/flightinfo/viewFlightSchedules.action')
+    # res = Net::HTTP.post_form(uri, post_params)
+    #
+    # parsed_flights = parseDeltaFlights res.body
+    # routes = buildRoutes parsed_flights
+
+    stops = params[:departure_time] == 'D' ? '0' : '0,1,2'
+
+    get_params = {
+      departureAirportCode: params[:departure],
+      arrivalAirportCode: params[:arrival],
+      scheduledDepartureDate: params[:date],
+      timeRange: "1,2,3",
+      stops: stops,
+      first: true
     }
 
-    headers = {
-      "Content-Type" => "text/html",
-      "Accept" => "application/x-www-form-urlencoded"
-    }
+    query = URI.encode_www_form(get_params)
+    uri = URI.parse("https://www.delta.com/flights/routes?#{query}")
+    res = Net::HTTP.get(uri)
 
-    uri = URI.parse('https://www.delta.com/flightinfo/viewFlightSchedules.action')
-    res = Net::HTTP.post_form(uri, post_params)
-
-    parsed_flights = parseDeltaFlights res.body
-
-    routes = buildRoutes parsed_flights
+    routes = buildRoutes JSON.parse(res)['routes']
 
     render :json => routes.to_json
   end
@@ -40,6 +56,7 @@ class RoutesController < ApplicationController
 
     ###
     # Parse the flights returned by searching routes
+    # DEPRICATED: Delta no longer uses this page. Moved to JSON response
     ###
     def parseDeltaFlights(raw_html)
       delta = Airline.where(text: "Delta").take
@@ -118,27 +135,80 @@ class RoutesController < ApplicationController
       return flights
     end
 
-    def buildRoutes(flights)
-      routes = []
-      flights.each do |f|
-        dept_date = DateTime.parse f.first['departure_date']
-        arr_date = DateTime.parse f.last['arrival_date']
+    def buildRoutes(routes)
+      parsed_routes = []
+      # Assume delta rightn ow
+      delta = Airline.where(text: "Delta").take
 
-        obj = {
+      # Routes from Delta:
+      # routes[segments][legs]
+      # segments is an array of the flights on a route. The connections
+      # Legs is an array, however only one has been found so far. So assume that
+
+      # Loop through routes
+      routes.each do |route|
+        # Route has segments which are the connections
+        segments = route['segments']
+        # Get the first segment and last segment to get dates
+        dept_date = DateTime.parse segments.first['legs'][0]['status']['scheduledDepartureTime']
+        arr_date = DateTime.parse segments.last['legs'][0]['status']['scheduledArrivalTime']
+        # The route object being added to parsed_routes
+        route_obj = {
           departure_date: dept_date.strftime("%Y-%m-%d"),
           departure_time: dept_date.strftime("%H:%M:%S"),
           arrival_date: arr_date.strftime("%Y-%m-%d"),
           arrival_time: arr_date.strftime("%H:%M:%S"),
-          num_legs: f.length,
-          flights: f
+          num_legs: segments.length,
+          flights: []
         }
-        routes.push obj
+
+        # Loop through segments of each route to build flights
+        segments.each.with_index do |segment, idx|
+          # Each segment has legs. Only one element found so far...
+          leg = segment['legs'][0]
+          status = leg['status']
+
+          dep_airport = Airport.where(iata: leg['departureAirport']['code']).take
+          arr_airport = Airport.where(iata: leg['arrivalAirport']['code']).take
+
+          flight = {
+            aircraft: leg['aircraft']['type'],
+            airline_id: delta.id,
+            airline: delta,
+            arrival_airport_id: arr_airport.id,
+            arrival_airport: arr_airport,
+            arrival_date: status['scheduledArrivalTime'],
+            departure_airport_id: dep_airport.id,
+            departure_airport: dep_airport,
+            departure_date: status['scheduledDepartureTime'],
+            route_order: idx,
+            number: leg['flightNumber']
+          }
+          # Add flight to route_obj
+          route_obj[:flights].push flight
+        end
+        parsed_routes.push route_obj
       end
+
+      # flights.each do |f|
+      #   dept_date = DateTime.parse f.first['departure_date']
+      #   arr_date = DateTime.parse f.last['arrival_date']
+      #
+      #   obj = {
+      #     departure_date: dept_date.strftime("%Y-%m-%d"),
+      #     departure_time: dept_date.strftime("%H:%M:%S"),
+      #     arrival_date: arr_date.strftime("%Y-%m-%d"),
+      #     arrival_time: arr_date.strftime("%H:%M:%S"),
+      #     num_legs: f.length,
+      #     flights: f
+      #   }
+      #   parsed_routes.push obj
+      # end
 
       ###
       # END parse routes needs
       ###
 
-      return routes
+      return parsed_routes
     end
 end
