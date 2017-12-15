@@ -30,7 +30,6 @@ class RoutesController < ApplicationController
     #
     # parsed_flights = parseDeltaFlights res.body
     # routes = buildRoutes parsed_flights
-    temp
 
     stops = params[:departure_time] == 'D' ? '0' : '0,1,2'
 
@@ -43,11 +42,9 @@ class RoutesController < ApplicationController
       first: true
     }
 
-    Rails.logger.info("\nrequest with: #{get_params.inspect}\n\n")
-
     query = URI.encode_www_form(get_params)
     uri = URI.parse("https://www.delta.com/flights/routes?#{query}")
-    # res = Net::HTTP.get(uri)
+    
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -59,23 +56,10 @@ class RoutesController < ApplicationController
     req.add_field('user-agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36')
     res = http.request(req)
 
-    Rails.logger.info("\ndelta response:\ncode: #{res.code}\n\n")
-
     routes = buildRoutes JSON.parse(res.body)['routes']
 
     render :json => routes.to_json
   end
-
-  def temp
-    uri = URI('https://www.google.com/search?q=cheese')
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    req = Net::HTTP::Get.new(uri.request_uri)
-    res = http.request(req)
-    Rails.logger.info("\nTEST response:\ncode: #{res.code}\n\n")
-  end
-
 
   private
 
