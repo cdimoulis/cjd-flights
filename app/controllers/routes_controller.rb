@@ -46,11 +46,16 @@ class RoutesController < ApplicationController
 
     query = URI.encode_www_form(get_params)
     uri = URI.parse("https://www.delta.com/flights/routes?#{query}")
-    res = Net::HTTP.get(uri)
+    # res = Net::HTTP.get(uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    req = Net::HTTP::Get.new(uri.request_uri)
+    res = http.request(req)
 
-    Rails.logger.info("\nresponse:\n#{res.inspect}\n\n")
+    Rails.logger.info("\nresponse:\n#{res.body.inspect}\n\n")
 
-    routes = buildRoutes JSON.parse(res)['routes']
+    routes = buildRoutes JSON.parse(res.body)['routes']
 
     render :json => routes.to_json
   end
