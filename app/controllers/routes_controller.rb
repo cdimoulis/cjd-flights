@@ -53,7 +53,7 @@ class RoutesController < ApplicationController
     req = Net::HTTP::Get.new(uri.request_uri)
     res = http.request(req)
 
-    Rails.logger.info("\nresponse:\n#{res.body.inspect}\n\n")
+    Rails.logger.info("\nresponse:\ncode: #{res.code}\n#{res.body.inspect}\n\n")
 
     routes = buildRoutes JSON.parse(res.body)['routes']
 
