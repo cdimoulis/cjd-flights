@@ -216,8 +216,10 @@ App.View.extend({
       last = flights.last();
     }
 
-    var depart = moment(first.get('departure_date'));
-    var arrive = moment(last.get('arrival_date'));
+    var dd = first.get('departure_date');
+    var ad = last.get('arrival_date');
+    var depart = moment(dd.substr(0,dd.lastIndexOf('-')));
+    var arrive = moment(ad.substr(0,ad.lastIndexOf('-')));
     var route = new App.Models.Flight({
       arrival_date: arrive.format('YYYY-MM-DD'),
       arrival_time: arrive.format('HH:mm:ss'),

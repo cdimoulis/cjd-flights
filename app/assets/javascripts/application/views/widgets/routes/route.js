@@ -39,6 +39,7 @@ App.View.extend({
     var route = this.data.model;
     var dep_date_string = route.get('departure_date')+" "+route.get('departure_time')
     var arr_date_string = route.get('arrival_date')+" "+route.get('arrival_time')
+
     var departure_date = moment(dep_date_string);
     var arrival_date = moment(arr_date_string);
 
@@ -46,8 +47,7 @@ App.View.extend({
     var last_flight = _.last(route.get('flights'));
     var dep_airport = new App.Models.Airport(first_flight.departure_airport);
     var arr_airport = new App.Models.Airport(first_flight.arrival_airport);
-    var duration = this.getDuration(dep_date_string, arr_date_string, dep_airport, arr_airport)
-    // var duration = moment.duration(arrival_date.valueOf() - departure_date.valueOf());
+    var duration = this.getDuration(first_flight, last_flight);
 
     this.display.departure_date = departure_date.format('MMMM Do');
     this.display.departure_time = departure_date.format('h:mm A');
@@ -63,9 +63,9 @@ App.View.extend({
     }
   },
 
-  getDuration: function(departure_date, arrival_date, departure_airport, arrival_airport){
-    var dep_date = moment(departure_date+departure_airport.getTimezone());
-    var arr_date = moment(arrival_date+arrival_airport.getTimezone());
+  getDuration: function(first_flight, last_flight){
+    var dep_date = moment(first_flight.get('departure_date'));
+    var arr_date = moment(last_flight.get('arrival_date'));
 
     return moment.duration(arr_date.valueOf() - dep_date.valueOf());
   },
