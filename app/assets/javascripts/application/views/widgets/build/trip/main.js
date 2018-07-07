@@ -75,7 +75,8 @@ App.View.extend({
 
     this.data.routes.each( function(route) {
       _.each(route.get('flights'), function(flight) {
-        var date = moment(flight.get('departure_date'));
+        var dd = flight.get('departure_date');
+        var date = moment(dd.substr(0,dd.lastIndexOf('-')));
         var airline = flight.get('airline');
         var arrival = flight.get('arrival_airport');
         var departure = flight.get('departure_airport');
